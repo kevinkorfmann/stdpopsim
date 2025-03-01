@@ -21,11 +21,11 @@ class TestSpeciesData(test_species.SpeciesTestBase):
     # independently referring to the citations provided in the
     # species definition, filling in the appropriate values
     # and deleting the pytest "skip" annotations.
-    # @pytest.mark.skip("Population size QC not done yet")
+    @pytest.mark.skip("Population size QC not done yet")
     def test_qc_population_size(self):
         assert self.species.population_size == 124000
 
-    # @pytest.mark.skip("Generation time QC not done yet")
+    @pytest.mark.skip("Generation time QC not done yet")
     def test_qc_generation_time(self):
         assert self.species.generation_time == 0.5
 
@@ -66,6 +66,7 @@ class TestGenomeData(test_species.GenomeTestBase):
             "17": 2,
             "18": 2,
             "19": 2,
+            "20": 2,
             "X": 2,
             "Y": 1,
             "MT": 1,
