@@ -39,7 +39,7 @@ _recombination_rate = {
 # According to the paper below the mutation rate in MT
 # is about 10-20 times higher, therefore we set it to 15 times
 
-_overall_rate = 5.55e-9
+_overall_rate = 2.96e-9
 _mutation_rate = {
     "1": _overall_rate,
     "2": _overall_rate,
