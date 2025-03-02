@@ -102,16 +102,22 @@ _genome = stdpopsim.Genome.from_data(
     ploidy=_ploidy,
     citations=[
         stdpopsim.Citation(
+            author="Howe et al.",
+            year=2021,
+            doi="https://doi.org/10.12688/wellcomeopenres.16854.1",
+            reasons={stdpopsim.CiteReason.ASSEMBLY},
+        ),
+        stdpopsim.Citation(
             author="Littrell et al.",
             year=2018,
             doi="https://doi.org/10.1534/g3.118.200187",
-            reasons={stdpopsim.CiteReason.ASSEMBLY},
+            reasons={stdpopsim.CiteReason.REC_RATE},
         ),
         stdpopsim.Citation(
             author="Deinum et al.",
             year=2015,
             doi="https://doi.org/10.1093/molbev/msv126",
-            reasons={stdpopsim.CiteReason.REC_RATE},
+            reasons={stdpopsim.CiteReason.MUT_RATE},
         ),
     ],
 )
