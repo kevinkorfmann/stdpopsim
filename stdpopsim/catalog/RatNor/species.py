@@ -135,6 +135,28 @@ _species = stdpopsim.Species(
     common_name="Rat",
     genome=_genome,
     ploidy=_species_ploidy,
+    # some notes on the generation time
+    # generation time of 0.5 years seems to be widely used in the popgen
+    # literature with earliest citations going back to at least
+    # Kimura and Ohta (1971; https://www.nature.com/articles/229467a0).
+    # many of these earlier citations simply assert the generation time
+    # without providing any evidence. Some more recent citations back
+    # this up with actual data (e.g. Keightly and Eyre-Walker 2000;
+    # DOI: 10.1126/science.290.5490.331) although this citation
+    # relies on mouse demographic data from two 1960s paper
+    # (Breakey 1963; https://doi.org/10.2307/1377448; Berry 1968;
+    # https://doi.org/10.2307/2959) neither of which directly measure
+    # generation time (i.e. the average age at which parents reproduce).
+    # We will use 0.5 years as a default generation time, consistent with
+    # the literature and have chosen to currently cite the Keightly and
+    # Eyre-Walker paper as the source of this estimate along with a demographic
+    # estimate from McGuire et al.
+    # (2006;https://doi.org/10.1674/0003-0031(2006)155[0221:GEOARP]2.0.CO;2)
+    # which demonstrates two breeding seasons per year (but again doesn't measure
+    # generation time directly). In the futue it might be worth doing a
+    # demographic calibration to get a more accurate estimate of the
+    # generation time for which Davis (1953; https://doi.org/10.1086/399860)
+    # could be an excellent source of data.
     generation_time=0.5,
     population_size=1.24e5,
     citations=[
@@ -148,6 +170,12 @@ _species = stdpopsim.Species(
             author="McGuire et al.",
             year=2006,
             doi="https://doi.org/10.1674/0003-0031(2006)155[0221:GEOARP]2.0.CO;2",
+            reasons={stdpopsim.CiteReason.GEN_TIME},
+        ),
+        stdpopsim.Citation(
+            author="Keightly and Eyre-Walker",
+            year=2000,
+            doi="https://doi.org/10.1126/science.290.5490.331",
             reasons={stdpopsim.CiteReason.GEN_TIME},
         ),
     ],
