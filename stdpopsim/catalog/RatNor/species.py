@@ -138,6 +138,18 @@ _species = stdpopsim.Species(
             doi="https://doi.org/10.1093/molbev/msv126",
             reasons={stdpopsim.CiteReason.POP_SIZE},
         ),
+        stdpopsim.Citation(
+            author="Deinum et al.",
+            year=2015,
+            doi="https://doi.org/10.1093/molbev/msv126",
+            reasons={stdpopsim.CiteReason.GEN_TIME},
+        ),
+        stdpopsim.Citation(
+            author="Jing et al.",
+            year=2022,
+            doi="https://doi.org/10.1002/ece3.9409",
+            reasons={stdpopsim.CiteReason.GEN_TIME},
+        ),
     ],
 )
 
