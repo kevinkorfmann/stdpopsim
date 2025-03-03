@@ -63,8 +63,7 @@ _mutation_rate = {
     "20": _overall_rate,
     "X": _overall_rate,
     "Y": _overall_rate,
-    "MT": _overall_rate
-    * 15,  # https://journals.physiology.org/doi/full/10.1152/ajpcell.00234.2006
+    "MT": _overall_rate * 15,
 }
 
 
@@ -119,6 +118,13 @@ _genome = stdpopsim.Genome.from_data(
             doi="https://doi.org/10.1093/molbev/msv126",
             reasons={stdpopsim.CiteReason.MUT_RATE},
         ),
+        # Mitochondrial mutation rate
+        stdpopsim.Citation(
+            author="Schlick et al.",
+            year=2006,
+            doi="https://doi.org/10.1152/ajpcell.00234.2006",
+            reasons={stdpopsim.CiteReason.MUT_RATE},
+        ),
     ],
 )
 
@@ -142,12 +148,6 @@ _species = stdpopsim.Species(
             author="Deinum et al.",
             year=2015,
             doi="https://doi.org/10.1093/molbev/msv126",
-            reasons={stdpopsim.CiteReason.GEN_TIME},
-        ),
-        stdpopsim.Citation(
-            author="Jing et al.",
-            year=2022,
-            doi="https://doi.org/10.1002/ece3.9409",
             reasons={stdpopsim.CiteReason.GEN_TIME},
         ),
     ],
