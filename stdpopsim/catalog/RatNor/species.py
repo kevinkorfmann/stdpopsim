@@ -145,9 +145,9 @@ _species = stdpopsim.Species(
             reasons={stdpopsim.CiteReason.POP_SIZE},
         ),
         stdpopsim.Citation(
-            author="Deinum et al.",
-            year=2015,
-            doi="https://doi.org/10.1093/molbev/msv126",
+            author="McGuire et al.",
+            year=2006,
+            doi="https://doi.org/10.1674/0003-0031(2006)155[0221:GEOARP]2.0.CO;2",
             reasons={stdpopsim.CiteReason.GEN_TIME},
         ),
     ],
