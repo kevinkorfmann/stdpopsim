@@ -132,6 +132,7 @@ def _catskill_warrens():
     N_surface_modern = 3000
     N_surface_bottleneck = 30
     T_split = 300
+    T_bottleneck = T_split // 2  # Bottleneck before merge to avoid zero-length epoch
 
     population_configurations = [
         msprime.PopulationConfiguration(
@@ -151,9 +152,9 @@ def _catskill_warrens():
     ]
 
     demographic_events = [
-        # Surface Raids bottleneck right after the split
+        # Surface Raids bottleneck before the split
         msprime.PopulationParametersChange(
-            time=T_split, initial_size=N_surface_bottleneck, population_id=1
+            time=T_bottleneck, initial_size=N_surface_bottleneck, population_id=1
         ),
         # Split: Surface Raids merge back into Deep Warrens at T_split
         msprime.MassMigration(

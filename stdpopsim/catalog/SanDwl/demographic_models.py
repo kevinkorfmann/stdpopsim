@@ -131,6 +131,7 @@ def _irem_ruins():
     N_ruins_modern = 15000
     N_ruins_bottleneck = 400
     T_split = 10000
+    T_bottleneck = T_split // 2  # Bottleneck before merge to avoid zero-length epoch
 
     population_configurations = [
         msprime.PopulationConfiguration(
@@ -150,9 +151,9 @@ def _irem_ruins():
     ]
 
     demographic_events = [
-        # Ruin Dwellers bottleneck right after the split
+        # Ruin Dwellers bottleneck before the split
         msprime.PopulationParametersChange(
-            time=T_split, initial_size=N_ruins_bottleneck, population_id=1
+            time=T_bottleneck, initial_size=N_ruins_bottleneck, population_id=1
         ),
         # Split: Ruin Dwellers merge back into Deep Desert at T_split
         msprime.MassMigration(

@@ -130,6 +130,7 @@ def _dreamlands_patrol():
     N_expedition_modern = 40000
     N_expedition_bottleneck = 500
     T_split = 5000
+    T_bottleneck = T_split // 2  # Bottleneck before merge to avoid zero-length epoch
 
     population_configurations = [
         msprime.PopulationConfiguration(
@@ -149,9 +150,9 @@ def _dreamlands_patrol():
     ]
 
     demographic_events = [
-        # Moon Expedition bottleneck right after the split
+        # Moon Expedition bottleneck before the split
         msprime.PopulationParametersChange(
-            time=T_split, initial_size=N_expedition_bottleneck, population_id=1
+            time=T_bottleneck, initial_size=N_expedition_bottleneck, population_id=1
         ),
         # Split: Moon Expedition merges back into Temple Cats at T_split
         msprime.MassMigration(

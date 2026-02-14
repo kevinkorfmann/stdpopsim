@@ -149,10 +149,12 @@ def _migration_from_asia():
         ),
     ]
 
+    T_bottleneck = 1000  # bottleneck before the split
+
     demographic_events = [
-        # Asian Origin bottleneck right after the split
+        # Asian Origin bottleneck
         msprime.PopulationParametersChange(
-            time=T_split, initial_size=N_asian_bottleneck, population_id=1
+            time=T_bottleneck, initial_size=N_asian_bottleneck, population_id=1
         ),
         # Split: Asian Origin merges back into Pyrenees Shrine at T_split
         msprime.MassMigration(

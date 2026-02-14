@@ -121,18 +121,21 @@ def _interplanetary_spread():
         ),
     ]
 
+    T_split = 10000
+    T_bottleneck = T_split // 2  # Bottleneck before merge to avoid zero-length epoch
+
     demographic_events = [
-        # Earth colony merges back into Yuggoth at the split time
-        msprime.MassMigration(
-            time=10000, source=1, destination=0, proportion=1.0
-        ),
         # Earth colony had initial size of 100 right after the split
         msprime.PopulationParametersChange(
-            time=10000, initial_size=100, population_id=1
+            time=T_bottleneck, initial_size=100, population_id=1
+        ),
+        # Earth colony merges back into Yuggoth at the split time
+        msprime.MassMigration(
+            time=T_split, source=1, destination=0, proportion=1.0
         ),
         # Ancestral Yuggoth population size
         msprime.PopulationParametersChange(
-            time=10000, initial_size=5000000, population_id=0
+            time=T_split, initial_size=5000000, population_id=0
         ),
     ]
 

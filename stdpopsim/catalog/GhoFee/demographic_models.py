@@ -164,10 +164,6 @@ def _dreamlands_passage():
             [0, 0, 0],
             [0, 0, 0],
         ],
-        population_id_map=[
-            {"WakingWorld": 0, "Dreamlands": 1, "Ancestral": 2},
-        ]
-        * 3,
     )
 
 

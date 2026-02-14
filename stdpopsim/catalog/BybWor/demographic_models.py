@@ -158,10 +158,6 @@ def _star_system_split():
             [0, 0, 0],
             [0, 0, 0],
         ],
-        population_id_map=[
-            {"Aldebaran": 0, "Hyades": 1, "Ancestral": 2},
-        ]
-        * 3,
     )
 
 
