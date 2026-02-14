@@ -165,10 +165,6 @@ def _city_ruins():
             [0, 0, 0],
             [0, 0, 0],
         ],
-        population_id_map=[
-            {"Antarctic": 0, "DeepSea": 1, "Ancestral": 2},
-        ]
-        * 3,
     )
 
 

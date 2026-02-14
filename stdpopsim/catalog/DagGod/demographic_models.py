@@ -131,6 +131,7 @@ def _deep_one_progenitor():
     N_reef_modern = 30
     N_reef_bottleneck = 5
     T_split = 200
+    T_bottleneck = T_split // 2  # Bottleneck before merge to avoid zero-length epoch
 
     population_configurations = [
         msprime.PopulationConfiguration(
@@ -150,9 +151,9 @@ def _deep_one_progenitor():
     ]
 
     demographic_events = [
-        # Reef Manifestations bottleneck right after the split
+        # Reef Manifestations bottleneck before the split
         msprime.PopulationParametersChange(
-            time=T_split, initial_size=N_reef_bottleneck, population_id=1
+            time=T_bottleneck, initial_size=N_reef_bottleneck, population_id=1
         ),
         # Split: Reef Manifestations merge back into Abyssal Progenitors at T_split
         msprime.MassMigration(
