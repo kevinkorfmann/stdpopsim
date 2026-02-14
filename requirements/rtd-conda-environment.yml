@@ -13,3 +13,4 @@ dependencies:
   - sphinxcontrib-programoutput
   - demes
   - demesdraw
+  - setuptools-scm
