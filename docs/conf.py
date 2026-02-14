@@ -110,7 +110,7 @@ html_theme_options = {
 }
 
 # Logo in the top-left corner of the sidebar
-html_logo = "_static/logo.svg"
+html_logo = "_static/logo.png"
 
 # Show the version number in the navigation bar
 html_show_sphinx = True
