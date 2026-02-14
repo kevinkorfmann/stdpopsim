@@ -109,8 +109,8 @@ html_theme_options = {
     "logo_only": False,
 }
 
-# Logo in the top-left corner of the sidebar
-html_logo = "_static/logo.png"
+# Logo in the top-left corner of the sidebar (round shape, from logo.svg)
+html_logo = "_static/logo.svg"
 
 # Show the version number in the navigation bar
 html_show_sphinx = True
