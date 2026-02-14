@@ -9,8 +9,8 @@ build:
   os: ubuntu-22.04
   tools:
     python: "mambaforge-23.11"
-  commands:
-    pre_install:
+  jobs:
+    post_checkout:
       - git fetch --unshallow || true
 
 sphinx:
