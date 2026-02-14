@@ -12,9 +12,9 @@ _species = stdvoidsim.get_species("YogSot")
 
 # Fictional citations for stdvoidsim demographic models
 _whateley_et_al = stdvoidsim.Citation(
-    author="Whateley et al.",
+    author="Lovecraft, H.P.",
     year=1928,
-    doi="https://doi.org/10.0000/void.yogsothoth.demog.1928",
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 

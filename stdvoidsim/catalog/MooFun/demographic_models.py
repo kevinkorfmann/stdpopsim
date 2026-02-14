@@ -14,8 +14,8 @@ def _dark_side():
         (N=10000), ancient lunar origin 50000 gen ago (N=80000).
     """
     populations = [_dark_pop]
-    citations = [stdvoidsim.Citation(author="Carter et al.", year=1926,
-        doi="https://doi.org/10.1666/void.moonbeast.dem1",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,
@@ -38,8 +38,8 @@ def _trade_fleet():
         fleet bottleneck to 500, grow to 15000.
     """
     populations = [_dark_pop, _trade_pop]
-    citations = [stdvoidsim.Citation(author="Carter et al.", year=1926,
-        doi="https://doi.org/10.1666/void.moonbeast.dem2",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,

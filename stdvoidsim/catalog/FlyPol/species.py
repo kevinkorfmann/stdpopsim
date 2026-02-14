@@ -1,13 +1,13 @@
 import stdvoidsim
 from . import genome_data
 
-_citation = stdvoidsim.Citation(author="Peaslee et al.", year=1935,
-    doi="https://doi.org/10.1666/void.polyp.1",
+_citation = stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.GEN_TIME, stdvoidsim.CiteReason.POP_SIZE})
-_assembly_citation = stdvoidsim.Citation(author="Peaslee et al.", year=1935,
-    doi="https://doi.org/10.1666/void.polyp.2", reasons={stdvoidsim.CiteReason.ASSEMBLY})
-_mutation_citation = stdvoidsim.Citation(author="Peaslee et al.", year=1935,
-    doi="https://doi.org/10.1666/void.polyp.3",
+_assembly_citation = stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon", reasons={stdvoidsim.CiteReason.ASSEMBLY})
+_mutation_citation = stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.MUT_RATE, stdvoidsim.CiteReason.REC_RATE})
 
 _recombination_rate = {c: 8e-9 for c in genome_data.data["chromosomes"]}

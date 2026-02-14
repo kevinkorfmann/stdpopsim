@@ -14,8 +14,8 @@ def _ngranek_flock():
         ago (N=10000), ancient dreamlands origin 50000 gen ago (N=100000).
     """
     populations = [_peak_pop]
-    citations = [stdvoidsim.Citation(author="Carter et al.", year=1926,
-        doi="https://doi.org/10.1666/void.nightgaunt.dem1",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,
@@ -38,8 +38,8 @@ def _dream_split():
         bottleneck to 500 then expand to 40000.
     """
     populations = [_peak_pop, _dream_pop]
-    citations = [stdvoidsim.Citation(author="Carter et al.", year=1926,
-        doi="https://doi.org/10.1666/void.nightgaunt.dem2",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,

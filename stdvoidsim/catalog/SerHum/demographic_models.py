@@ -14,8 +14,8 @@ def _valusian_empire():
         golden Valusian empire 20000 gen ago (N=500000).
     """
     populations = [_valusia_pop]
-    citations = [stdvoidsim.Citation(author="Kull et al.", year=1929,
-        doi="https://doi.org/10.1666/void.serpent.dem1",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,
@@ -38,8 +38,8 @@ def _infiltration():
         Infiltrators bottleneck to 100, grow to 10000.
     """
     populations = [_valusia_pop, _infiltrator_pop]
-    citations = [stdvoidsim.Citation(author="Kull et al.", year=1929,
-        doi="https://doi.org/10.1666/void.serpent.dem2",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,

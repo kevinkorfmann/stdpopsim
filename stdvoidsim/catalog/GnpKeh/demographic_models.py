@@ -24,7 +24,7 @@ def _hyperborean_ice_age():
         effective population size 12000, (2) an ice age expansion period
         beginning 2000 generations ago with N=50000, and (3) a pre-ice
         founding era beginning 20000 generations ago with N=5000. Based on
-        the work of Howard et al. (1933).
+        the Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -35,9 +35,9 @@ def _hyperborean_ice_age():
 
     citations = [
         stdvoidsim.Citation(
-            author="Howard et al.",
-            year=1933,
-            doi="https://doi.org/10.1666/void.gnophkeh.demog.1",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]
@@ -93,7 +93,7 @@ def _arctic_split():
         50000 splits at 5000 generations ago. The Hyperborean Core maintains
         a size of 12000. The Lomar Colony lineage goes through a bottleneck
         of 200 individuals before expanding to 6000. Based on the work of
-        Howard et al. (1933).
+        Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -108,9 +108,9 @@ def _arctic_split():
 
     citations = [
         stdvoidsim.Citation(
-            author="Howard et al.",
-            year=1933,
-            doi="https://doi.org/10.1666/void.gnophkeh.demog.2",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]

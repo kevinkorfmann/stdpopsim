@@ -13,9 +13,9 @@ _species = stdvoidsim.get_species("BybWor")
 # Fictional citations for stdvoidsim
 
 _demarigny_et_al = stdvoidsim.Citation(
-    author="deMarigny et al.",
-    year=1933,
-    doi="https://doi.org/10.1000/void.byakhee.1933",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 

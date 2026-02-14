@@ -14,8 +14,8 @@ def _angular_time():
         (N=20000), primordial angular existence 5000 gen ago (N=1000).
     """
     populations = [_angular_pop]
-    citations = [stdvoidsim.Citation(author="Long et al.", year=1929,
-        doi="https://doi.org/10.1666/void.tindalos.dem1",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,
@@ -38,8 +38,8 @@ def _corner_emergence():
         Corner hunters bottleneck to 100, expand to 3000.
     """
     populations = [_angular_pop, _corner_pop]
-    citations = [stdvoidsim.Citation(author="Long et al.", year=1929,
-        doi="https://doi.org/10.1666/void.tindalos.dem2",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,

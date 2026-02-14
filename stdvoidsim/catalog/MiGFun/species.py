@@ -5,16 +5,16 @@ from . import genome_data
 # Fictional citations for stdvoidsim
 
 _akeley_et_al = stdvoidsim.Citation(
-    author="Akeley et al.",
-    year=1930,
-    doi="https://doi.org/10.1000/void.migo.1930",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.GEN_TIME, stdvoidsim.CiteReason.POP_SIZE},
 )
 
 _akeley_genome = stdvoidsim.Citation(
-    author="Akeley et al.",
-    year=1930,
-    doi="https://doi.org/10.1000/void.migo.assembly.1930",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={
         stdvoidsim.CiteReason.ASSEMBLY,
         stdvoidsim.CiteReason.MUT_RATE,

@@ -15,8 +15,8 @@ def _yithian_war():
         ago (N=500000).
     """
     populations = [_basalt_pop]
-    citations = [stdvoidsim.Citation(author="Peaslee et al.", year=1935,
-        doi="https://doi.org/10.1666/void.polyp.dem1",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,
@@ -39,8 +39,8 @@ def _surface_raid():
         raiders bottleneck to 200, grow to 5000.
     """
     populations = [_basalt_pop, _surface_pop]
-    citations = [stdvoidsim.Citation(author="Peaslee et al.", year=1935,
-        doi="https://doi.org/10.1666/void.polyp.dem2",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,

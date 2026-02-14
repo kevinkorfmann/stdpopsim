@@ -16,8 +16,8 @@ def _thousand_young():
         gen ago (N=50000).
     """
     populations = [_woods_pop]
-    citations = [stdvoidsim.Citation(author="Whateley et al.", year=1927,
-        doi="https://doi.org/10.1666/void.shubnigg.dem1",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     generation_time = _species.generation_time
     mutation_rate = 3e-8
@@ -45,8 +45,8 @@ def _cult_breeding():
         80000. Cult-bred founders at 20, expand to 20000.
     """
     populations = [_woods_pop, _cult_pop]
-    citations = [stdvoidsim.Citation(author="Whateley et al.", year=1927,
-        doi="https://doi.org/10.1666/void.shubnigg.dem2",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     generation_time = _species.generation_time
     mutation_rate = 3e-8

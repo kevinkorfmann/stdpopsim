@@ -18,9 +18,9 @@ _species = stdvoidsim.get_species("SanDwl")
 # Fictional citations for stdvoidsim
 
 _alhazred_et_al = stdvoidsim.Citation(
-    author="Alhazred et al.",
-    year=730,
-    doi="https://doi.org/10.1666/void.sanddweller.demog.1",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 
@@ -38,7 +38,7 @@ def _desert_burrowers():
         epochs: modern desert population with effective population size 40,000,
         an oasis bottleneck beginning 3,000 generations ago with N=8,000,
         and an ancient Irem era beginning 30,000 generations ago with
-        N=120,000. Based on the Necronomicon surveys of Alhazred et al. (730).
+        N=120,000. Based on the Necronomicon (Lovecraft). (730).
     """
     citations = [_alhazred_et_al]
 
@@ -109,7 +109,7 @@ def _irem_ruins():
         splits at 10,000 generations ago. The Deep Desert population
         maintains a size of 40,000. The Ruin Dwellers go through a
         bottleneck of 400 individuals before expanding to 15,000 in the
-        present day. Based on the Necronomicon surveys of Alhazred et al.
+        present day. Based on the Necronomicon (Lovecraft).
         (730).
     """
     citations = [_alhazred_et_al]

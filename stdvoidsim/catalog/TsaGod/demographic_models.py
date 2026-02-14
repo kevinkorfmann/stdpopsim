@@ -23,7 +23,7 @@ def _slothful_dormancy():
         caverns of N'kai. Three epochs: (1) a modern phase with effective
         population size 100, (2) a brief awakening period beginning 500
         generations ago with N=1000, and (3) a deep slumber era beginning
-        5000 generations ago with N=10. Based on the work of Smith et al.
+        5000 generations ago with N=10. Based on the Necronomicon (Lovecraft).
         (1931).
     """
     populations = [
@@ -35,9 +35,9 @@ def _slothful_dormancy():
 
     citations = [
         stdvoidsim.Citation(
-            author="Smith et al.",
-            year=1931,
-            doi="https://doi.org/10.1666/void.tsathoggua.demog.1",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]
@@ -92,7 +92,7 @@ def _nkai_caverns():
         dwellers and Surface Avatars. The ancestral population of size 1000
         splits at 200 generations ago. The N'kai population maintains a size
         of 100. The Surface Avatar lineage goes through a bottleneck of 5
-        individuals before expanding to 50. Based on the work of Smith et al.
+        individuals before expanding to 50. Based on the Necronomicon (Lovecraft).
         (1931).
     """
     populations = [
@@ -108,9 +108,9 @@ def _nkai_caverns():
 
     citations = [
         stdvoidsim.Citation(
-            author="Smith et al.",
-            year=1931,
-            doi="https://doi.org/10.1666/void.tsathoggua.demog.2",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]

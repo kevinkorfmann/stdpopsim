@@ -13,9 +13,9 @@ _species = stdvoidsim.get_species("DagHyd")
 # Fictional citations for stdvoidsim
 
 _marsh_et_al = stdvoidsim.Citation(
-    author="Marsh et al.",
-    year=1927,
-    doi="https://doi.org/10.1000/void.deepone.demography.1927",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 

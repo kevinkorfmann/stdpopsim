@@ -15,9 +15,9 @@ _species = stdvoidsim.get_species("NyaAza")
 # -------------------------------------------------------------------------
 
 _tm_ref = stdvoidsim.Citation(
-    author="Ward et al.",
-    year=2019,
-    doi="https://doi.org/10.1666/void.nyarlathotep.thousandmasks",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 
@@ -80,9 +80,9 @@ _species.add_demographic_model(_thousand_masks())
 # -------------------------------------------------------------------------
 
 _cs_ref = stdvoidsim.Citation(
-    author="Derleth et al.",
-    year=2021,
-    doi="https://doi.org/10.1666/void.nyarlathotep.chaosspread",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 

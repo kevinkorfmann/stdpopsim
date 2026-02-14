@@ -18,9 +18,9 @@ _species = stdvoidsim.get_species("CatUlt")
 # Fictional citations for stdvoidsim
 
 _carter_et_al = stdvoidsim.Citation(
-    author="Carter et al.",
-    year=1920,
-    doi="https://doi.org/10.1666/void.catulthar.demog.1",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 
@@ -38,7 +38,7 @@ def _ulthar_protection():
         epochs: modern protected era with effective population size 100,000,
         a pre-protection-law era beginning 1,000 generations ago with N=30,000,
         and an ancient dreamlands origin beginning 20,000 generations ago with
-        N=200,000. Based on the dreamlands surveys of Carter et al. (1920).
+        N=200,000. Based on the Necronomicon (Lovecraft).
     """
     citations = [_carter_et_al]
 
@@ -109,7 +109,7 @@ def _dreamlands_patrol():
         5,000 generations ago. The Temple Cats maintain a size of 100,000.
         The Moon Expedition Force goes through a bottleneck of 500 individuals
         before expanding to 40,000 in the present day. Based on the dreamlands
-        surveys of Carter et al. (1920).
+        Necronomicon (Lovecraft).
     """
     citations = [_carter_et_al]
 

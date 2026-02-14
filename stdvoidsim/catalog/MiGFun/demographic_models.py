@@ -15,9 +15,9 @@ _species = stdvoidsim.get_species("MiGFun")
 # -------------------------------------------------------------------------
 
 _yc_ref = stdvoidsim.Citation(
-    author="Akeley et al.",
-    year=1930,
-    doi="https://doi.org/10.1666/void.migo.yuggothcolony",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 
@@ -80,9 +80,9 @@ _species.add_demographic_model(_yuggoth_colony())
 # -------------------------------------------------------------------------
 
 _is_ref = stdvoidsim.Citation(
-    author="Akeley et al.",
-    year=1930,
-    doi="https://doi.org/10.1666/void.migo.interplanetaryspread",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 

@@ -15,9 +15,9 @@ _species = stdvoidsim.get_species("EldThi")
 # -------------------------------------------------------------------------
 
 _cc_ref = stdvoidsim.Citation(
-    author="Dyer et al.",
-    year=1931,
-    doi="https://doi.org/10.1000/void.elderthing.collapse.1931",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 
@@ -90,9 +90,9 @@ _species.add_demographic_model(_civilization_collapse())
 # -------------------------------------------------------------------------
 
 _ar_ref = stdvoidsim.Citation(
-    author="Lake et al.",
-    year=1930,
-    doi="https://doi.org/10.1000/void.elderthing.retreat.1930",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 

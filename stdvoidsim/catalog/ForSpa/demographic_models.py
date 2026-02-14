@@ -23,7 +23,7 @@ def _cavern_spawning():
         caverns of N'kai. Three epochs: (1) a modern phase with effective
         population size 25000, (2) a drought bottleneck period beginning 3000
         generations ago with N=2000, and (3) an ancient N'kai era beginning
-        30000 generations ago with N=100000. Based on the work of Smith et al.
+        30000 generations ago with N=100000. Based on the Necronomicon (Lovecraft).
         (1931).
     """
     populations = [
@@ -35,9 +35,9 @@ def _cavern_spawning():
 
     citations = [
         stdvoidsim.Citation(
-            author="Smith et al.",
-            year=1931,
-            doi="https://doi.org/10.1666/void.formlessspawn.demog.1",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]
@@ -92,8 +92,8 @@ def _temple_guardians():
         and Temple Guardians. The ancestral population of size 100000 splits
         at 5000 generations ago. The N'kai population maintains a size of
         25000. The Temple Guardian lineage goes through a bottleneck of 200
-        individuals before expanding to 8000. Based on the work of Smith
-        et al. (1931).
+        individuals before expanding to 8000. Based on the Necronomicon (Lovecraft).
+        Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -108,9 +108,9 @@ def _temple_guardians():
 
     citations = [
         stdvoidsim.Citation(
-            author="Smith et al.",
-            year=1931,
-            doi="https://doi.org/10.1666/void.formlessspawn.demog.2",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]

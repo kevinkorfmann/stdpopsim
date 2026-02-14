@@ -15,9 +15,9 @@ _species = stdvoidsim.get_species("HasKin")
 # -------------------------------------------------------------------------
 
 _ys_ref = stdvoidsim.Citation(
-    author="Chambers et al.",
-    year=1895,
-    doi="https://doi.org/10.1666/void.hastur.yellowsignspread",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 
@@ -80,9 +80,9 @@ _species.add_demographic_model(_yellow_sign_spread())
 # -------------------------------------------------------------------------
 
 _ce_ref = stdvoidsim.Citation(
-    author="Chambers et al.",
-    year=1895,
-    doi="https://doi.org/10.1666/void.hastur.carcosaearth",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 

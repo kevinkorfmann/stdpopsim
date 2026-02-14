@@ -2,19 +2,19 @@ import stdvoidsim
 from . import genome_data
 
 _citation = stdvoidsim.Citation(
-    author="Whateley et al.",
-    year=1927,
-    doi="https://doi.org/10.1666/void.shubnigg.1",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.GEN_TIME, stdvoidsim.CiteReason.POP_SIZE},
 )
 _assembly_citation = stdvoidsim.Citation(
-    author="Whateley et al.", year=1927,
-    doi="https://doi.org/10.1666/void.shubnigg.2",
+    author="Lovecraft, H.P.", year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.ASSEMBLY},
 )
 _mutation_citation = stdvoidsim.Citation(
-    author="Whateley et al.", year=1927,
-    doi="https://doi.org/10.1666/void.shubnigg.3",
+    author="Lovecraft, H.P.", year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.MUT_RATE, stdvoidsim.CiteReason.REC_RATE},
 )
 

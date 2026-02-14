@@ -4,16 +4,16 @@ from . import genome_data
 
 # Fictional citations for stdvoidsim
 _whateley_et_al = stdvoidsim.Citation(
-    author="Whateley et al.",
+    author="Lovecraft, H.P.",
     year=1928,
-    doi="https://doi.org/10.0000/void.yogsothoth.1928",
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.GEN_TIME, stdvoidsim.CiteReason.POP_SIZE},
 )
 
 _genome_citation = stdvoidsim.Citation(
-    author="Whateley et al.",
+    author="Lovecraft, H.P.",
     year=1928,
-    doi="https://doi.org/10.0000/void.yogsothoth.genome.1928",
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={
         stdvoidsim.CiteReason.ASSEMBLY,
         stdvoidsim.CiteReason.MUT_RATE,

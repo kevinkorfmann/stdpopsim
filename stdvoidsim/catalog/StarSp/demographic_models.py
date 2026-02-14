@@ -14,8 +14,8 @@ def _sunken_city():
         arrival from Xoth 20000 gen ago (N=5000).
     """
     populations = [_rlyeh_pop]
-    citations = [stdvoidsim.Citation(author="Johansen et al.", year=1926,
-        doi="https://doi.org/10.1666/void.starspawn.dem1",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,
@@ -38,8 +38,8 @@ def _xoth_migration():
         R'lyeh bottleneck to 1000, expand to 10000.
     """
     populations = [_xoth_pop, _rlyeh_pop]
-    citations = [stdvoidsim.Citation(author="Johansen et al.", year=1926,
-        doi="https://doi.org/10.1666/void.starspawn.dem2",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,

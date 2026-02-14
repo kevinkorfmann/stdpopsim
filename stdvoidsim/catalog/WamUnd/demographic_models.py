@@ -18,9 +18,9 @@ _species = stdvoidsim.get_species("WamUnd")
 # Fictional citations for stdvoidsim
 
 _martense_et_al = stdvoidsim.Citation(
-    author="Martense et al.",
-    year=1922,
-    doi="https://doi.org/10.1666/void.wamp.demog.1",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 
@@ -38,8 +38,7 @@ def _martense_degeneration():
         modern subterranean population with effective population size 20,000,
         a split from surface humanity beginning 500 generations ago with
         severe bottleneck N=50, and the ancestral Martense family era
-        beginning 600 generations ago with N=5,000. Based on the Catskill
-        investigations of Martense et al. (1922).
+        beginning 600 generations ago with N=5,000. Based on the Necronomicon (Lovecraft).
     """
     citations = [_martense_et_al]
 
@@ -110,8 +109,8 @@ def _catskill_warrens():
         300 generations ago. The Deep Warrens population maintains a
         size of 20,000. The Surface Raids lineage goes through a
         bottleneck of 30 individuals before expanding to 3,000 in the
-        present day. Based on the Catskill investigations of Martense
-        et al. (1922).
+        present day. Based on the Necronomicon (Lovecraft).
+        
     """
     citations = [_martense_et_al]
 

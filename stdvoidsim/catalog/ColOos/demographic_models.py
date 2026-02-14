@@ -14,8 +14,8 @@ def _meteor_bloom():
         gen ago (N=5), interstellar dormancy 100000 gen ago (N=1000).
     """
     populations = [_meteor_pop]
-    citations = [stdvoidsim.Citation(author="Gardner et al.", year=1927,
-        doi="https://doi.org/10.1666/void.colour.dem1",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,
@@ -38,8 +38,8 @@ def _well_spread():
         fracture). Core at 2000. Spread bottleneck to 10, expand to 8000.
     """
     populations = [_meteor_pop, _spread_pop]
-    citations = [stdvoidsim.Citation(author="Gardner et al.", year=1927,
-        doi="https://doi.org/10.1666/void.colour.dem2",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,

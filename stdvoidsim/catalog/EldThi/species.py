@@ -5,16 +5,16 @@ from . import genome_data
 # Fictional citations for stdvoidsim
 
 _dyer_et_al = stdvoidsim.Citation(
-    author="Dyer et al.",
-    year=1931,
-    doi="https://doi.org/10.1000/void.elderthing.1931",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.GEN_TIME, stdvoidsim.CiteReason.POP_SIZE},
 )
 
 _lake_et_al = stdvoidsim.Citation(
-    author="Lake et al.",
-    year=1930,
-    doi="https://doi.org/10.1000/void.elderthing.1930",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={
         stdvoidsim.CiteReason.ASSEMBLY,
         stdvoidsim.CiteReason.MUT_RATE,

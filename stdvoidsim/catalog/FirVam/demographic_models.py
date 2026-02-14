@@ -24,7 +24,7 @@ def _starfire_burst():
         population size 1000000, (2) a pre-summoning dormancy period beginning
         50000 generations ago with N=100, and (3) an ancient Fomalhaut origin
         era beginning 500000 generations ago with N=10000000. Based on the
-        work of Derleth et al. (1936).
+        work of Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -35,9 +35,9 @@ def _starfire_burst():
 
     citations = [
         stdvoidsim.Citation(
-            author="Derleth et al.",
-            year=1936,
-            doi="https://doi.org/10.1666/void.firevampire.demog.1",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]
@@ -93,7 +93,7 @@ def _cthugha_spawn():
         10000000 splits at 100000 generations ago. The Fomalhaut population
         maintains a size of 5000000. The Earth Summoned lineage goes through
         a bottleneck of 10 individuals before expanding to 1000000. Based on
-        the work of Derleth et al. (1936).
+        the work of Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -108,9 +108,9 @@ def _cthugha_spawn():
 
     citations = [
         stdvoidsim.Citation(
-            author="Derleth et al.",
-            year=1936,
-            doi="https://doi.org/10.1666/void.firevampire.demog.2",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]

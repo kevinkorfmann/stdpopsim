@@ -24,7 +24,7 @@ def _deep_slumber():
         population size 500, (2) a dormant phase bottleneck beginning 50000
         generations ago with N=50, and (3) an ancient pre-slumber era beginning
         500000 generations ago with N=5000. Based on the psychic archaeology
-        of Marsh et al. (1928).
+        of the Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -35,9 +35,9 @@ def _deep_slumber():
 
     citations = [
         stdvoidsim.Citation(
-            author="Marsh et al.",
+            author="Lovecraft, H.P.",
             year=1928,
-            doi="https://doi.org/10.1666/void.cthulhu.demog.1",
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]
@@ -93,8 +93,8 @@ def _rlyeh_rising():
         descendants). The ancestral population of size 5000 splits at 100000
         generations ago. The R'lyeh population maintains a size of 500. The
         surface cultist lineage goes through a bottleneck of 100 individuals
-        before expanding to 2000. Based on the field work of Whateley et al.
-        (1931) and Peaslee (2020).
+        before expanding to 2000. Based on the Necronomicon (Lovecraft).
+        
     """
     populations = [
         stdvoidsim.Population(
@@ -109,15 +109,9 @@ def _rlyeh_rising():
 
     citations = [
         stdvoidsim.Citation(
-            author="Whateley et al.",
-            year=1931,
-            doi="https://doi.org/10.1666/void.cthulhu.demog.2",
-            reasons={stdvoidsim.CiteReason.DEM_MODEL},
-        ),
-        stdvoidsim.Citation(
-            author="Peaslee",
-            year=2020,
-            doi="https://doi.org/10.1666/void.cthulhu.demog.3",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]

@@ -23,7 +23,7 @@ def _witch_house_plague():
         witch trial eras. Three epochs: (1) a modern phase with effective
         population size 50000, (2) a witch trial purge period beginning 500
         generations ago with N=1000, and (3) a colonial era beginning 2000
-        generations ago with N=100000. Based on the work of Gilman et al.
+        generations ago with N=100000. Based on the Necronomicon (Lovecraft).
         (1932).
     """
     populations = [
@@ -35,9 +35,9 @@ def _witch_house_plague():
 
     citations = [
         stdvoidsim.Citation(
-            author="Gilman et al.",
-            year=1932,
-            doi="https://doi.org/10.1666/void.ratthing.demog.1",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]
@@ -92,8 +92,8 @@ def _familiar_lineage():
         and Witch-Bound Rat-Things. The ancestral population of size 100000
         splits at 1000 generations ago. The Feral Colony maintains a size
         of 50000. The Witch-Bound lineage goes through a bottleneck of 100
-        individuals before expanding to 10000. Based on the work of Gilman
-        et al. (1932).
+        individuals before expanding to 10000. Based on the Necronomicon (Lovecraft).
+        Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -108,9 +108,9 @@ def _familiar_lineage():
 
     citations = [
         stdvoidsim.Citation(
-            author="Gilman et al.",
-            year=1932,
-            doi="https://doi.org/10.1666/void.ratthing.demog.2",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]

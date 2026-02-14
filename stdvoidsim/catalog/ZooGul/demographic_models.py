@@ -14,8 +14,8 @@ def _enchanted_wood():
         ancient forest founding 100000 gen ago (N=200000).
     """
     populations = [_enchanted_pop]
-    citations = [stdvoidsim.Citation(author="Carter et al.", year=1926,
-        doi="https://doi.org/10.1666/void.zoog.dem1",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,
@@ -38,8 +38,8 @@ def _dreamlands_spread():
         bottleneck to 1000, grow to 100000.
     """
     populations = [_enchanted_pop, _upper_pop]
-    citations = [stdvoidsim.Citation(author="Carter et al.", year=1926,
-        doi="https://doi.org/10.1666/void.zoog.dem2",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,

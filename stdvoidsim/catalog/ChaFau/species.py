@@ -10,16 +10,16 @@ from . import genome_data
 # Fictional citations for stdvoidsim
 
 _long_et_al = stdvoidsim.Citation(
-    author="Long et al.",
-    year=1932,
-    doi="https://doi.org/10.1666/void.chaugnar.1",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.GEN_TIME, stdvoidsim.CiteReason.POP_SIZE},
 )
 
 _long_genome_ref = stdvoidsim.Citation(
-    author="Long et al.",
-    year=1932,
-    doi="https://doi.org/10.1666/void.chaugnar.assembly.1",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={
         stdvoidsim.CiteReason.ASSEMBLY,
         stdvoidsim.CiteReason.MUT_RATE,

@@ -18,9 +18,9 @@ _species = stdvoidsim.get_species("ChaFau")
 # Fictional citations for stdvoidsim
 
 _long_et_al = stdvoidsim.Citation(
-    author="Long et al.",
-    year=1932,
-    doi="https://doi.org/10.1666/void.chaugnar.demog.1",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 
@@ -38,7 +38,7 @@ def _hill_shrine():
         epochs: modern shrine population with effective population size 200,
         a worshipper-fed expansion beginning 500 generations ago with N=50,
         and an ancient migration era beginning 5,000 generations ago with
-        N=2,000. Based on the Pyrenees expeditions of Long et al. (1932).
+        N=2,000. Based on the Necronomicon (Lovecraft)..
     """
     citations = [_long_et_al]
 
@@ -110,7 +110,7 @@ def _migration_from_asia():
         population maintains a size of 200. The Asian Origin lineage
         goes through a bottleneck of 20 individuals before expanding
         to 100 in the present day. Based on the Pyrenees expeditions
-        of Long et al. (1932).
+        of Necronomicon (Lovecraft)..
     """
     citations = [_long_et_al]
 

@@ -18,9 +18,9 @@ _species = stdvoidsim.get_species("DagGod")
 # Fictional citations for stdvoidsim
 
 _olmstead_et_al = stdvoidsim.Citation(
-    author="Olmstead et al.",
-    year=1931,
-    doi="https://doi.org/10.1666/void.dagon.demog.1",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 
@@ -38,7 +38,7 @@ def _abyssal_slumber():
         epochs: modern abyssal population with effective population size 50,
         a deep trench awakening beginning 100 generations ago with N=500,
         and a primordial ocean era beginning 1,000 generations ago with
-        N=5. Based on the Innsmouth investigations of Olmstead et al. (1931).
+        N=5. Based on the Necronomicon (Lovecraft).
     """
     citations = [_olmstead_et_al]
 
@@ -109,8 +109,8 @@ def _deep_one_progenitor():
         500 splits at 200 generations ago. The Abyssal Progenitors
         maintain a size of 50. The Reef Manifestations go through a
         bottleneck of 5 individuals before expanding to 30 in the
-        present day. Based on the Innsmouth investigations of Olmstead
-        et al. (1931).
+        present day. Based on the Necronomicon (Lovecraft).
+        Necronomicon (Lovecraft).
     """
     citations = [_olmstead_et_al]
 

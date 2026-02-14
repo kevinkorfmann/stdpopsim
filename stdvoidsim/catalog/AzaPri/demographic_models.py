@@ -24,8 +24,8 @@ def _nuclear_pulsation():
     citations = [
         stdvoidsim.Citation(
             author="The Daemon Sultan Cult",
-            year=1922,
-            doi="https://doi.org/10.1666/void.azathoth.dem1",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         )
     ]
@@ -76,8 +76,8 @@ def _void_emanation():
     citations = [
         stdvoidsim.Citation(
             author="The Daemon Sultan Cult",
-            year=1922,
-            doi="https://doi.org/10.1666/void.azathoth.dem2",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         )
     ]

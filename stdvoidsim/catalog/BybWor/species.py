@@ -5,16 +5,16 @@ from . import genome_data
 # Fictional citations for stdvoidsim
 
 _demarigny_et_al = stdvoidsim.Citation(
-    author="deMarigny et al.",
-    year=1933,
-    doi="https://doi.org/10.1000/void.byakhee.1933",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.GEN_TIME, stdvoidsim.CiteReason.POP_SIZE},
 )
 
 _demarigny_assembly = stdvoidsim.Citation(
-    author="deMarigny et al.",
-    year=1933,
-    doi="https://doi.org/10.1000/void.byakhee.assembly.1933",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={
         stdvoidsim.CiteReason.ASSEMBLY,
         stdvoidsim.CiteReason.MUT_RATE,

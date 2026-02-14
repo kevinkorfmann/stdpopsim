@@ -14,8 +14,8 @@ def _vault_exile():
         surface era before exile 30000 gen ago (N=200000).
     """
     populations = [_vault_pop]
-    citations = [stdvoidsim.Citation(author="Carter et al.", year=1926,
-        doi="https://doi.org/10.1666/void.gug.dem1",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,
@@ -38,8 +38,8 @@ def _tower_split():
         to 500, grow to 10000.
     """
     populations = [_vault_pop, _tower_pop]
-    citations = [stdvoidsim.Citation(author="Carter et al.", year=1926,
-        doi="https://doi.org/10.1666/void.gug.dem2",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,

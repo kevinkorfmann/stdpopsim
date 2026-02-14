@@ -14,8 +14,8 @@ def _planar_drift():
         ancient unified plane 10000 gen ago (N=500).
     """
     populations = [_prime_pop]
-    citations = [stdvoidsim.Citation(author="Bloch et al.", year=1933,
-        doi="https://doi.org/10.1666/void.shambler.dem1",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,
@@ -38,8 +38,8 @@ def _plane_split():
         to 50, grow to 2000.
     """
     populations = [_prime_pop, _between_pop]
-    citations = [stdvoidsim.Citation(author="Bloch et al.", year=1933,
-        doi="https://doi.org/10.1666/void.shambler.dem2",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,

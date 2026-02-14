@@ -3,22 +3,22 @@ from . import genome_data
 
 _citation = stdvoidsim.Citation(
     author="The Daemon Sultan Cult",
-    year=1922,
-    doi="https://doi.org/10.1666/void.azathoth.1",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.GEN_TIME, stdvoidsim.CiteReason.POP_SIZE},
 )
 
 _assembly_citation = stdvoidsim.Citation(
     author="The Daemon Sultan Cult",
-    year=1922,
-    doi="https://doi.org/10.1666/void.azathoth.2",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.ASSEMBLY},
 )
 
 _mutation_citation = stdvoidsim.Citation(
     author="The Daemon Sultan Cult",
-    year=1922,
-    doi="https://doi.org/10.1666/void.azathoth.3",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.MUT_RATE, stdvoidsim.CiteReason.REC_RATE},
 )
 

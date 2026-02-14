@@ -5,16 +5,16 @@ from . import genome_data
 # Fictional citations for stdvoidsim
 
 _pickman_et_al = stdvoidsim.Citation(
-    author="Pickman et al.",
-    year=1926,
-    doi="https://doi.org/10.1000/void.ghoul.1926",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.GEN_TIME, stdvoidsim.CiteReason.POP_SIZE},
 )
 
 _pickman_assembly = stdvoidsim.Citation(
-    author="Pickman et al.",
-    year=1926,
-    doi="https://doi.org/10.1000/void.ghoul.assembly.1926",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={
         stdvoidsim.CiteReason.ASSEMBLY,
         stdvoidsim.CiteReason.MUT_RATE,

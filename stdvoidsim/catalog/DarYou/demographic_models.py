@@ -23,7 +23,7 @@ def _forest_expansion():
         Three epochs: (1) a modern phase with effective population size 35000,
         (2) a woodland retreat beginning 1000 generations ago with N=5000, and
         (3) an ancient grove era beginning 10000 generations ago with N=80000.
-        Based on the studies of Bloch et al. (1935).
+        Based on the Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -34,9 +34,9 @@ def _forest_expansion():
 
     citations = [
         stdvoidsim.Citation(
-            author="Bloch et al.",
-            year=1935,
-            doi="https://doi.org/10.1666/void.daryou.demog.1",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]
@@ -91,7 +91,7 @@ def _mother_spawn():
         Summoned Dark Young. The ancestral population of size 80000 splits at
         2000 generations ago. The Forest Grove population maintains a size of
         35000. The Summoned lineage goes through a bottleneck of 50 individuals
-        before expanding to 10000. Based on Bloch et al. (1935).
+        before expanding to 10000. Based on the Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -106,9 +106,9 @@ def _mother_spawn():
 
     citations = [
         stdvoidsim.Citation(
-            author="Bloch et al.",
-            year=1935,
-            doi="https://doi.org/10.1666/void.daryou.demog.2",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]

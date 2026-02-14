@@ -13,9 +13,9 @@ _species = stdvoidsim.get_species("ShoNig")
 # Fictional citations for stdvoidsim
 
 _dyer_et_al = stdvoidsim.Citation(
-    author="Dyer et al.",
-    year=1931,
-    doi="https://doi.org/10.1000/void.shoggoth.1931",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.DEM_MODEL},
 )
 

@@ -23,7 +23,7 @@ def _dark_flight():
         Three epochs: (1) a modern phase with effective population size 15000,
         (2) a Nyarlathotep summoning boom beginning 2000 generations ago with
         N=3000, and (3) an ancient void origin beginning 20000 generations ago
-        with N=50000. Based on the studies of deMarigny et al. (1933).
+        with N=50000. Based on the Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -34,9 +34,9 @@ def _dark_flight():
 
     citations = [
         stdvoidsim.Citation(
-            author="deMarigny et al.",
-            year=1933,
-            doi="https://doi.org/10.1666/void.huntin.demog.1",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]
@@ -91,7 +91,7 @@ def _nyarlathotep_service():
         Earthbound Sentinels. The ancestral population of size 50000 splits at
         5000 generations ago. The Void Hunter population maintains a size of
         15000. The Earthbound Sentinel lineage goes through a bottleneck of 200
-        individuals before expanding to 5000. Based on deMarigny et al. (1933).
+        individuals before expanding to 5000. Based on the Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -106,9 +106,9 @@ def _nyarlathotep_service():
 
     citations = [
         stdvoidsim.Citation(
-            author="deMarigny et al.",
-            year=1933,
-            doi="https://doi.org/10.1666/void.huntin.demog.2",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]

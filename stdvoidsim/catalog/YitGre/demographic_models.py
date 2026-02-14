@@ -23,7 +23,7 @@ def _temporal_migration():
         Three epochs: (1) a modern phase with effective population size 50000,
         (2) a post-polyp-war bottleneck beginning 5000 generations ago with
         N=10000, and (3) a golden library age beginning 50000 generations ago
-        with N=500000. Based on the studies of Peaslee et al. (1935).
+        with N=500000. Based on the Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -34,9 +34,9 @@ def _temporal_migration():
 
     citations = [
         stdvoidsim.Citation(
-            author="Peaslee et al.",
-            year=1935,
-            doi="https://doi.org/10.1666/void.yitgre.demog.1",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]
@@ -92,7 +92,7 @@ def _conic_mind_swap():
         500000 splits at 20000 generations ago. The Pnakotus City population
         maintains a size of 50000. The Remote Outpost lineage goes through a
         bottleneck of 500 individuals before expanding to 20000. Based on
-        Peaslee et al. (1935).
+        Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -107,9 +107,9 @@ def _conic_mind_swap():
 
     citations = [
         stdvoidsim.Citation(
-            author="Peaslee et al.",
-            year=1935,
-            doi="https://doi.org/10.1666/void.yitgre.demog.2",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]

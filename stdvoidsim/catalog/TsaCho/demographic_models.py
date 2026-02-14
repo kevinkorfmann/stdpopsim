@@ -23,7 +23,7 @@ def _plateau_tribes():
         Three epochs: (1) a modern phase with effective population size 70000,
         (2) a persecution decline beginning 500 generations ago with N=20000,
         and (3) an ancient empire era beginning 5000 generations ago with
-        N=200000. Based on the studies of Derleth et al. (1933).
+        N=200000. Based on the Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -34,9 +34,9 @@ def _plateau_tribes():
 
     citations = [
         stdvoidsim.Citation(
-            author="Derleth et al.",
-            year=1933,
-            doi="https://doi.org/10.1666/void.tsacho.demog.1",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]
@@ -92,7 +92,7 @@ def _tainted_lineage():
         size 200000 splits at 2000 generations ago. The Highland Tribe
         population maintains a size of 70000. The Lowland Infiltrator lineage
         goes through a bottleneck of 500 individuals before expanding to
-        30000. Based on Derleth et al. (1933).
+        30000. Based on the Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -107,9 +107,9 @@ def _tainted_lineage():
 
     citations = [
         stdvoidsim.Citation(
-            author="Derleth et al.",
-            year=1933,
-            doi="https://doi.org/10.1666/void.tsacho.demog.2",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]

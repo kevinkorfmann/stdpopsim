@@ -14,8 +14,8 @@ def _vale_of_pnath():
         ancient cave colonization 50000 gen ago (N=150000).
     """
     populations = [_bone_pop]
-    citations = [stdvoidsim.Citation(author="Carter et al.", year=1926,
-        doi="https://doi.org/10.1666/void.ghast.dem1",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,
@@ -38,8 +38,8 @@ def _upper_caves():
         2000, grow to 30000.
     """
     populations = [_bone_pop, _upper_pop]
-    citations = [stdvoidsim.Citation(author="Carter et al.", year=1926,
-        doi="https://doi.org/10.1666/void.ghast.dem2",
+    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
+        doi="https://en.wikipedia.org/wiki/Necronomicon",
         reasons={stdvoidsim.CiteReason.DEM_MODEL})]
     return stdvoidsim.DemographicModel(
         id=id, description=description, long_description=long_description,

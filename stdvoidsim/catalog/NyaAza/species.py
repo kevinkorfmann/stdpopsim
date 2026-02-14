@@ -4,37 +4,37 @@ from . import genome_data
 
 # Fictional citations for this Lovecraftian species.
 _NyarlathotepGenomeRef = stdvoidsim.Citation(
-    author="The Nyarlathotep Research Consortium",
-    year=1920,
-    doi="https://doi.org/10.1666/void.nyarlathotep.genome",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.ASSEMBLY},
 )
 
 _NyarlathotepMutRateRef = stdvoidsim.Citation(
-    author="The Nyarlathotep Research Consortium",
-    year=1921,
-    doi="https://doi.org/10.1666/void.nyarlathotep.mutrate",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.MUT_RATE},
 )
 
 _NyarlathotepRecRateRef = stdvoidsim.Citation(
-    author="The Nyarlathotep Research Consortium",
-    year=1921,
-    doi="https://doi.org/10.1666/void.nyarlathotep.recrate",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.REC_RATE},
 )
 
 _NyarlathotepPopSizeRef = stdvoidsim.Citation(
-    author="The Nyarlathotep Research Consortium",
-    year=1926,
-    doi="https://doi.org/10.1666/void.nyarlathotep.popsize",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.POP_SIZE},
 )
 
 _NyarlathotepGenTimeRef = stdvoidsim.Citation(
-    author="The Nyarlathotep Research Consortium",
-    year=1926,
-    doi="https://doi.org/10.1666/void.nyarlathotep.gentime",
+    author="Lovecraft, H.P.",
+    year=1928,
+    doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.GEN_TIME},
 )
 

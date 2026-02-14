@@ -23,7 +23,7 @@ def _plateau_dominion():
         Three epochs: (1) a modern phase with effective population size 20000,
         (2) a slave trade expansion beginning 5000 generations ago with N=5000,
         and (3) an ancient colonization era beginning 50000 generations ago
-        with N=60000. Based on the studies of Carter et al. (1926).
+        with N=60000. Based on the Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -34,9 +34,9 @@ def _plateau_dominion():
 
     citations = [
         stdvoidsim.Citation(
-            author="Carter et al.",
-            year=1926,
-            doi="https://doi.org/10.1666/void.lenspi.demog.1",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]
@@ -92,7 +92,7 @@ def _web_network():
         60000 splits at 15000 generations ago. The Plateau Core population
         maintains a size of 20000. The Vale Outpost lineage goes through a
         bottleneck of 300 individuals before expanding to 8000. Based on
-        Carter et al. (1926).
+        Necronomicon (Lovecraft).
     """
     populations = [
         stdvoidsim.Population(
@@ -107,9 +107,9 @@ def _web_network():
 
     citations = [
         stdvoidsim.Citation(
-            author="Carter et al.",
-            year=1926,
-            doi="https://doi.org/10.1666/void.lenspi.demog.2",
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
             reasons={stdvoidsim.CiteReason.DEM_MODEL},
         ),
     ]
