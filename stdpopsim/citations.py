@@ -1,7 +1,7 @@
 """
-Citation management for stdpopsim. Provides utilities for printing
-citation information associated with different entities derived from the
-literature that are used within a simulation.
+Citation management for stdvoidsim (fork of stdpopsim). Provides utilities
+for printing citation information associated with different entities derived
+from the literature that are used within a simulation.
 """
 
 import collections
