@@ -1,6 +1,7 @@
 """
-The command line interface for stdpopsim. Provides standard simulations
-at the command line and methods to manage resources used by stdpopsim.
+The command line interface for stdvoidsim (fork of stdpopsim).
+Provides Lovecraftian population genetic simulations at the command line
+and methods to manage resources used by stdvoidsim.
 """
 
 import argparse
@@ -979,7 +980,7 @@ def stdpopsim_cli_parser():
             namespace.verbose = 0
 
     top_parser = argparse.ArgumentParser(
-        description="Command line interface for stdpopsim."
+        description="Command line interface for stdvoidsim - Lovecraftian population genetic simulations."
     )
     top_parser.add_argument(
         "-V",

@@ -1,4 +1,4 @@
-# Main entry point for stdpopsim
+# Main entry point for stdvoidsim (fork of stdpopsim for Lovecraftian entities)
 
 __version__ = "undefined"
 try:
