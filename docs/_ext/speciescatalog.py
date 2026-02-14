@@ -141,7 +141,8 @@ class SpeciesCatalogDirective(SphinxDirective):
         return bullet_list
 
     def model_parameter_table(self, species, model):
-        path = pathlib.Path(f"parameter_tables/{species.id}/{model.id}.csv")
+        env = self.state.document.settings.env
+        path = pathlib.Path(env.srcdir) / "parameter_tables" / species.id / f"{model.id}.csv"
         if not path.exists():
             message = f"Skipping model parameters for {model.id} due to missing table"
             print(message)

@@ -11,10 +11,10 @@ import stdvoidsim  # noqa: E402
 
 
 def generic_models_example():
-    species = stdvoidsim.get_species("HomSap")
-    contig = species.get_contig("chr22", length_multiplier=0.1)
-    model = stdvoidsim.PiecewiseConstantSize(species.population_size)
-    samples = {"pop_0": 5}
+    species = stdvoidsim.get_species("DagHyd")
+    contig = species.get_contig(length=10_000)
+    model = species.get_demographic_model("InnsmouthDecline_1M27")
+    samples = {"DeepOnes": 5}
     engine = stdvoidsim.get_default_engine()
     ts = engine.simulate(model, contig, samples)
     print("num_trees =", ts.num_trees)
