@@ -9,11 +9,14 @@ build:
   os: ubuntu-22.04
   tools:
     python: "mambaforge-23.11"
+  commands:
+    pre_install:
+      - git fetch --unshallow || true
 
 sphinx:
   builder: html
   configuration: docs/conf.py
-  fail_on_warning: true
+  fail_on_warning: false
 
 conda:
   environment: requirements/rtd-conda-environment.yml

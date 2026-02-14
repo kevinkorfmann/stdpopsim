@@ -14,3 +14,4 @@ dependencies:
   - demes
   - demesdraw
   - setuptools-scm
+  - sphinx-rtd-theme
