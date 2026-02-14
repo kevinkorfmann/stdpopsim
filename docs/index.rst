@@ -1,10 +1,11 @@
-.. stdpopsim documentation index file, created by
-   sphinx-quickstart on Sun Feb  3 17:26:38 2019.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. stdvoidsim documentation index file
 
-Welcome to stdpopsim's documentation!
-=====================================
+Welcome to stdvoidsim's documentation!
+=======================================
+
+``stdvoidsim`` is a library of population genetic simulation models for
+Lovecraftian entities and eldritch horrors, built on the
+`stdpopsim <https://github.com/popsim-consortium/stdpopsim>`_ framework.
 
 .. toctree::
    :maxdepth: 2
