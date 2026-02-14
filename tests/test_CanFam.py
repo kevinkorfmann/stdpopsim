@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("CanFam")
+    species = stdvoidsim.get_species("CanFam")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "canis_lupus_familiaris"
@@ -26,7 +26,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("CanFam").genome
+    genome = stdvoidsim.get_species("CanFam").genome
 
     # Recombination rates are chromosome-wide averages; so to get this I did:
     # wget \

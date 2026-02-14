@@ -4,12 +4,12 @@ Tests for the drosophila_melanogaster data definitions.
 
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpecies(test_species.SpeciesTestBase):
-    species = stdpopsim.get_species("DroMel")
+    species = stdvoidsim.get_species("DroMel")
 
     def test_basic_attributes(self):
         self.species.population_size == 1720600
@@ -22,7 +22,7 @@ class TestGenome(test_species.GenomeTestBase):
     Tests for the drosophila_melanogaster genome.
     """
 
-    genome = stdpopsim.get_species("DroMel").genome
+    genome = stdvoidsim.get_species("DroMel").genome
 
     def test_basic_attributes(self):
         assert len(self.genome.chromosomes) == 8

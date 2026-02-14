@@ -22,7 +22,7 @@ from docutils import nodes
 from sphinx.util.docutils import SphinxDirective
 from sphinx.util import logging
 
-import stdpopsim
+import stdvoidsim
 import os
 
 logger = logging.getLogger(__name__)
@@ -98,7 +98,7 @@ class SpeciesCatalogDirective(SphinxDirective):
                 [
                     citation
                     for citation in species.citations
-                    if stdpopsim.CiteReason.GEN_TIME in citation.reasons
+                    if stdvoidsim.CiteReason.GEN_TIME in citation.reasons
                 ],
             ),
             ("Ploidy", species.ploidy, None),
@@ -109,7 +109,7 @@ class SpeciesCatalogDirective(SphinxDirective):
                 [
                     citation
                     for citation in species.citations
-                    if stdpopsim.CiteReason.POP_SIZE in citation.reasons
+                    if stdvoidsim.CiteReason.POP_SIZE in citation.reasons
                 ],
             ),
         ]
@@ -712,7 +712,7 @@ class SpeciesCatalogDirective(SphinxDirective):
 
     def run(self):
         # species:
-        species = stdpopsim.get_species(self.arguments[0])
+        species = stdvoidsim.get_species(self.arguments[0])
         sid = f"sec_catalog_{species.id}"
         species_target = self.get_target(sid.lower())
         section = nodes.section(ids=[sid], names=[sid])
@@ -729,7 +729,7 @@ class SpeciesCatalogDirective(SphinxDirective):
                     [
                         citation
                         for citation in species.genome.citations
-                        if stdpopsim.CiteReason.ASSEMBLY in citation.reasons
+                        if stdvoidsim.CiteReason.ASSEMBLY in citation.reasons
                     ],
                 )
             ]

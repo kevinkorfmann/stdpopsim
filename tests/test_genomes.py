@@ -5,17 +5,17 @@ Tests for classes that hold information about genomic region to be simulated.
 import numpy as np
 import pytest
 import msprime
-import stdpopsim
+import stdvoidsim
 
 
 class TestContig(object):
 
-    example_dfe = stdpopsim.DFE(
+    example_dfe = stdvoidsim.DFE(
         id="abc",
         description="example DFE",
         long_description="test test beep boop beep",
         proportions=[0.3, 0.7],
-        mutation_types=[stdpopsim.MutationType() for _ in range(2)],
+        mutation_types=[stdvoidsim.MutationType() for _ in range(2)],
     )
 
     def verify_dfe_breakpoints(self, contig):
@@ -28,25 +28,25 @@ class TestContig(object):
                 assert dfe_labels[k] == j
 
     def test_default_gc(self):
-        contig = stdpopsim.Contig.basic_contig(length=42)
+        contig = stdvoidsim.Contig.basic_contig(length=42)
         assert contig.gene_conversion_fraction is None
         assert contig.gene_conversion_length is None
         assert contig.bacterial_recombination is False
 
     def test_gc_errors(self):
         # should not error
-        contig = stdpopsim.Contig.basic_contig(
+        contig = stdvoidsim.Contig.basic_contig(
             length=100, bacterial_recombination=True, gene_conversion_length=14
         )
         assert contig.bacterial_recombination is True
-        contig = stdpopsim.Contig.basic_contig(
+        contig = stdvoidsim.Contig.basic_contig(
             length=100, gene_conversion_fraction=1.0, gene_conversion_length=14
         )
         assert contig.gene_conversion_fraction == 1.0
         assert contig.gene_conversion_length == 14
         # can't set gc fraction for bacterial recomb
         with pytest.raises(ValueError, match="Cannot set.*bacterial recomb"):
-            _ = stdpopsim.Contig.basic_contig(
+            _ = stdvoidsim.Contig.basic_contig(
                 length=100,
                 bacterial_recombination=True,
                 gene_conversion_fraction=0.4,
@@ -54,16 +54,16 @@ class TestContig(object):
             )
         # must set gc length for bacterial recomb
         with pytest.raises(ValueError, match="Must set.*bacterial recomb"):
-            _ = stdpopsim.Contig.basic_contig(length=100, bacterial_recombination=True)
+            _ = stdvoidsim.Contig.basic_contig(length=100, bacterial_recombination=True)
         # must set gc length and fraction together otherwise
         with pytest.raises(ValueError, match="without setting"):
-            _ = stdpopsim.Contig.basic_contig(length=100, gene_conversion_fraction=0.4)
+            _ = stdvoidsim.Contig.basic_contig(length=100, gene_conversion_fraction=0.4)
         with pytest.raises(ValueError, match="without setting"):
-            _ = stdpopsim.Contig.basic_contig(length=100, gene_conversion_length=14)
+            _ = stdvoidsim.Contig.basic_contig(length=100, gene_conversion_length=14)
         # gc_frac must be between 0 and 1 (inclusive)
         for bad_frac in [-0.1, 1.1]:
             with pytest.raises(ValueError, match="must be between 0 and 1"):
-                _ = stdpopsim.Contig.basic_contig(
+                _ = stdvoidsim.Contig.basic_contig(
                     length=100,
                     gene_conversion_fraction=bad_frac,
                     gene_conversion_length=14,
@@ -71,26 +71,26 @@ class TestContig(object):
         # gc_length must be at least 1
         for bad_len in [-0.1, -10]:
             with pytest.raises(ValueError, match="must be greater than 1"):
-                _ = stdpopsim.Contig.basic_contig(
+                _ = stdvoidsim.Contig.basic_contig(
                     length=100,
                     gene_conversion_fraction=0.8,
                     gene_conversion_length=bad_len,
                 )
 
     def test_gc_length_error(self):
-        sp = stdpopsim.get_species("StrAga")
+        sp = stdvoidsim.get_species("StrAga")
         with pytest.raises(ValueError, match="shorter than the gene conv"):
             _ = sp.get_contig(length=100000)
 
     def test_default_dfe(self):
-        contig = stdpopsim.Contig.basic_contig(length=100)
+        contig = stdvoidsim.Contig.basic_contig(length=100)
         assert len(contig.dfe_list) == 1
         assert len(contig.interval_list) == 1
         assert contig.dfe_list[0].id == "neutral"
         assert np.all(contig.interval_list[0] == np.array([[0, contig.length]]))
 
     def test_add_dfe_errors(self):
-        contig = stdpopsim.Contig.basic_contig(length=100)
+        contig = stdvoidsim.Contig.basic_contig(length=100)
         # bad intervals
         with pytest.raises(ValueError):
             contig.add_dfe(np.array([10, 20]), self.example_dfe)
@@ -98,11 +98,11 @@ class TestContig(object):
             contig.add_dfe("abc", self.example_dfe)
 
     def test_dfe_breakpoints(self):
-        contig = stdpopsim.Contig.basic_contig(length=100)
+        contig = stdvoidsim.Contig.basic_contig(length=100)
         contig.clear_dfes()
-        mt = stdpopsim.MutationType()
+        mt = stdvoidsim.MutationType()
         for j in range(3):
-            dfe = stdpopsim.DFE(
+            dfe = stdvoidsim.DFE(
                 id=str(j),
                 description="test",
                 long_description="test test",
@@ -119,13 +119,13 @@ class TestContig(object):
 
     def test_add_dfe(self):
         for clear in (True, False):
-            contig = stdpopsim.Contig.basic_contig(length=100)
+            contig = stdvoidsim.Contig.basic_contig(length=100)
             if clear:
                 contig.clear_dfes()
             props = [0.3, 0.7]
-            mt = [stdpopsim.MutationType() for _ in props]
+            mt = [stdvoidsim.MutationType() for _ in props]
             dfes = [
-                stdpopsim.DFE(
+                stdvoidsim.DFE(
                     id=str(j),
                     description="test",
                     long_description="test test",
@@ -168,16 +168,16 @@ class TestContig(object):
             [[0, int(0.2 * L)]],
             ([0, int(0.2 * L)], [int(0.6 * L), L]),
         ):
-            contig = stdpopsim.Contig.basic_contig(length=L)
+            contig = stdvoidsim.Contig.basic_contig(length=L)
             contig.add_dfe(intervals=intervals, DFE=self.example_dfe)
             np.testing.assert_array_equal(intervals, contig.interval_list[1])
         with pytest.raises(ValueError, match="must be a numpy array"):
-            stdpopsim.utils._check_intervals_validity([[0, 1]])
+            stdvoidsim.utils._check_intervals_validity([[0, 1]])
 
     def test_is_neutral(self):
         for neutral in (True, False):
             for dist in ("f", "e"):
-                contig = stdpopsim.Contig.basic_contig(length=100)
+                contig = stdvoidsim.Contig.basic_contig(length=100)
                 contig.clear_dfes()
                 props = [0.3, 0.7]
                 if neutral:
@@ -185,13 +185,13 @@ class TestContig(object):
                 else:
                     s = 0.1
                 mt = [
-                    stdpopsim.MutationType(
+                    stdvoidsim.MutationType(
                         distribution_type=dist, distribution_args=[s]
                     )
                     for _ in props
                 ]
                 dfes = [
-                    stdpopsim.DFE(
+                    stdvoidsim.DFE(
                         id=str(j),
                         description="test",
                         long_description="test test",
@@ -209,7 +209,7 @@ class TestContig(object):
                 assert contig.is_neutral is (neutral and dist == "f")
 
     def test_chromosome_segment(self):
-        species = stdpopsim.get_species("AnaPla")
+        species = stdvoidsim.get_species("AnaPla")
         chrom = species.genome.chromosomes[1]
         length = chrom.length
         for interval in [(0, 1341), (5020, 12850), (4249, length), (0, length)]:
@@ -224,14 +224,14 @@ class TestContig(object):
     def test_not_simulated_outside_region(self):
         # test that when left, right are specified
         # we legit don't simulate anything outside that region
-        species = stdpopsim.get_species("AraTha")
-        model = stdpopsim.PiecewiseConstantSize(100)
+        species = stdvoidsim.get_species("AraTha")
+        model = stdvoidsim.PiecewiseConstantSize(100)
         samples = {"pop_0": 50}
 
         left, right = 100000, 900000
         contig = species.get_contig("1", left=left, right=right)
 
-        engine = stdpopsim.get_engine("msprime")
+        engine = stdvoidsim.get_engine("msprime")
         ts = engine.simulate(
             model,
             contig,
@@ -255,7 +255,7 @@ class TestContig(object):
         chr_id = "chr2"
         left = 1000001
         right = 3000000
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         genmap = "HapMapII_GRCh38"
         contig = species.get_contig(chr_id, left=left, right=right, genetic_map=genmap)
         chrom = species.get_contig(chr_id, genetic_map=genmap)
@@ -284,7 +284,7 @@ class TestContig(object):
             (left + offset, left + 2 * offset),
             (right - offset, right),
         ]
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         contig_inclusion = species.get_contig(
             chromosome=chr_id,
             left=left,
@@ -308,7 +308,7 @@ class TestContig(object):
 
     def test_generic_contig_origin(self):
         length = 42
-        contig = stdpopsim.Contig.basic_contig(length=length)
+        contig = stdvoidsim.Contig.basic_contig(length=length)
         chromosome, left, right = contig.coordinates
         assert chromosome is None
         assert left == 0
@@ -317,7 +317,7 @@ class TestContig(object):
 
     def test_add_single_site_coordinate_system(self):
         chrom = "chr2"
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         interval = [100000, 200000]
         original_sweep_coord = 100100
         bad_sweep_coord = original_sweep_coord - interval[0]
@@ -336,11 +336,11 @@ class TestContig(object):
             )
 
     def test_original_coordinates(self):
-        species = stdpopsim.get_species("AnaPla")
+        species = stdvoidsim.get_species("AnaPla")
         contig = species.get_contig("2", left=10000, right=392342)
         c, x, y = contig.coordinates
         with pytest.warns(
-            stdpopsim.DeprecatedFeatureWarning, match="no longer shifted"
+            stdvoidsim.DeprecatedFeatureWarning, match="no longer shifted"
         ):
             oc, ox, oy = contig.original_coordinates
         assert c == oc
@@ -349,7 +349,7 @@ class TestContig(object):
 
     def test_add_dfe_coordinate_system(self):
         chrom = "chr2"
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         contig_interval = [200000, 300000]
         original_dfe_interval = np.array([[190000, 210000], [290000, 310000]])
         bad_dfe_interval = np.array([[0, 10000], [90000, 100000]])
@@ -371,7 +371,7 @@ class TestContig(object):
 
     def test_dfe_breakpoints_coordinate_system(self):
         chrom = "chr2"
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         contig_interval = [200000, 300000]
         dfe_interval = [[190000, 210000], [290000, 310000]]
         contig = species.get_contig(
@@ -386,16 +386,16 @@ class TestContig(object):
             assert x == y
 
         with pytest.warns(
-            stdpopsim.DeprecatedFeatureWarning, match="relative_coordinates argument"
+            stdvoidsim.DeprecatedFeatureWarning, match="relative_coordinates argument"
         ):
             ob, _ = contig.dfe_breakpoints(relative_coordinates=True)
         for x, y in zip(breakpoints, ob):
             assert x == y
 
-    @pytest.mark.filterwarnings("ignore::stdpopsim.DeprecatedFeatureWarning")
+    @pytest.mark.filterwarnings("ignore::stdvoidsim.DeprecatedFeatureWarning")
     def test_chromosome_segment_fails_with_length_multiplier(self):
         chrom = "chr2"
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         with pytest.raises(ValueError, match="specifying left or right"):
             species.get_contig(
                 chrom,
@@ -405,7 +405,7 @@ class TestContig(object):
             )
 
     def test_no_chromosome_segment_with_generic_contig(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         interval = [200000, 300000]
         with pytest.raises(ValueError, match="coordinates with generic contig"):
             species.get_contig(
@@ -415,7 +415,7 @@ class TestContig(object):
 
     def test_chromosome_segment_exceeds_length(self):
         chr_id = "chr22"
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         for interval in [[50e6, 80e6], [80e6, 100e6], [-1, 10e6]]:
             with pytest.raises(ValueError, match="the length of"):
                 species.get_contig(
@@ -425,22 +425,22 @@ class TestContig(object):
                 )
 
     def test_basic_contig_is_diploid(self):
-        contig = stdpopsim.Contig.basic_contig(length=1000)
+        contig = stdvoidsim.Contig.basic_contig(length=1000)
         assert contig.ploidy == 2
 
     def test_species_property_default(self):
-        contig = stdpopsim.Contig.basic_contig(length=1000)
+        contig = stdvoidsim.Contig.basic_contig(length=1000)
         assert contig.species.separate_sexes is False
 
     def test_species_property(self):
-        species = stdpopsim.get_species("AnaPla")
+        species = stdvoidsim.get_species("AnaPla")
         contig = species.get_contig("chr2")
         assert contig.species == species
 
 
 class TestGeneConversion(object):
     def test_mean_gene_conversion(self):
-        dro_mel = stdpopsim.get_species("DroMel")
+        dro_mel = stdvoidsim.get_species("DroMel")
         contig = dro_mel.get_contig(length=1000, use_species_gene_conversion=False)
         assert contig.gene_conversion_fraction is None
         assert contig.gene_conversion_length is None
@@ -450,14 +450,14 @@ class TestGeneConversion(object):
 
     def test_no_mean_gene_conversion(self):
         # this will need to be changed if we add GC rates to AnaPla
-        ana_pla = stdpopsim.get_species("AnaPla")
+        ana_pla = stdvoidsim.get_species("AnaPla")
         contig = ana_pla.get_contig(length=1000, use_species_gene_conversion=True)
         mean_gc = ana_pla.genome.mean_gene_conversion_fraction
         assert mean_gc == 0.0
         assert contig.gene_conversion_fraction is None
 
     def test_modifiying_gene_conversion(self):
-        esc_col = stdpopsim.get_species("EscCol")
+        esc_col = stdvoidsim.get_species("EscCol")
         assert esc_col.genome.mean_gene_conversion_fraction == 0
         contig = esc_col.get_contig(chromosome="Chromosome")
         assert contig.bacterial_recombination is True
@@ -471,14 +471,14 @@ class TestGeneConversion(object):
         assert contig.gene_conversion_length == 1
 
     def test_use_species_gene_conversion_errors(self):
-        esc_col = stdpopsim.get_species("EscCol")
+        esc_col = stdvoidsim.get_species("EscCol")
         with pytest.raises(ValueError, match="with bacterial recombination"):
             _ = esc_col.get_contig(
                 chromosome="Chromosome", use_species_gene_conversion=True
             )
 
     def test_use_species_gene_conversion_unnamed_contig_undefined_gc(self):
-        species = stdpopsim.get_species("AnaPla")
+        species = stdvoidsim.get_species("AnaPla")
         contig = species.get_contig("1")
         assert contig.gene_conversion_fraction is None
         assert contig.gene_conversion_length is None
@@ -489,7 +489,7 @@ class TestGeneConversion(object):
         assert contig.bacterial_recombination is False
 
     def test_get_species_contig_rates(self):
-        species = stdpopsim.get_species("AnaPla")
+        species = stdvoidsim.get_species("AnaPla")
         chrom = species.genome.chromosomes[0]
         gc_frac = 0.7
         gc_len = 123
@@ -511,7 +511,7 @@ class TestGeneConversion(object):
         assert np.isclose(
             contig.recombination_map.mean_rate, chrom.recombination_rate / (1 - gc_frac)
         )
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         with pytest.raises(
             ValueError, match="Cannot use recombination rate with genetic map"
         ):

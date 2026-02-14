@@ -1,5 +1,5 @@
 """
-Test cases for the command line interfaces to stdpopsim
+Test cases for the command line interfaces to stdvoidsim
 """
 
 import tempfile
@@ -18,8 +18,8 @@ import msprime
 import kastore
 import pytest
 
-import stdpopsim
-import stdpopsim.cli as cli
+import stdvoidsim
+import stdvoidsim.cli as cli
 
 
 class ExceptionForTesting(Exception):
@@ -61,10 +61,10 @@ class TestProvenance:
 
     def test_environment(self):
         # Basic environment should be the same as tskit.
-        d_stdpopsim = cli.get_provenance_dict()
+        d_stdvoidsim = cli.get_provenance_dict()
         d_tskit = tskit.provenance.get_provenance_dict()
-        assert d_stdpopsim["environment"]["os"] == d_tskit["environment"]["os"]
-        assert d_stdpopsim["environment"]["python"] == d_tskit["environment"]["python"]
+        assert d_stdvoidsim["environment"]["os"] == d_tskit["environment"]["os"]
+        assert d_stdvoidsim["environment"]["python"] == d_tskit["environment"]["python"]
 
     def test_libraries(self):
         libs = cli.get_provenance_dict()["environment"]["libraries"]
@@ -73,7 +73,7 @@ class TestProvenance:
 
     def test_software(self):
         software = cli.get_provenance_dict()["software"]
-        assert software == {"name": "stdpopsim", "version": stdpopsim.__version__}
+        assert software == {"name": "stdvoidsim", "version": stdvoidsim.__version__}
 
     def test_parameters(self):
         d = cli.get_provenance_dict()["parameters"]
@@ -87,35 +87,35 @@ class TestDownloadGeneticMapsArgumentParser:
     """
 
     def test_defaults(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         cmd = "download-genetic-maps"
         args = parser.parse_args([cmd])
         assert args.species is None
         assert len(args.genetic_maps) == 0
 
     def test_species_no_maps(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         cmd = "download-genetic-maps some_species"
         args = parser.parse_args(cmd.split())
         assert args.species == "some_species"
         assert len(args.genetic_maps) == 0
 
     def test_species_one_map(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         cmd = "download-genetic-maps some_species map1"
         args = parser.parse_args(cmd.split())
         assert args.species == "some_species"
         assert args.genetic_maps == ["map1"]
 
     def test_species_two_maps(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         cmd = "download-genetic-maps some_species map1 map2"
         args = parser.parse_args(cmd.split())
         assert args.species == "some_species"
         assert args.genetic_maps == ["map1", "map2"]
 
     def test_verbosity(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         cmd = "download-genetic-maps"
         args = parser.parse_args(cmd.split())
         assert args.verbose == 1
@@ -139,7 +139,7 @@ class TestHomoSapiensArgumentParser:
     """
 
     def test_defaults(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         cmd = "HomSap"
         args = parser.parse_args([cmd, "pop_0:2"])
         assert args.output is None
@@ -147,7 +147,7 @@ class TestHomoSapiensArgumentParser:
         assert args.samples == ["pop_0:2"]
 
     def test_output(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         cmd = "HomSap"
         output = "/stuff/tmp.trees"
 
@@ -164,7 +164,7 @@ class TestHomoSapiensArgumentParser:
         assert args.samples == ["pop_0:2"]
 
     def test_seed(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         cmd = "HomSap"
         args = parser.parse_args([cmd, "pop_0:2", "-s", "1234"])
         assert args.samples == ["pop_0:2"]
@@ -175,7 +175,7 @@ class TestHomoSapiensArgumentParser:
         assert args.seed == 14
 
     def test_cache_dir(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         cmd = "HomSap"
         args = parser.parse_args(["-c", "cache_dir", cmd, "pop_0:2"])
         assert args.samples == ["pop_0:2"]
@@ -186,7 +186,7 @@ class TestHomoSapiensArgumentParser:
         assert args.cache_dir == "/some/cache_dir"
 
     def test_bibtex(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         cmd = "HomSap"
         output = "/stuff/tmp.trees"
         bib = "tmp.bib"
@@ -207,8 +207,8 @@ class TestEndToEnd:
         with tempfile.TemporaryDirectory() as tmpdir:
             filename = pathlib.Path(tmpdir) / "output.trees"
             full_cmd = f" -q {cmd} -o {filename} --seed={seed}"
-            with mock.patch("stdpopsim.cli.setup_logging", autospec=True):
-                stdout, stderr = capture_output(cli.stdpopsim_main, full_cmd.split())
+            with mock.patch("stdvoidsim.cli.setup_logging", autospec=True):
+                stdout, stderr = capture_output(cli.stdvoidsim_main, full_cmd.split())
             assert len(stderr) == 0
             assert len(stdout) == 0
             ts = tskit.load(str(filename))
@@ -268,7 +268,7 @@ class TestEndToEndSubprocess(TestEndToEnd):
     def verify(self, cmd, num_samples, seed=1):
         with tempfile.TemporaryDirectory() as tmpdir:
             filename = pathlib.Path(tmpdir) / "output.trees"
-            full_cmd = f"{sys.executable} -m stdpopsim -q {cmd} -o {filename} -s {seed}"
+            full_cmd = f"{sys.executable} -m stdvoidsim -q {cmd} -o {filename} -s {seed}"
             subprocess.run(full_cmd, shell=True, check=True)
             ts = tskit.load(str(filename))
         assert ts.num_samples == num_samples
@@ -288,7 +288,7 @@ class TestWriteOutput:
 
     def test_stdout(self):
         ts = msprime.simulate(10, random_seed=2)
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         args = parser.parse_args(["AraTha", "pop_0:2"])
         with mock.patch("shutil.copyfileobj", autospec=True) as mocked_copy:
             with mock.patch("sys.stdout", autospec=True) as stdout:
@@ -298,7 +298,7 @@ class TestWriteOutput:
 
     def test_to_file(self):
         ts = msprime.simulate(10, random_seed=2)
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         output_file = "mocked.trees"
         args = parser.parse_args(["HomSap", "pop_0:2", "-o", output_file])
         with mock.patch("tskit.TreeSequence.dump", autospec=True) as mocked_dump:
@@ -328,7 +328,7 @@ class TestRedirection:
 
         with tempfile.TemporaryDirectory() as tmpdir:
             filename1 = pathlib.Path(tmpdir) / "output1.trees"
-            full_cmd = f"{sys.executable} -m stdpopsim {cmd} -o {filename1}"
+            full_cmd = f"{sys.executable} -m stdvoidsim {cmd} -o {filename1}"
             result = subprocess.run(
                 full_cmd,
                 shell=True,
@@ -339,7 +339,7 @@ class TestRedirection:
             assert len(result.stdout) == 0
 
             filename2 = pathlib.Path(tmpdir) / "output2.trees"
-            full_cmd = f"{sys.executable} -m stdpopsim {cmd}"
+            full_cmd = f"{sys.executable} -m stdvoidsim {cmd}"
             with open(filename2, "wb") as output:
                 subprocess.run(
                     full_cmd,
@@ -368,7 +368,7 @@ class TestArgumentParsing:
     basic_cmd = ["HomSap", "pop_0:10"]
 
     def test_quiet_verbose(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         args = parser.parse_args(["-q"] + self.basic_cmd)
         assert args.verbose == 0
         args = parser.parse_args(["--quiet"] + self.basic_cmd)
@@ -395,7 +395,7 @@ class TestLogging:
     basic_cmd = ["HomSap", "pop_0:10"]
 
     def test_quiet(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         args = parser.parse_args(["-q"] + self.basic_cmd)
         with mock.patch("logging.basicConfig", autospec=True) as mocked_config:
             cli.setup_logging(args)
@@ -403,7 +403,7 @@ class TestLogging:
         assert kwargs["level"] == "ERROR"
 
     def test_default(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         args = parser.parse_args(self.basic_cmd)
         with mock.patch("logging.basicConfig", autospec=True) as mocked_config:
             cli.setup_logging(args)
@@ -411,7 +411,7 @@ class TestLogging:
         assert kwargs["level"] == "WARN"
 
     def test_verbose(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         args = parser.parse_args(["-v"] + self.basic_cmd)
         with mock.patch("logging.basicConfig", autospec=True) as mocked_config:
             cli.setup_logging(args)
@@ -419,7 +419,7 @@ class TestLogging:
         assert kwargs["level"] == "INFO"
 
     def test_very_verbose(self):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         args = parser.parse_args(["-vv"] + self.basic_cmd)
         with mock.patch("logging.basicConfig", autospec=True) as mocked_config:
             cli.setup_logging(args)
@@ -432,7 +432,7 @@ class TestLogging:
         # unittest has its grubby mits all over logging, making it difficult
         # to test log output without using unittest.TestCase.assertLogs().
         # But assertLogs uses a hard-coded log format. So here we directly
-        # construct logging.LogRecord()s for testing stdpopsim.cli.CLIFormatter.
+        # construct logging.LogRecord()s for testing stdvoidsim.cli.CLIFormatter.
         debug_str = "baz"
         debug_dict = dict(
             name="test_logger",
@@ -503,9 +503,9 @@ class TestErrors:
 
     # Need to mock out setup_logging here or we spew logging to the console
     # in later tests.
-    @mock.patch("stdpopsim.cli.setup_logging", autospec=True)
-    def run_stdpopsim(self, command, mock_setup_logging):
-        stdout, stderr = capture_output(cli.stdpopsim_main, command)
+    @mock.patch("stdvoidsim.cli.setup_logging", autospec=True)
+    def run_stdvoidsim(self, command, mock_setup_logging):
+        stdout, stderr = capture_output(cli.stdvoidsim_main, command)
         assert stderr == ""
         assert stdout == ""
         assert mock_setup_logging.called
@@ -523,13 +523,13 @@ class TestErrors:
 
     # Need to mock out setup_logging here or we spew logging to the console
     # in later tests.
-    @mock.patch("stdpopsim.cli.setup_logging", autospec=True)
+    @mock.patch("stdvoidsim.cli.setup_logging", autospec=True)
     def verify_bad_samples(self, cmd, mock_setup_logging):
         with mock.patch(
-            "stdpopsim.cli.exit", side_effect=ExceptionForTesting, autospec=True
+            "stdvoidsim.cli.exit", side_effect=ExceptionForTesting, autospec=True
         ) as mocked_exit:
             with pytest.raises(ExceptionForTesting):
-                cli.stdpopsim_main(cmd.split())
+                cli.stdvoidsim_main(cmd.split())
             mocked_exit.assert_called_once()
 
     def test_default(self):
@@ -554,54 +554,54 @@ class TestErrors:
 
 
 class TestHelp:
-    def run_stdpopsim(self, command):
+    def run_stdvoidsim(self, command):
         with mock.patch(
             "argparse.ArgumentParser.exit",
             side_effect=ExceptionForTesting,
             autospec=True,
         ) as mocked_exit:
             with pytest.raises(ExceptionForTesting):
-                capture_output(cli.stdpopsim_main, command.split())
+                capture_output(cli.stdvoidsim_main, command.split())
             mocked_exit.assert_called_once()
 
     def test_basic_help(self):
-        self.run_stdpopsim("--help")
+        self.run_stdvoidsim("--help")
 
     def test_homsap_help(self):
-        self.run_stdpopsim("HomSap --help")
+        self.run_stdvoidsim("HomSap --help")
 
     def test_homsap_models_help(self):
-        self.run_stdpopsim("HomSap --help-models")
-        self.run_stdpopsim("HomSap --help-models OutOfAfrica_3G09")
+        self.run_stdvoidsim("HomSap --help-models")
+        self.run_stdvoidsim("HomSap --help-models OutOfAfrica_3G09")
 
     def test_all_species_model_help(self):
-        for species in stdpopsim.all_species():
-            self.run_stdpopsim(f"{species} --help-models")
+        for species in stdvoidsim.all_species():
+            self.run_stdvoidsim(f"{species} --help-models")
 
     def test_homsap_genetic_maps_help(self):
-        self.run_stdpopsim("HomSap --help-genetic-maps")
-        self.run_stdpopsim("HomSap --help-genetic-maps HapMapII_GRCh37")
+        self.run_stdvoidsim("HomSap --help-genetic-maps")
+        self.run_stdvoidsim("HomSap --help-genetic-maps HapMapII_GRCh37")
 
     def test_all_species_genetic_maps_help(self):
-        for species in stdpopsim.all_species():
-            self.run_stdpopsim(f"{species} --help-genetic-maps")
+        for species in stdvoidsim.all_species():
+            self.run_stdvoidsim(f"{species} --help-genetic-maps")
 
     def test_all_species_annots_help(self):
-        for species in stdpopsim.all_species():
-            self.run_stdpopsim(f"{species} --help-annotations")
+        for species in stdvoidsim.all_species():
+            self.run_stdvoidsim(f"{species} --help-annotations")
 
     def test_DroMel_HomSap_dfe_help(self):
         for species in ["DroMel", "HomSap"]:
-            self.run_stdpopsim(f"{species} --help-dfes")
-        self.run_stdpopsim("HomSap --help-dfes Gamma_K17")
+            self.run_stdvoidsim(f"{species} --help-dfes")
+        self.run_stdvoidsim("HomSap --help-dfes Gamma_K17")
 
     def test_homsap_annotations_help(self):
-        self.run_stdpopsim("HomSap --help-annotations")
-        self.run_stdpopsim("HomSap --help-annotations ensembl_havana_104_exons")
+        self.run_stdvoidsim("HomSap --help-annotations")
+        self.run_stdvoidsim("HomSap --help-annotations ensembl_havana_104_exons")
 
     def test_dromel_annotations_help(self):
-        self.run_stdpopsim("DroMel --help-annotations")
-        self.run_stdpopsim("DroMel --help-annotations FlyBase_BDGP6.32.51_exons")
+        self.run_stdvoidsim("DroMel --help-annotations")
+        self.run_stdvoidsim("DroMel --help-annotations FlyBase_BDGP6.32.51_exons")
 
 
 class TestWriteBibtex:
@@ -620,28 +620,28 @@ class TestWriteBibtex:
                 f"-o {filename} -d OutOfAfrica_3G09 --seed={seed} "
                 f"--bibtex={bibfile}"
             )
-            with mock.patch("stdpopsim.cli.setup_logging", autospec=True):
+            with mock.patch("stdvoidsim.cli.setup_logging", autospec=True):
                 with mock.patch.object(
-                    stdpopsim.citations.Citation, "fetch_bibtex", autospec=True
+                    stdvoidsim.citations.Citation, "fetch_bibtex", autospec=True
                 ) as mocked_bib:
                     with mock.patch("argparse.FileType", autospec=True):
                         stdout, stderr = capture_output(
-                            cli.stdpopsim_main, full_cmd.split()
+                            cli.stdvoidsim_main, full_cmd.split()
                         )
                         mocked_bib.assert_called()
 
     def test_number_of_calls(self):
         # Test that genetic map citations are converted.
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         genetic_map = species.get_genetic_map("HapMapII_GRCh38")
         contig = species.get_contig("chr20", genetic_map=genetic_map.id)
-        model = stdpopsim.PiecewiseConstantSize(species.population_size)
-        engine = stdpopsim.get_default_engine()
+        model = stdvoidsim.PiecewiseConstantSize(species.population_size)
+        engine = stdvoidsim.get_default_engine()
         dfe = species.get_dfe("Gamma_K17")
-        local_cites = stdpopsim.Citation.merge(
+        local_cites = stdvoidsim.Citation.merge(
             [
-                stdpopsim.citations._stdpopsim_citation,
-                stdpopsim.citations._catalog_citation,
+                stdvoidsim.citations._stdvoidsim_citation,
+                stdvoidsim.citations._catalog_citation,
             ]
             + genetic_map.citations
             + model.citations
@@ -662,7 +662,7 @@ class TestWriteBibtex:
         with mock.patch("builtins.open", mock.mock_open()):
             with open("tmp.bib", "w") as bib:
                 with mock.patch.object(
-                    stdpopsim.citations.Citation, "fetch_bibtex", autospec=True
+                    stdvoidsim.citations.Citation, "fetch_bibtex", autospec=True
                 ) as mock_bib:
                     cli.write_bibtex(engine, model, contig, species, bib, dfe)
                     assert mock_bib.call_count == ncite
@@ -675,10 +675,10 @@ class TestWriteCitations:
 
     @pytest.mark.usefixtures("caplog")
     def test_model_citations(self, caplog):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         contig = species.get_contig("22")
         model = species.get_demographic_model("OutOfAfrica_3G09")
-        engine = stdpopsim.get_default_engine()
+        engine = stdvoidsim.get_default_engine()
         dfe = None
         stdout, stderr = capture_output(
             cli.write_citations, engine, model, contig, species, dfe
@@ -687,12 +687,12 @@ class TestWriteCitations:
         genetic_map = None
         self.check_citations(engine, species, genetic_map, model, caplog.text)
 
-        species = stdpopsim.get_species("BosTau")
+        species = stdvoidsim.get_species("BosTau")
         contig = species.get_contig("25")
         model = species.get_demographic_model("HolsteinFriesian_1M13")
         # this model has recombination rate, which should knock out the default
         # recombination rate and associated citation
-        engine = stdpopsim.get_default_engine()
+        engine = stdvoidsim.get_default_engine()
         dfe = None
         stdout, stderr = capture_output(
             cli.write_citations, engine, model, contig, species, dfe
@@ -703,11 +703,11 @@ class TestWriteCitations:
 
     @pytest.mark.usefixtures("caplog")
     def test_genetic_map_citations(self, caplog):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         genetic_map = species.get_genetic_map("HapMapII_GRCh37")
         contig = species.get_contig("chr20", genetic_map=genetic_map.id)
-        model = stdpopsim.PiecewiseConstantSize(species.population_size)
-        engine = stdpopsim.get_default_engine()
+        model = stdvoidsim.PiecewiseConstantSize(species.population_size)
+        engine = stdvoidsim.get_default_engine()
         dfe = None
         stdout, stderr = capture_output(
             cli.write_citations, engine, model, contig, species, dfe
@@ -717,12 +717,12 @@ class TestWriteCitations:
 
     @pytest.mark.usefixtures("caplog")
     def test_dfe_citations(self, caplog):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         genetic_map = species.get_genetic_map("HapMapII_GRCh37")
         dfe = species.get_genetic_map("HapMapII_GRCh37")
         contig = species.get_contig("chr20", genetic_map=genetic_map.id)
-        model = stdpopsim.PiecewiseConstantSize(species.population_size)
-        engine = stdpopsim.get_default_engine()
+        model = stdvoidsim.PiecewiseConstantSize(species.population_size)
+        engine = stdvoidsim.get_default_engine()
         dfe = species.get_dfe("Gamma_K17")
         stdout, stderr = capture_output(
             cli.write_citations, engine, model, contig, species, dfe
@@ -733,7 +733,7 @@ class TestWriteCitations:
 
     def check_citations(self, engine, species, genetic_map, model, output):
         if genetic_map is None:
-            genetic_map = stdpopsim.GeneticMap(
+            genetic_map = stdvoidsim.GeneticMap(
                 species,
                 id="test",
                 url="http://example.com/test.tgz",
@@ -759,10 +759,10 @@ class TestCacheDir:
     Tests for setting the cache directory.
     """
 
-    @mock.patch("stdpopsim.cli.setup_logging", autospec=True)
-    @mock.patch("stdpopsim.cli.run", autospec=True)
-    def run_stdpopsim(self, command, mock_setup_logging, mock_run):
-        stdout, stderr = capture_output(cli.stdpopsim_main, command)
+    @mock.patch("stdvoidsim.cli.setup_logging", autospec=True)
+    @mock.patch("stdvoidsim.cli.run", autospec=True)
+    def run_stdvoidsim(self, command, mock_setup_logging, mock_run):
+        stdout, stderr = capture_output(cli.stdvoidsim_main, command)
         assert stderr == ""
         assert stdout == ""
         mock_setup_logging.assert_called_once()
@@ -770,9 +770,9 @@ class TestCacheDir:
 
     def check_cache_dir_set(self, cmd, cache_dir):
         with mock.patch(
-            "stdpopsim.set_cache_dir", autospec=True
+            "stdvoidsim.set_cache_dir", autospec=True
         ) as mocked_set_cache_dir:
-            self.run_stdpopsim(cmd.split())
+            self.run_stdvoidsim(cmd.split())
             mocked_set_cache_dir.assert_called_once_with(cache_dir)
 
     def test_homsap_simulation(self):
@@ -797,27 +797,27 @@ class TestDownloadGeneticMaps:
     """
 
     def run_download(self, cmd_args, expected_num_downloads):
-        parser = cli.stdpopsim_cli_parser()
+        parser = cli.stdvoidsim_cli_parser()
         args = parser.parse_args(["download-genetic-maps"] + cmd_args.split())
         with mock.patch(
-            "stdpopsim.GeneticMap.download", autospec=True
+            "stdvoidsim.GeneticMap.download", autospec=True
         ) as mocked_download:
             cli.run_download_genetic_maps(args)
             assert mocked_download.call_count == expected_num_downloads
 
     def test_defaults(self):
-        num_maps = sum(len(species.genetic_maps) for species in stdpopsim.all_species())
+        num_maps = sum(len(species.genetic_maps) for species in stdvoidsim.all_species())
         assert num_maps > 0
         self.run_download("", num_maps)
 
     def test_homsap_defaults(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         num_maps = len(species.genetic_maps)
         assert num_maps > 0
         self.run_download("HomSap", num_maps)
 
     def test_homsap_specify_maps(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         maps = [gmap.id for gmap in species.genetic_maps]
         for j in range(len(maps)):
             args = " ".join(maps[: j + 1])
@@ -830,16 +830,16 @@ class TestSearchWrappers:
     """
 
     def test_bad_species(self):
-        with mock.patch("stdpopsim.cli.exit", autospec=True) as mocked_exit:
+        with mock.patch("stdvoidsim.cli.exit", autospec=True) as mocked_exit:
             cli.get_species_wrapper("XXX")
-            available_species = ", ".join(stdpopsim.species.registered_species)
+            available_species = ", ".join(stdvoidsim.species.registered_species)
             mocked_exit.assert_called_once_with(
                 f"Species 'XXX' not in catalog ({available_species})"
             )
 
     def test_bad_model(self):
-        species = stdpopsim.get_species("HomSap")
-        with mock.patch("stdpopsim.cli.exit", autospec=True) as mocked_exit:
+        species = stdvoidsim.get_species("HomSap")
+        with mock.patch("stdvoidsim.cli.exit", autospec=True) as mocked_exit:
             cli.get_model_wrapper(species, "XXX")
             available_models = ", ".join([dm.id for dm in species.demographic_models])
             mocked_exit.assert_called_once_with(
@@ -847,8 +847,8 @@ class TestSearchWrappers:
             )
 
     def test_bad_genetic_map(self):
-        species = stdpopsim.get_species("HomSap")
-        with mock.patch("stdpopsim.cli.exit", autospec=True) as mocked_exit:
+        species = stdvoidsim.get_species("HomSap")
+        with mock.patch("stdvoidsim.cli.exit", autospec=True) as mocked_exit:
             cli.get_genetic_map_wrapper(species, "XXX")
             available_maps = ", ".join([gm.id for gm in species.genetic_maps])
             mocked_exit.assert_called_once_with(
@@ -856,8 +856,8 @@ class TestSearchWrappers:
             )
 
     def test_bad_dfe(self):
-        species = stdpopsim.get_species("HomSap")
-        with mock.patch("stdpopsim.cli.exit", autospec=True) as mocked_exit:
+        species = stdvoidsim.get_species("HomSap")
+        with mock.patch("stdvoidsim.cli.exit", autospec=True) as mocked_exit:
             cli.get_dfe_wrapper(species, "XXX")
             available_dfes = [dm.id for dm in species.dfes]
             avail_dfes_str = ", ".join(available_dfes)
@@ -866,8 +866,8 @@ class TestSearchWrappers:
             )
 
     def test_bad_annotation(self):
-        species = stdpopsim.get_species("HomSap")
-        with mock.patch("stdpopsim.cli.exit", autospec=True) as mocked_exit:
+        species = stdvoidsim.get_species("HomSap")
+        with mock.patch("stdvoidsim.cli.exit", autospec=True) as mocked_exit:
             cli.get_annotation_wrapper(species, "666_foo_666")
             available_annots = [dm.id for dm in species.annotations]
             avail_annots_str = ", ".join(available_annots)
@@ -887,7 +887,7 @@ class TestDryRun:
             with open(path / "stderr", "w+") as stderr:
                 filename = path / "output.trees"
                 cmd = (
-                    f"{sys.executable} -m stdpopsim HomSap -D -L 1000 -o "
+                    f"{sys.executable} -m stdvoidsim HomSap -D -L 1000 -o "
                     f"{filename} pop_0:1"
                 )
                 subprocess.run(cmd, stderr=stderr, shell=True, check=True)
@@ -900,7 +900,7 @@ class TestDryRun:
             with open(path / "stderr", "w+") as stderr:
                 filename = path / "output.trees"
                 cmd = (
-                    f"{sys.executable} -m stdpopsim -q HomSap -D -L 1000 "
+                    f"{sys.executable} -m stdvoidsim -q HomSap -D -L 1000 "
                     f"-o {filename} pop_0:1"
                 )
                 subprocess.run(cmd, stderr=stderr, shell=True, check=True)
@@ -913,7 +913,7 @@ class TestMsprimeEngine:
         with tempfile.TemporaryDirectory() as tmpdir:
             filename = pathlib.Path(tmpdir) / "output.trees"
             cmd = f"-q -e msprime {_cmd} AraTha -L 100 --seed 1 -o {filename} pop_0:5"
-            return capture_output(stdpopsim.cli.stdpopsim_main, cmd.split())
+            return capture_output(stdvoidsim.cli.stdvoidsim_main, cmd.split())
 
     def test_simulate(self):
         self.docmd("")
@@ -943,8 +943,8 @@ class TestMsprimeEngine:
             self.docmd("--msprime-model hudson --msprime-change-model 10")
 
     def test_invalid_API_parameters(self):
-        engine = stdpopsim.get_engine("msprime")
-        species = stdpopsim.get_species("HomSap")
+        engine = stdvoidsim.get_engine("msprime")
+        species = stdvoidsim.get_species("HomSap")
         contig = species.get_contig("chr20")
         model = species.get_demographic_model("OutOfAfrica_2T12")
         samples = {"AFR": 5}
@@ -963,25 +963,25 @@ class TestMsprimeEngine:
 
 class TestNonAutosomal:
     # TODO: This test should be removed when #383 is fixed.
-    # https://github.com/popsim-consortium/stdpopsim/issues/383
+    # https://github.com/popsim-consortium/stdvoidsim/issues/383
     def test_chrX_gives_a_warning(self):
         cmd = "HomSap -D -c chrX -o /dev/null pop_0:10".split()
         # setup_logging() interferes with pytest.warns().
-        with mock.patch("stdpopsim.cli.setup_logging", autospec=True):
-            with pytest.warns(stdpopsim.NonAutosomalWarning):
-                capture_output(stdpopsim.cli.stdpopsim_main, cmd)
+        with mock.patch("stdvoidsim.cli.setup_logging", autospec=True):
+            with pytest.warns(stdvoidsim.NonAutosomalWarning):
+                capture_output(stdvoidsim.cli.stdvoidsim_main, cmd)
 
 
 class TestRecombinationRate:
     @pytest.mark.usefixtures("caplog")
     def test_recomb_rate(self, caplog):
-        sp = stdpopsim.get_species("BosTau")
+        sp = stdvoidsim.get_species("BosTau")
         mod = sp.get_demographic_model("HolsteinFriesian_1M13")
         cmd = (
             "BosTau -D -c 1 -o /dev/null -d HolsteinFriesian_1M13 Holstein_Friesian:10"
         )
-        with mock.patch("stdpopsim.cli.setup_logging", autospec=True):
-            out, err = capture_output(stdpopsim.cli.stdpopsim_main, cmd.split())
+        with mock.patch("stdvoidsim.cli.setup_logging", autospec=True):
+            out, err = capture_output(stdvoidsim.cli.stdvoidsim_main, cmd.split())
             assert len(out) == 0
             assert len(err) == 0
             log_output = caplog.text
@@ -994,21 +994,21 @@ class TestRecombinationRate:
 
 
 class TestNoQCWarning:
-    species = stdpopsim.get_species("EscCol")
-    model = stdpopsim.DemographicModel(
+    species = stdvoidsim.get_species("EscCol")
+    model = stdvoidsim.DemographicModel(
         id="FakeModel",
         description="FakeModel",
         long_description="FakeModel",
         citations=[
-            stdpopsim.Citation(
+            stdvoidsim.Citation(
                 author="Farnsworth",
                 year=3000,
                 doi="https://doi.org/10.1000/xyz123",
-                reasons={stdpopsim.CiteReason.DEM_MODEL},
+                reasons={stdvoidsim.CiteReason.DEM_MODEL},
             )
         ],
         generation_time=10,
-        populations=[stdpopsim.Population("Omicronians", "Popplers, etc.")],
+        populations=[stdvoidsim.Population("Omicronians", "Popplers, etc.")],
         population_configurations=[msprime.PopulationConfiguration(initial_size=1000)],
     )
 
@@ -1022,9 +1022,9 @@ class TestNoQCWarning:
 
     def verify_noQC_warning(self, cmd):
         # setup_logging() interferes with pytest.warns().
-        with mock.patch("stdpopsim.cli.setup_logging", autospec=True):
-            with pytest.warns(stdpopsim.QCMissingWarning):
-                capture_output(stdpopsim.cli.stdpopsim_main, cmd.split())
+        with mock.patch("stdvoidsim.cli.setup_logging", autospec=True):
+            with pytest.warns(stdvoidsim.QCMissingWarning):
+                capture_output(stdvoidsim.cli.stdvoidsim_main, cmd.split())
 
     def test_noQC_warning(self):
         self.verify_noQC_warning("EscCol -d FakeModel -D -L 1000 Omicronians:10")
@@ -1035,7 +1035,7 @@ class TestNoQCWarning:
     def verify_noQC_citations_not_written(self, cmd, caplog):
         # Non-QCed models shouldn't be used in publications, so citations
         # shouldn't be offered to the user.
-        out, err = capture_output(stdpopsim.cli.stdpopsim_main, cmd.split())
+        out, err = capture_output(stdvoidsim.cli.stdvoidsim_main, cmd.split())
         log_output = caplog.text
         # citations are written out via the logging mechanism
         assert len(out) == 0
@@ -1052,14 +1052,14 @@ class TestNoQCWarning:
     # the logging output. The caplog param is automatically passed to test_*()
     # methods by pytest, which we pass through to verify_noQC_citations_not_written().
 
-    @pytest.mark.filterwarnings("ignore::stdpopsim.QCMissingWarning")
+    @pytest.mark.filterwarnings("ignore::stdvoidsim.QCMissingWarning")
     @pytest.mark.usefixtures("caplog")
     def test_noQC_citations_not_written(self, caplog):
         self.verify_noQC_citations_not_written(
             "EscCol -d FakeModel -D -L 1000 Omicronians:10", caplog
         )
 
-    @pytest.mark.filterwarnings("ignore::stdpopsim.QCMissingWarning")
+    @pytest.mark.filterwarnings("ignore::stdvoidsim.QCMissingWarning")
     @pytest.mark.usefixtures("caplog")
     def test_noQC_citations_not_written_verbose(self, caplog):
         self.verify_noQC_citations_not_written(
@@ -1067,14 +1067,14 @@ class TestNoQCWarning:
         )
 
 
-@pytest.mark.parametrize("species_id", [s.id for s in stdpopsim.all_species()])
+@pytest.mark.parametrize("species_id", [s.id for s in stdvoidsim.all_species()])
 def test_species_simulation(species_id):
     # L must be longer than any mean gene conversion tract length;
     # since gene conversion length is quite long for a few species
     # we can't run with L=1000 for all species, so (confusingly) adjust
     # for those long-GC species here
     L = 1000
-    species = stdpopsim.get_species(species_id)
+    species = stdvoidsim.get_species(species_id)
     for chrom in species.genome.chromosomes:
         if chrom.gene_conversion_length is not None:
             L = max(L, chrom.gene_conversion_length + 100)
@@ -1082,7 +1082,7 @@ def test_species_simulation(species_id):
     # Just check to see if the simulation runs
     with mock.patch("sys.stdout", autospec=True) as stdout:
         stdout.buffer = open(os.devnull, "wb")
-        stdpopsim.cli.stdpopsim_main(cmd.split())
+        stdvoidsim.cli.stdvoidsim_main(cmd.split())
 
 
 class TestSampleCountParser:
@@ -1090,15 +1090,15 @@ class TestSampleCountParser:
         with tempfile.TemporaryDirectory() as tmpdir:
             filename = pathlib.Path(tmpdir) / "output.trees"
             full_cmd = f" -q {cmd} -o {filename} --seed={seed}"
-            with mock.patch("stdpopsim.cli.setup_logging", autospec=True):
-                stdout, stderr = capture_output(cli.stdpopsim_main, full_cmd.split())
+            with mock.patch("stdvoidsim.cli.setup_logging", autospec=True):
+                stdout, stderr = capture_output(cli.stdvoidsim_main, full_cmd.split())
             assert len(stderr) == 0
             assert len(stdout) == 0
             ts = tskit.load(str(filename))
         for i in range(len(num_samples)):
             assert len(ts.samples(population=i)) == num_samples[i]
 
-    @pytest.mark.filterwarnings("ignore::stdpopsim.DeprecatedFeatureWarning")
+    @pytest.mark.filterwarnings("ignore::stdvoidsim.DeprecatedFeatureWarning")
     def test_deprecated_positional_samples(self):
         cmd = "HomSap -c chr1 --right 2489564 -d OutOfAfrica_3G09 5"
         self.verify(cmd, num_samples=[5, 0, 0])

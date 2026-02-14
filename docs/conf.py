@@ -23,7 +23,7 @@ sys.path.append(os.path.abspath("./_ext"))
 
 # -- Project information -----------------------------------------------------
 
-project = "stdpopsim"
+project = "stdvoidsim"
 copyright = f"2019-{datetime.datetime.now().year}, PopSim Consortium"
 author = "PopSim Consortium"
 
@@ -106,7 +106,11 @@ html_context = {
 }
 html_theme_options = {
     "version_selector": True,
+    "logo_only": False,
 }
+
+# Logo in the top-left corner of the sidebar
+html_logo = "_static/logo.svg"
 
 # Show the version number in the navigation bar
 html_show_sphinx = True
@@ -136,7 +140,7 @@ html_css_files = [
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "stdpopsimdoc"
+htmlhelp_basename = "stdvoidsimdoc"
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -162,8 +166,8 @@ latex_elements = {
 latex_documents = [
     (
         index_doc,
-        "stdpopsim.tex",
-        "stdpopsim Documentation",
+        "stdvoidsim.tex",
+        "stdvoidsim Documentation",
         "PopSim Consortium",
         "manual",
     ),
@@ -174,7 +178,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(index_doc, "stdpopsim", "stdpopsim Documentation", [author], 1)]
+man_pages = [(index_doc, "stdvoidsim", "stdvoidsim Documentation", [author], 1)]
 
 
 # -- Options for Texinfo output ----------------------------------------------
@@ -185,10 +189,10 @@ man_pages = [(index_doc, "stdpopsim", "stdpopsim Documentation", [author], 1)]
 texinfo_documents = [
     (
         index_doc,
-        "stdpopsim",
-        "stdpopsim Documentation",
+        "stdvoidsim",
+        "stdvoidsim Documentation",
         author,
-        "stdpopsim",
+        "stdvoidsim",
         "One line description of project.",
         "Miscellaneous",
     ),
@@ -231,4 +235,4 @@ intersphinx_mapping = {
 todo_include_todos = True
 
 # Github repo
-issues_github_path = "popsim-consortium/stdpopsim"
+issues_github_path = "kevinkorfmann/stdvoidsim"

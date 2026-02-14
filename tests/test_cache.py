@@ -10,8 +10,8 @@ import tarfile
 import appdirs
 import pytest
 
-import stdpopsim
-from stdpopsim import utils
+import stdvoidsim
+from stdvoidsim import utils
 import tests
 
 
@@ -24,22 +24,22 @@ class TestSetCacheDir(tests.CacheWritingTest):
 
     def test_paths(self):
         for test in self.paths:
-            stdpopsim.set_cache_dir(test)
-            assert stdpopsim.get_cache_dir() == pathlib.Path(test)
-            stdpopsim.set_cache_dir(pathlib.Path(test))
-            assert stdpopsim.get_cache_dir() == pathlib.Path(test)
+            stdvoidsim.set_cache_dir(test)
+            assert stdvoidsim.get_cache_dir() == pathlib.Path(test)
+            stdvoidsim.set_cache_dir(pathlib.Path(test))
+            assert stdvoidsim.get_cache_dir() == pathlib.Path(test)
 
     def test_none(self):
-        stdpopsim.set_cache_dir(None)
-        cache_dir = pathlib.Path(appdirs.user_cache_dir("stdpopsim", "popgensims"))
-        assert stdpopsim.get_cache_dir() == cache_dir
+        stdvoidsim.set_cache_dir(None)
+        cache_dir = pathlib.Path(appdirs.user_cache_dir("stdvoidsim", "popgensims"))
+        assert stdvoidsim.get_cache_dir() == cache_dir
 
     def test_environment_var(self):
         try:
             for test in self.paths:
                 os.environ["STDPOPSIM_CACHE"] = test
-                stdpopsim.set_cache_dir()
-                assert stdpopsim.get_cache_dir() == pathlib.Path(test)
+                stdvoidsim.set_cache_dir()
+                assert stdvoidsim.get_cache_dir() == pathlib.Path(test)
         finally:
             os.environ.pop("STDPOPSIM_CACHE")
 
@@ -58,7 +58,7 @@ class TestCachedData(tests.CacheWritingTest):
                         tf.add(filename)
 
                 sha256 = utils.sha256(tar)
-                cache = stdpopsim.CachedData(
+                cache = stdvoidsim.CachedData(
                     namespace="test",
                     url=tar.resolve().as_uri(),
                     sha256=sha256,
@@ -97,7 +97,7 @@ class TestCachedData(tests.CacheWritingTest):
                 with tarfile.open(tar, "w:gz") as tf:
                     tf.add(filename)
 
-            cache = stdpopsim.CachedData(
+            cache = stdvoidsim.CachedData(
                 namespace="test",
                 url=tar.resolve().as_uri(),
                 sha256=utils.sha256(tar),

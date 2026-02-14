@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("DroSec")
+    species = stdvoidsim.get_species("DroSec")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "drosophila_sechellia"
@@ -26,7 +26,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("DroSec").genome
+    genome = stdvoidsim.get_species("DroSec").genome
 
     @pytest.mark.parametrize(
         ["name", "rate"],

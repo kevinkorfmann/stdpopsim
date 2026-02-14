@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("AnoGam")
+    species = stdvoidsim.get_species("AnoGam")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "anopheles_gambiae"
@@ -29,7 +29,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("AnoGam").genome
+    genome = stdvoidsim.get_species("AnoGam").genome
     mut_rate = 3.5e-9
 
     # these values are given in the text of Pombi et al

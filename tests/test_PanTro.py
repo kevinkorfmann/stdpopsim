@@ -1,4 +1,4 @@
-import stdpopsim
+import stdvoidsim
 
 import pytest
 
@@ -7,7 +7,7 @@ from tests import test_species
 
 class TestSpecies(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("PanTro")
+    species = stdvoidsim.get_species("PanTro")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "pan_troglodytes"
@@ -30,7 +30,7 @@ class TestSpecies(test_species.SpeciesTestBase):
 
 class TestGenome(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("PanTro").genome
+    genome = stdvoidsim.get_species("PanTro").genome
 
     def test_basic_attributes(self):
         assert len(self.genome.chromosomes) == 25

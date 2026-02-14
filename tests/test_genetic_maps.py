@@ -11,8 +11,8 @@ import pathlib
 import msprime
 import pytest
 
-import stdpopsim
-from stdpopsim import utils
+import stdvoidsim
+from stdvoidsim import utils
 import tests
 
 
@@ -28,7 +28,7 @@ saved_urls = {}
 
 def setup_module():
     destination = pathlib.Path("_test_cache/tarballs")
-    for genetic_map in stdpopsim.all_genetic_maps():
+    for genetic_map in stdvoidsim.all_genetic_maps():
         key = genetic_map.id
         local_file = destination / (key + ".tar.gz")
         if not local_file.exists():
@@ -50,19 +50,19 @@ def setup_module():
 
 
 def teardown_module():
-    for genetic_map in stdpopsim.all_genetic_maps():
+    for genetic_map in stdvoidsim.all_genetic_maps():
         genetic_map.url = saved_urls[genetic_map.id]
         genetic_map._cache.url = genetic_map.url
 
 
-class GeneticMapTestClass(stdpopsim.GeneticMap):
+class GeneticMapTestClass(stdvoidsim.GeneticMap):
     """
     A genetic map that we can instantiate to get a genetic map for testing.
     """
 
     def __init__(self):
-        genome = stdpopsim.Genome(chromosomes=[])
-        _species = stdpopsim.Species(
+        genome = stdvoidsim.Genome(chromosomes=[])
+        _species = stdvoidsim.Species(
             id="TesSpe",
             ensembl_id="test_species",
             name="Test species",
@@ -138,7 +138,7 @@ class TestGeneticMap(tests.CacheWritingTest):
 
     def test_cache_dirs(self):
         gm = GeneticMapTestClass()
-        cache_dir = stdpopsim.get_cache_dir() / "genetic_maps" / gm.species.id / gm.id
+        cache_dir = stdvoidsim.get_cache_dir() / "genetic_maps" / gm.species.id / gm.id
         assert gm.map_cache_dir == cache_dir
 
     def test_str(self):
@@ -153,14 +153,14 @@ class TestGeneticMapDownload(tests.CacheWritingTest):
 
     def test_correct_url(self):
         gm = GeneticMapTestClass()
-        with mock.patch("stdpopsim.utils.download", autospec=True) as mocked_get:
+        with mock.patch("stdvoidsim.utils.download", autospec=True) as mocked_get:
             # The destination file will be missing.
             with pytest.raises(FileNotFoundError):
                 gm.download()
         mocked_get.assert_called_once_with(gm.url, mock.ANY)
 
     def test_download_over_cache(self):
-        species = stdpopsim.get_species("DroMel")
+        species = stdvoidsim.get_species("DroMel")
         gm = species.get_genetic_map("ComeronCrossover_dm6")
         gm.download()
         assert gm.is_cached()
@@ -168,7 +168,7 @@ class TestGeneticMapDownload(tests.CacheWritingTest):
         assert gm.is_cached()
 
     def test_multiple_threads_downloading(self):
-        species = stdpopsim.get_species("DroMel")
+        species = stdvoidsim.get_species("DroMel")
         gm = species.get_genetic_map("ComeronCrossover_dm6")
         gm.download()
         saved = gm._cache.is_cached
@@ -188,14 +188,14 @@ class TestAllGeneticMaps(tests.CacheReadingTest):
     """
 
     def test_non_empty(self):
-        assert len(list(stdpopsim.all_genetic_maps())) > 0
+        assert len(list(stdvoidsim.all_genetic_maps())) > 0
 
     def test_types(self):
-        for gm in stdpopsim.all_genetic_maps():
-            assert isinstance(gm, stdpopsim.GeneticMap)
+        for gm in stdvoidsim.all_genetic_maps():
+            assert isinstance(gm, stdvoidsim.GeneticMap)
 
     def test_ids(self):
-        for gm in stdpopsim.all_genetic_maps():
+        for gm in stdvoidsim.all_genetic_maps():
             assert isinstance(gm.id, str)
             assert utils.is_valid_genetic_map_id(gm.id)
 
@@ -206,7 +206,7 @@ class TestGetChromosomeMap(tests.CacheReadingTest):
     """
 
     def test_warning_from_no_mapped_chromosome(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         genetic_map = species.get_genetic_map("HapMapII_GRCh37")
         chrom = species.genome.get_chromosome("chrY")
         with pytest.warns(UserWarning, match="Genetic map not found"):
@@ -215,7 +215,7 @@ class TestGetChromosomeMap(tests.CacheReadingTest):
         assert chrom.length == cm.sequence_length
 
     def test_known_chromosome(self):
-        species = stdpopsim.get_species("CanFam")
+        species = stdvoidsim.get_species("CanFam")
         genetic_map = species.get_genetic_map("Campbell2016_CanFam3_1")
         chrom = species.genome.get_chromosome("1")
         cm = genetic_map.get_chromosome_map(chrom.id)
@@ -223,7 +223,7 @@ class TestGetChromosomeMap(tests.CacheReadingTest):
         assert chrom.length == cm.sequence_length
 
     def test_warning_for_long_genetic_map(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         genetic_map = species.get_genetic_map("HapMapII_GRCh37")
         chrom = species.genome.get_chromosome("chr1")
         with pytest.warns(
@@ -234,7 +234,7 @@ class TestGetChromosomeMap(tests.CacheReadingTest):
         assert chrom.length < cm.sequence_length
 
     def test_unknown_chromosome(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         genetic_map = species.get_genetic_map("HapMapII_GRCh37")
         for bad_chrom in ["", "ABD", None]:
             with pytest.raises(ValueError):
@@ -243,7 +243,7 @@ class TestGetChromosomeMap(tests.CacheReadingTest):
     @pytest.mark.filterwarnings("ignore: Genetic map.*is longer than chromosome length")
     @pytest.mark.filterwarnings("error: Genetic map not found")
     def test_one_chrom_from_each_map(self):
-        for gm in stdpopsim.all_genetic_maps():
+        for gm in stdvoidsim.all_genetic_maps():
             species = gm.species
             # Just load the first chromosome in the list.
             # There's no requirement that any given chromosome is actually

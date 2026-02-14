@@ -11,8 +11,8 @@ import pathlib
 import pytest
 import numpy as np
 import logging
-import stdpopsim
-from stdpopsim import utils
+import stdvoidsim
+from stdvoidsim import utils
 import tests
 import maintenance as maint
 
@@ -28,7 +28,7 @@ saved_urls = {}
 
 def setup_module():
     destination = pathlib.Path("_test_cache/tarballs")
-    for an in stdpopsim.all_annotations():
+    for an in stdvoidsim.all_annotations():
         key = an.id
         local_file = destination / (key + ".tar.gz")
         logging.info(f"key {key} local_file {local_file}")
@@ -51,19 +51,19 @@ def setup_module():
 
 
 def teardown_module():
-    for an in stdpopsim.all_annotations():
+    for an in stdvoidsim.all_annotations():
         an.intervals_url = saved_urls[an.id]
         an._cache.url = an.intervals_url
 
 
-class AnnotationTestClass(stdpopsim.Annotation):
+class AnnotationTestClass(stdvoidsim.Annotation):
     """
     A Annotation that we can instantiate to get an annotation for testing.
     """
 
     def __init__(self):
-        genome = stdpopsim.Genome(chromosomes=[])
-        _species = stdpopsim.Species(
+        genome = stdvoidsim.Genome(chromosomes=[])
+        _species = stdvoidsim.Species(
             id="TesSpe",
             ensembl_id="test_species",
             name="Test species",
@@ -117,7 +117,7 @@ class TestAnnotation(tests.CacheWritingTest):
 
     def test_cache_dirs(self):
         an = AnnotationTestClass()
-        cache_dir = stdpopsim.get_cache_dir() / "annotations" / an.species.id
+        cache_dir = stdvoidsim.get_cache_dir() / "annotations" / an.species.id
         assert an.cache_path.parent == cache_dir
 
     def test_str(self):
@@ -132,7 +132,7 @@ class TestAnnotationDownload(tests.CacheWritingTest):
 
     def test_correct_url(self):
         an = AnnotationTestClass()
-        with mock.patch("stdpopsim.utils.download", autospec=True) as mocked_get:
+        with mock.patch("stdvoidsim.utils.download", autospec=True) as mocked_get:
             # The destination file will be missing.
             with pytest.raises(FileNotFoundError):
                 an.download()
@@ -148,7 +148,7 @@ class TestAnnotationDownload(tests.CacheWritingTest):
     def test_download_over_cache(self):
         # TODO: The HomSap annotations are huge. Once we include a smaller
         # annotation set, we should instead use that, so tests are faster.
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         an = species.get_annotations("ensembl_havana_104_CDS")
         an.download()
         assert an.is_cached()
@@ -164,7 +164,7 @@ class TestGetChromosomeAnnotations(tests.CacheReadingTest):
 
     @classmethod
     def setup_class(cls):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         cls.an = species.get_annotations("ensembl_havana_104_exons")
 
     def test_known_chromosome(self):
@@ -189,7 +189,7 @@ class TestGetChromosomeAnnotationsDroMel(tests.CacheReadingTest):
 
     @classmethod
     def setup_class(cls):
-        species = stdpopsim.get_species("DroMel")
+        species = stdvoidsim.get_species("DroMel")
         cls.an = species.get_annotations("FlyBase_BDGP6.32.51_CDS")
 
     def test_known_chromosome(self):
@@ -214,7 +214,7 @@ class TestGetChromosomeAnnotationsAraTha(tests.CacheReadingTest):
 
     @classmethod
     def setup_class(cls):
-        species = stdpopsim.get_species("AraTha")
+        species = stdvoidsim.get_species("AraTha")
         cls.an = species.get_annotations("araport_11_exons")
 
     def test_known_chromosome(self):

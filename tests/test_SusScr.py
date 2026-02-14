@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("SusScr")
+    species = stdvoidsim.get_species("SusScr")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "sus_scrofa"
@@ -36,7 +36,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("SusScr").genome
+    genome = stdvoidsim.get_species("SusScr").genome
 
     # Pedigree-based recombination rate (Johnsson et al., 2021)
     # https://doi.org/10.1186/s12711-021-00643-0

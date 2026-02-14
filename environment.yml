@@ -1,4 +1,4 @@
-# This file contains the Conda environment configuration for running stdpopsim
+# This file contains the Conda environment configuration for running stdvoidsim
 # in a Dockerized image on Binder, accessible through https://mybinder.org/.
 # Binder enables any Jupyter notebooks in the repository to be run interactively and
 # reproducibly in a stable cloud-based environment.
@@ -6,7 +6,7 @@
 # Developer Note: New Jupyter notebooks that are added to this repository should confirm
 # that any package dependencies are specified in the list below.
 
-name: stdpopsim-environment
+name: stdvoidsim-environment
 channels:
         - conda-forge
         - bioconda
@@ -17,6 +17,6 @@ dependencies:
         - matplotlib
         - demesdraw
         - slim
-        # load the stdpopsim Github repository as a library using pip
+        # load the stdvoidsim Github repository as a library using pip
         - pip:
             - .

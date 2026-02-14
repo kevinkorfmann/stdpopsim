@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" style="stop-color:#4a7c59;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#1a1a2e" stroke="#2d5a3d" stroke-width="3"/>
+  <circle cx="100" cy="100" r="90" fill="url(#glow)"/>
+  <!-- Head -->
+  <ellipse cx="100" cy="65" rx="40" ry="35" fill="#2d5a3d"/>
+  <!-- Eyes -->
+  <ellipse cx="85" cy="55" rx="8" ry="10" fill="#0d0d1a"/>
+  <ellipse cx="115" cy="55" rx="8" ry="10" fill="#0d0d1a"/>
+  <ellipse cx="85" cy="55" rx="4" ry="6" fill="#7fff00"/>
+  <ellipse cx="115" cy="55" rx="4" ry="6" fill="#7fff00"/>
+  <circle cx="85" cy="53" r="2" fill="#fff" opacity="0.6"/>
+  <circle cx="115" cy="53" r="2" fill="#fff" opacity="0.6"/>
+  <!-- Tentacles from face -->
+  <path d="M80,80 Q70,110 55,130 Q50,140 58,135 Q68,125 75,100 Q78,90 80,80" fill="#2d5a3d" opacity="0.9"/>
+  <path d="M90,85 Q85,115 75,140 Q70,150 78,145 Q88,130 88,110 Q90,95 90,85" fill="#2d5a3d" opacity="0.9"/>
+  <path d="M100,88 Q100,120 95,150 Q93,160 100,155 Q105,145 103,120 Q102,100 100,88" fill="#2d5a3d" opacity="0.9"/>
+  <path d="M110,85 Q115,115 125,140 Q130,150 122,145 Q112,130 112,110 Q110,95 110,85" fill="#2d5a3d" opacity="0.9"/>
+  <path d="M120,80 Q130,110 145,130 Q150,140 142,135 Q132,125 125,100 Q122,90 120,80" fill="#2d5a3d" opacity="0.9"/>
+  <!-- Wings (small, vestigial) -->
+  <path d="M60,70 Q30,50 25,75 Q28,65 45,68 Q55,70 60,70" fill="#2d5a3d" opacity="0.7"/>
+  <path d="M140,70 Q170,50 175,75 Q172,65 155,68 Q145,70 140,70" fill="#2d5a3d" opacity="0.7"/>
+  <!-- Text -->
+  <text x="100" y="185" text-anchor="middle" font-family="serif" font-size="16" fill="#4a7c59" font-style="italic">stdvoidsim</text>
+</svg>

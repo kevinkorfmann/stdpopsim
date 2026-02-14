@@ -4,16 +4,16 @@
 Tutorials
 =========
 
-There are two main ways of accessing the resources of the ``stdpopsim`` package
+There are two main ways of accessing the resources of the ``stdvoidsim`` package
 that will be detailed in this tutorial. The first is via the command line
 interface (CLI). This is useful if you want to do a straightforward run of the
-models in the ``stdpopsim`` :ref:`Catalog <sec_catalog>`. The other way to
-access the ``stdpopsim`` resources is via the Python API. This is a bit more
+models in the ``stdvoidsim`` :ref:`Catalog <sec_catalog>`. The other way to
+access the ``stdvoidsim`` resources is via the Python API. This is a bit more
 complicated, but allows for more advanced tasks. This tutorial will walk
-through both ways of using the ``stdpopsim`` package as well as a few examples
+through both ways of using the ``stdvoidsim`` package as well as a few examples
 of producing and processing output.
 
-To simulate genomes using ``stdpopsim``,
+To simulate genomes using ``stdvoidsim``,
 we need to make several choices about what will be simulated:
 
 1. which species
@@ -36,7 +36,7 @@ using both CLI and Python interfaces.
 .. note::
     Recombination map and genetic map are terms used to describe
     maps of recombination rates that vary across and along chromosomes.
-    In the ``stdpopsim`` code and documentation, we use the term
+    In the ``stdvoidsim`` code and documentation, we use the term
     **genetic map** to refer specifically to a "crossing-over rate map" and
     **recombination map** to refer to a "crossing-over and gene conversion rate map.""
     See :ref:`further details <sec_api_gene_conversion>` on this distinction.
@@ -44,13 +44,13 @@ using both CLI and Python interfaces.
 .. _sec_cli_tute:
 
 *******************************************************
-Running stdpopsim with the command-line interface (CLI)
+Running stdvoidsim with the command-line interface (CLI)
 *******************************************************
 
-In order to use the ``stdpopsim`` CLI the ``stdpopsim`` package must be
+In order to use the ``stdvoidsim`` CLI the ``stdvoidsim`` package must be
 installed (see :ref:`Installation <sec_installation>`). The CLI provides access
 to the :ref:`Catalog <sec_catalog>` of models that have already been implemented
-by ``stdpopsim``.
+by ``stdvoidsim``.
 
 A first simulation
 ==================
@@ -68,15 +68,15 @@ The first step for using the CLI is to select the species that
 you are interested in simulating data for. In order to see which species are
 available run
 
-.. command-output:: stdpopsim --help
+.. command-output:: stdvoidsim --help
     :ellipsis: 30
 
-This shows the species currently supported by ``stdpopsim``. This means that
-``stdpopsim`` knows various traits of these species, including chromosome size,
+This shows the species currently supported by ``stdvoidsim``. This means that
+``stdvoidsim`` knows various traits of these species, including chromosome size,
 recombination rate(s), etc. Once we've selected a species, in this case humans, we
 can look at the help again as follows.
 
-.. command-output:: stdpopsim HomSap --help
+.. command-output:: stdvoidsim HomSap --help
     :ellipsis: 20
 
 For conciseness we do not show all the output here but this time you should see
@@ -87,7 +87,7 @@ samples.
 
 The most basic simulation we can run is to simulate a diploid genome
 - i.e., a single individual -
-using the species' defaults as seen in the species help (``stdpopsim HomSap --help``).
+using the species' defaults as seen in the species help (``stdvoidsim HomSap --help``).
 These defaults include constant size population named ``pop_0``, a uniform genetic map based
 on the average recombination rate (either genome-wide or within a chromosome, if
 specified), and the mutation rate shown above.
@@ -101,9 +101,9 @@ specify that a single (diploid) sample should be simulated for population
 
 .. code-block:: console
 
-    $ stdpopsim HomSap -c chr22 -o foo.ts pop_0:1
+    $ stdvoidsim HomSap -c chr22 -o foo.ts pop_0:1
 
-.. warning:: It's important to remember to either redirect the output of ``stdpopsim``
+.. warning:: It's important to remember to either redirect the output of ``stdvoidsim``
                 to file or to use the ``-o/--output`` option. If you do not, the
                 binary output may mess up your terminal session.
 
@@ -114,7 +114,7 @@ Choose a model and a sampling scheme
 Next, suppose we want to use a specific demographic model. We look up the available models
 using the ``--help-models`` flag (here, truncated for space):
 
-.. command-output:: stdpopsim HomSap --help-models
+.. command-output:: stdvoidsim HomSap --help-models
     :ellipsis: 30
 
 This gives all of the possible demographic models we could simulate. We choose
@@ -133,7 +133,7 @@ The command now looks like this:
 
 .. code-block:: console
 
-    $ stdpopsim HomSap -c chr22 --left 10000000 --right 20000000 -o foo.ts -d OutOfAfrica_2T12 AFR:2 EUR:3
+    $ stdvoidsim HomSap -c chr22 --left 10000000 --right 20000000 -o foo.ts -d OutOfAfrica_2T12 AFR:2 EUR:3
 
 Note that the number of samples from each population are simply specified as
 ``<population_name>:<number_of_samples>`` at the end of the command.
@@ -153,7 +153,7 @@ Now we want to add an empirical genetic map to make the simulation more
 realistic. We can look up the available genetic maps using the
 ``--help-genetic-maps`` flag (here, truncated for space):
 
-.. command-output:: stdpopsim HomSap --help-genetic-maps
+.. command-output:: stdvoidsim HomSap --help-genetic-maps
     :ellipsis: 20
 
 In this case we choose the
@@ -161,14 +161,14 @@ In this case we choose the
 
 .. code-block:: console
 
-    $ stdpopsim HomSap -g HapMapII_GRCh38 -c chr22 -o foo.ts -d OutOfAfrica_2T12 AFR:2 EUR:3
+    $ stdvoidsim HomSap -g HapMapII_GRCh38 -c chr22 -o foo.ts -d OutOfAfrica_2T12 AFR:2 EUR:3
 
 For reproducibility we can also choose set the seed for the simulator using the
 ``-s`` flag.
 
 .. code-block:: console
 
-    $ stdpopsim HomSap -s 1046 -g HapMapII_GRCh38 -c chr22 -o foo.ts \
+    $ stdvoidsim HomSap -s 1046 -g HapMapII_GRCh38 -c chr22 -o foo.ts \
     $    -d OutOfAfrica_2T12 AFR:2 EUR:3
 
 On running these commands, the CLI also outputs the relevant citations for both
@@ -179,7 +179,7 @@ the simulator used and the resources used for simulation scenario.
 Convert output to VCF
 ---------------------
 
-The output from a ``stdpopsim`` simulation is a *tree sequence*,
+The output from a ``stdvoidsim`` simulation is a *tree sequence*,
 a compact and efficient format for storing both genealogies and genome sequence.
 Some examples of analyzing tree sequences are given
 :ref:`below <sec_tute_analyses>`.
@@ -200,7 +200,7 @@ the tree sequence is fifty-two times smaller:
 
 .. code-block:: console
 
-   $ stdpopsim HomSap -s 1046 -g HapMapII_GRCh38 -c chr22 -o foo.ts \
+   $ stdvoidsim HomSap -s 1046 -g HapMapII_GRCh38 -c chr22 -o foo.ts \
    $    -d OutOfAfrica_2T12 AFR:1000 EUR:1500
    $ tskit vcf foo.ts > foo.vcf
    $ ls -lth foo.*
@@ -242,7 +242,7 @@ we would just run:
 
 .. code-block:: console
 
-    $ stdpopsim -e slim HomSap -c chr22 --left 10000000 --right 20000000 \
+    $ stdvoidsim -e slim HomSap -c chr22 --left 10000000 --right 20000000 \
     $    -o foo.ts -d OutOfAfrica_2T12 AFR:1 EUR:2
 
 **But:** this simulation can take quite a while to run,
@@ -261,7 +261,7 @@ Unlike the previous command, this one should run very fast:
 
 .. code-block:: console
 
-    $ stdpopsim -e slim --slim-scaling-factor 10 HomSap -c chr22 \
+    $ stdvoidsim -e slim --slim-scaling-factor 10 HomSap -c chr22 \
     $    --left 10000000 --right 20000000 -o foo.ts -d OutOfAfrica_2T12 AFR:1 EUR:2
 
 This example runs in less than a minute, wheras without setting the
@@ -300,12 +300,12 @@ To add it the example above, we can use the command:
 
 .. code-block:: console
 
-    $ stdpopsim -e slim --slim-scaling-factor 20 HomSap -c chr22 \
+    $ stdvoidsim -e slim --slim-scaling-factor 20 HomSap -c chr22 \
     $    --left 10000000 --right 20000000 --dfe Gamma_K17 \
     $    -o foo.ts -d OutOfAfrica_2T12 AFR:1 EUR:2
 
 which will introduce selected and neutral mutations following the proportions described in
-`Gamma_K17 <https://popsim-consortium.github.io/stdpopsim-docs/main/catalog.html#sec_catalog_homsap_dfes_gamma_k17>`_.
+`Gamma_K17 <https://popsim-consortium.github.io/stdvoidsim-docs/main/catalog.html#sec_catalog_homsap_dfes_gamma_k17>`_.
 
 Instead of simulating a DFE that convers the entire contig,
 one can simulate only coding sequence (CDS) by using the flag ``--dfe-annotation``
@@ -313,7 +313,7 @@ and specifying a CDS annotation:
 
 .. code-block:: console
 
-    $ stdpopsim -e slim --slim-scaling-factor 20 HomSap -c chr22 \
+    $ stdvoidsim -e slim --slim-scaling-factor 20 HomSap -c chr22 \
     $    --left 10000000 --right 20000000 --dfe Gamma_K17 \
     $    --dfe-annotation ensembl_havana_104_CDS \
     $    -o foo.ts -d OutOfAfrica_2T12 AFR:1 EUR:2
@@ -333,7 +333,7 @@ then a DFE may be applied to all intervals in the bed file by using the option
 
 .. code-block:: console
 
-    $ stdpopsim -e slim --slim-scaling-factor 20 HomSap -c chr22 \
+    $ stdvoidsim -e slim --slim-scaling-factor 20 HomSap -c chr22 \
     $    --left 10000000 --right 20000000 --dfe Gamma_K17 \
     $    --dfe-bed-file ex.bed -o foo.ts -d OutOfAfrica_2T12 AFR:1 EUR:2
 
@@ -342,7 +342,7 @@ may be used:
 
 .. code-block:: console
 
-    $ stdpopsim -e slim --slim-scaling-factor 20 HomSap -c chr22 \
+    $ stdvoidsim -e slim --slim-scaling-factor 20 HomSap -c chr22 \
     $    --left 10000000 --right 20000000 --dfe Gamma_K17 \
     $    --dfe-interval 14001000,14005000 -o foo.ts -d OutOfAfrica_2T12 AFR:1 EUR:2
 
@@ -359,7 +359,7 @@ For example, the third interval in `ex.bed` above will be silently omitted from 
     selected mutations outside of the region can influence ancestry within
     the region, due to linkage.
 
-See also the Python API to incorporate `selection <https://popsim-consortium.github.io/stdpopsim-docs/latest/tutorial.html#incorporating-selection>`__.
+See also the Python API to incorporate `selection <https://popsim-consortium.github.io/stdvoidsim-docs/latest/tutorial.html#incorporating-selection>`__.
 
 Debugging output from ``SLiM``
 ==============================
@@ -378,7 +378,7 @@ using ``SLiM`` with a (very extreme) scaling factor of 1000, we could run
 
 .. code-block:: console
 
-   $ stdpopsim -e slim --slim-scaling-factor 1000 DroMel -c chr2L \
+   $ stdvoidsim -e slim --slim-scaling-factor 1000 DroMel -c chr2L \
    $    --right 1000000 -o foo.ts -d African3Epoch_1S16 AFR:50
 
 The scaling factor of 1000 makes this model run very quickly,
@@ -392,7 +392,7 @@ every time a demographic event occurs
 
 .. code-block:: console
 
-   $ stdpopsim -vv -e slim --slim-scaling-factor 1000 DroMel -c chr2L \
+   $ stdvoidsim -vv -e slim --slim-scaling-factor 1000 DroMel -c chr2L \
    $    --right 1000000 -o foo.ts -d African3Epoch_1S16 AFR:50 \
    $    | grep "^DEBUG:"
    DEBUG: Making flat contig of length 1000000 from 2L
@@ -433,15 +433,15 @@ actually resembles the data that would be produced without rescaling.
 .. _sec_python_tute:
 
 *************************************************
-Running stdpopsim with the Python interface (API)
+Running stdvoidsim with the Python interface (API)
 *************************************************
 
-Nearly all the functionality of ``stdpopsim`` is available through the CLI,
+Nearly all the functionality of ``stdvoidsim`` is available through the CLI,
 but for complex situations it may be desirable to use Python.
 Furthermore, downstream analysis may happen in Python,
 using the `tskit <https://tskit.dev/software/tskit.html>`__ tools for working
 with tree sequences.
-In order to use the ``stdpopsim`` API the ``stdpopsim`` package must be
+In order to use the ``stdvoidsim`` API the ``stdvoidsim`` package must be
 installed (see :ref:`Installation <sec_installation>`).
 
 .. _sec_tutorial_existing_models:
@@ -456,7 +456,7 @@ Pick a species and demographic model
 ------------------------------------
 
 First, we will pick a species (here, humans) and the published demographic
-model to simulated under. In ``stdpopsim`` there are two types of model: ones
+model to simulated under. In ``stdvoidsim`` there are two types of model: ones
 taken to match the :ref:`demographic history reported in published papers
 <sec_catalog>`, and :ref:`"generic" models <sec_api_generic_models>`. We'll
 first simulate using a published model from the catalog. Let's see what
@@ -464,9 +464,9 @@ demographic models are available for humans:
 
 .. code-block:: python
 
-   import stdpopsim
+   import stdvoidsim
 
-   species = stdpopsim.get_species("HomSap")
+   species = stdvoidsim.get_species("HomSap")
 
    for x in species.demographic_models:
        print(x.id)
@@ -544,7 +544,7 @@ uniform recombination rate set to the average recombination rate for that chromo
    # model mutation rate: 2.35e-08
 
 The Gutenkunst OOA model was inferred using a mutation rate much larger than the
-default mutation rate for humans in the ``stdpopsim`` catalog. As such,
+default mutation rate for humans in the ``stdvoidsim`` catalog. As such,
 simulating using this model and default rate will result in levels of diversity
 substantially lower than expected for the human population data that this model
 was inferred from. To match observed diversity in humans, we should instead use
@@ -569,7 +569,7 @@ using ``msprime`` as the simulation engine:
 .. code-block:: python
 
    samples = {"YRI": 5, "CHB": 5, "CEU": 0}
-   engine = stdpopsim.get_engine("msprime")
+   engine = stdvoidsim.get_engine("msprime")
    ts = engine.simulate(model, contig, samples)
    print(ts.num_sites)
    # 152582
@@ -618,9 +618,9 @@ Again, we'll use `Homo sapiens`, which has the id "HomSap".
 
 .. code-block:: python
 
-    import stdpopsim
+    import stdvoidsim
 
-    species = stdpopsim.get_species("HomSap")
+    species = stdvoidsim.get_species("HomSap")
 
 Set up the generic model
 ------------------------
@@ -632,7 +632,7 @@ single population of constant over all time.
 
 .. code-block:: python
 
-    model = stdpopsim.PiecewiseConstantSize(species.population_size)
+    model = stdvoidsim.PiecewiseConstantSize(species.population_size)
 
 Each species has a "default" population size, ``species.population_size``,
 which for humans is 10,000.
@@ -675,7 +675,7 @@ great at simulating large samples!
 .. code-block:: python
 
     samples = {"pop_0": 5}
-    engine = stdpopsim.get_engine("msprime")
+    engine = stdvoidsim.get_engine("msprime")
 
 Finally, we simulate the model with the contig length and number of samples we
 defined above. The simulation results are recorded in a tree sequence object
@@ -758,7 +758,7 @@ Using the ``SLiM`` engine
 
 Above, we used the coalescent simulator ``msprime``
 as the simulation engine, which is in fact the default.
-However, ``stdpopsim`` also has the ability to produce
+However, ``stdvoidsim`` also has the ability to produce
 simulations with `SLiM <https://messerlab.org/slim/>`__, a forwards-time, individual-based simulator.
 Using ``SLiM`` provides us with a few more options.
 You may also want to install the
@@ -769,7 +769,7 @@ in the tree sequences that are produced.
 An example simulation
 ---------------------
 
-The ``stdpopsim`` tool is designed so that different simulation engines
+The ``stdvoidsim`` tool is designed so that different simulation engines
 are more or less exchangeable, so that to run an equivalent
 simulation with ``SLiM`` instead of ``msprime`` only requires specifying
 ``SLiM`` as the *simulation engine*.
@@ -789,9 +789,9 @@ this very much either).
 
 .. code-block:: python
 
-   import stdpopsim
+   import stdvoidsim
 
-   species = stdpopsim.get_species("HomSap")
+   species = stdvoidsim.get_species("HomSap")
    model = species.get_demographic_model("Africa_1T12")
    contig = species.get_contig(
        "chr22", left=10e6, right=20e6, mutation_rate=model.mutation_rate
@@ -808,7 +808,7 @@ but otherwise, things work pretty much just as before.
 
 .. code-block:: python
 
-   engine = stdpopsim.get_engine("slim")
+   engine = stdvoidsim.get_engine("slim")
    ts = engine.simulate(model, contig, samples, slim_scaling_factor=10)
 
 (Note: you have to have ``SLiM`` installed for this to work,
@@ -841,9 +841,9 @@ we used above has three distinct epochs:
 
 .. code-block:: python
 
-   import stdpopsim
+   import stdvoidsim
 
-   species = stdpopsim.get_species("HomSap")
+   species = stdvoidsim.get_species("HomSap")
    demography = species.get_demographic_model("Africa_1T12")
    demography.model.debug().print_history()
 
@@ -910,7 +910,7 @@ we'd do the following
        "chr22", genetic_map="HapMapII_GRCh38", mutation_rate=demography.mutation_rate
    )
    samples = {"AFR": 100}
-   engine = stdpopsim.get_engine("slim")
+   engine = stdvoidsim.get_engine("slim")
    ts = engine.simulate(
        demography, contig, samples, slim_burn_in=0.1, slim_scaling_factor=10
    )
@@ -919,9 +919,9 @@ Outputting the ``SLiM`` script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 One final option that could be useful
-is that you can ask ``stdpopsim`` to output the ``SLiM`` model code directly,
+is that you can ask ``stdvoidsim`` to output the ``SLiM`` model code directly,
 without actually running the model.
-You could then edit the code, to add other features not implemented in stdpopsim.
+You could then edit the code, to add other features not implemented in stdvoidsim.
 To do this, set ``slim_script=True`` (which prints the script to stdout;
 here we capture it in a file):
 
@@ -967,7 +967,7 @@ or we could just run it on the command line:
    $ slim script.slim
 
 If you go this route, you need to do a few postprocessing steps
-to the tree sequence that ``stdpopsim`` usually does.
+to the tree sequence that ``stdvoidsim`` usually does.
 Happily, these are made available through a single Python function,
 :func:`engine.recap_and_rescale <.slim_engine._SLiMEngine.recap_and_rescale>`.
 Back in Python, we could do this by
@@ -996,7 +996,7 @@ If as above we ask for 100 sampled individuals from a population whose final siz
 1,450 individuals (after rescaling),
 then in fact the tree sequence returned by ``SLiM`` contains the entire genomes
 and genealogies of all 1,450 individuals,
-but ``stdpopsim`` throws away all the information that is extraneous
+but ``stdvoidsim`` throws away all the information that is extraneous
 to the requested 100 (diploid) individuals,
 using a procedure called
 `simplification <https://tskit.dev/tskit/docs/stable/python-api.html#tskit.TreeSequence.simplify>`__.
@@ -1054,10 +1054,10 @@ and get one using the :meth:`.Species.get_dfe` method.
 
 .. code-block:: python
 
-    import stdpopsim
+    import stdvoidsim
     import numpy as np
 
-    species = stdpopsim.get_species("HomSap")
+    species = stdvoidsim.get_species("HomSap")
     contig = species.get_contig("chr1", left=0, right=100000)
 
     dfe = species.get_dfe("Gamma_K17")
@@ -1086,7 +1086,7 @@ Now, we can simulate as usual:
 
 .. code-block:: python
 
-    engine = stdpopsim.get_engine("slim")
+    engine = stdvoidsim.get_engine("slim")
     ts = engine.simulate(
         model,
         contig,
@@ -1102,7 +1102,7 @@ resulting simulation:
 .. code-block:: python
 
     selection_coeffs = [
-        stdpopsim.selection_coeff_from_mutation(ts, mut) for mut in ts.mutations()
+        stdvoidsim.selection_coeff_from_mutation(ts, mut) for mut in ts.mutations()
     ]
     num_neutral = sum([s == 0 for s in selection_coeffs])
     print(
@@ -1131,10 +1131,10 @@ are removed from the intervals associated with previous DFEs.
 
 .. code-block:: python
 
-    import stdpopsim
+    import stdvoidsim
     import numpy as np
 
-    species = stdpopsim.get_species("HomSap")
+    species = stdvoidsim.get_species("HomSap")
     dfe = species.get_dfe("Gamma_K17")
     contig = species.get_contig(length=30000)
     model = species.get_demographic_model("OutOfAfrica_3G09")
@@ -1143,7 +1143,7 @@ are removed from the intervals associated with previous DFEs.
     gene_interval = np.array([[10000, 20000]])
     contig.add_dfe(intervals=gene_interval, DFE=dfe)
 
-    engine = stdpopsim.get_engine("slim")
+    engine = stdvoidsim.get_engine("slim")
     ts = engine.simulate(
         model,
         contig,
@@ -1163,7 +1163,7 @@ We'll count up the number of neutral and deleterious mutations in the three regi
         region = np.digitize(site.position, gene_interval.flatten())
         for mut in site.mutations:
             selection_coeffs[region].append(
-                stdpopsim.selection_coeff_from_mutation(ts, mut)
+                stdvoidsim.selection_coeff_from_mutation(ts, mut)
             )
 
     for region, coeffs in enumerate(selection_coeffs):
@@ -1210,7 +1210,7 @@ and use this in :meth:`.Contig.add_dfe`:
 
 .. code-block:: python
 
-    species = stdpopsim.get_species("HomSap")
+    species = stdvoidsim.get_species("HomSap")
     dfe = species.get_dfe("Gamma_K17")
     contig = species.get_contig("chr20", left=10e6, right=30e6)
     model = species.get_demographic_model("OutOfAfrica_3G09")
@@ -1220,7 +1220,7 @@ and use this in :meth:`.Contig.add_dfe`:
     exon_intervals = exons.get_chromosome_annotations("chr20")
     contig.add_dfe(intervals=exon_intervals, DFE=dfe)
 
-    engine = stdpopsim.get_engine("slim")
+    engine = stdvoidsim.get_engine("slim")
     ts = engine.simulate(
         model,
         contig,
@@ -1285,10 +1285,10 @@ which we will insert later.
 
 .. code-block:: python
 
-    import stdpopsim
+    import stdvoidsim
 
-    species = stdpopsim.get_species("DroMel")
-    model = stdpopsim.PiecewiseConstantSize(100000)
+    species = stdvoidsim.get_species("DroMel")
+    model = stdvoidsim.PiecewiseConstantSize(100000)
     samples = {"pop_0": 50}
     contig = species.get_contig("2L", right=1e6)
 
@@ -1324,7 +1324,7 @@ frequency :math:`1 / 2N`.
     "overwritten" and an error will be raised in simulation.
 
 Next, we will set up the "extended events" which will modify the demography.
-This is done through :func:`stdpopsim.selective_sweep`, which represents a
+This is done through :func:`stdvoidsim.selective_sweep`, which represents a
 general model for a mutation that is beneficial within a single population.  We
 specify that the mutation should originate 1000 generations ago in a random
 individual from the first population (named "pop_0" by default); that the
@@ -1334,7 +1334,7 @@ greater than 0.8.
 
 .. code-block:: python
 
-    extended_events = stdpopsim.selective_sweep(
+    extended_events = stdvoidsim.selective_sweep(
         single_site_id=locus_id,
         population="pop_0",
         selection_coeff=0.5,
@@ -1355,7 +1355,7 @@ same simulation without selection -- i.e., without the "extended events":
 
 .. code-block:: python
 
-    engine = stdpopsim.get_engine("slim")
+    engine = stdvoidsim.get_engine("slim")
     ts_sweep = engine.simulate(
         model,
         contig,
@@ -1431,7 +1431,7 @@ This DFE was estimated from human data, so it's under HomSap:
 
 .. code-block:: python
 
-    homsap = stdpopsim.get_species("HomSap")
+    homsap = stdvoidsim.get_species("HomSap")
     dfe = homsap.get_dfe("Mixed_K23")
     print(dfe.long_description)
 
@@ -1442,13 +1442,13 @@ of the :ref:`Vaquita <sec_catalog_PhoSin>` chromosome 1:
 
 .. code-block:: python
 
-    vaquita = stdpopsim.get_species("PhoSin")
+    vaquita = stdvoidsim.get_species("PhoSin")
     contig = vaquita.get_contig("1", right=1e5)
     contig.add_dfe(intervals=[[0, 1e5]], DFE=dfe)
     model = vaquita.get_demographic_model("Vaquita2Epoch_1R22")
     samples = {"Vaquita": 50}
 
-    engine = stdpopsim.get_engine("slim")
+    engine = stdvoidsim.get_engine("slim")
     ts = engine.simulate(
         model,
         contig,
@@ -1481,13 +1481,13 @@ using the `left` and `right` arguments to `species.get_contig( )`:
 
 .. code-block:: python
 
-    species = stdpopsim.get_species("HomSap")
+    species = stdvoidsim.get_species("HomSap")
     model = species.get_demographic_model("Africa_1T12")
     contig = species.get_contig(
         "chr22", left=10e6, right=20e6, mutation_rate=model.mutation_rate
     )
     samples = {"AFR": 100}
-    engine = stdpopsim.get_engine("msprime")
+    engine = stdvoidsim.get_engine("msprime")
     ts = engine.simulate(model, contig, samples)
     print(
         f"Sequence length: {ts.sequence_length}\n"
@@ -1538,7 +1538,7 @@ see `tskit's documentation <https://tskit.dev/tskit/docs/latest/data-model.html>
 .. _sec_tute_analyses:
 
 *******************************
-Example analyses with stdpopsim
+Example analyses with stdvoidsim
 *******************************
 
 .. _sec_tute_divergence:
@@ -1559,7 +1559,7 @@ and then estimate the genetic divergence between each population pair.
 First, let's use the ``--help-models`` option to see the selection of demographic
 models available to us:
 
-.. command-output:: stdpopsim HomSap --help-models
+.. command-output:: stdvoidsim HomSap --help-models
     :ellipsis: 20
 
 This prints detailed information about all of the available models to
@@ -1574,7 +1574,7 @@ European, Asian and African-American groups.
 Using the ``--help-genetic-maps`` option, we can also see what genetic maps
 are available:
 
-.. command-output:: stdpopsim HomSap --help-genetic-maps
+.. command-output:: stdvoidsim HomSap --help-genetic-maps
     :ellipsis: 20
 
 Let's go with ``HapMapII_GRCh38``.
@@ -1586,7 +1586,7 @@ To check that we have set up the simulation correctly, we may first wish to perf
 dry run using the ``-D`` option.
 This will print information about the simulation to the terminal:
 
-.. command-output:: stdpopsim HomSap -c chr1 -o afr-america-chr1.trees -s 13 -g HapMapII_GRCh38 -d AmericanAdmixture_4B18 AFR:2 EUR:2 ASIA:2 ADMIX:2 -D
+.. command-output:: stdvoidsim HomSap -c chr1 -o afr-america-chr1.trees -s 13 -g HapMapII_GRCh38 -d AmericanAdmixture_4B18 AFR:2 EUR:2 ASIA:2 ADMIX:2 -D
     :ellipsis: 18
 
 Once we're sure, we can remove the ``-D`` flag to run the simulation
@@ -1594,14 +1594,14 @@ Once we're sure, we can remove the ``-D`` flag to run the simulation
 
 .. code-block:: console
 
-    $ stdpopsim HomSap -c chr1 -o afr-america-chr1.trees -s 13 -g HapMapII_GRCh38 \
+    $ stdvoidsim HomSap -c chr1 -o afr-america-chr1.trees -s 13 -g HapMapII_GRCh38 \
     $    -d AmericanAdmixture_4B18 AFR:2 EUR:2 ASIA:2 ADMIX:2
 
 2. Calculating divergences
 --------------------------
 
 We should now have a file called ``afr-america-chr1.trees``.
-Our work with ``stdpopsim`` is done; we'll now switch to a Python console and import
+Our work with ``stdvoidsim`` is done; we'll now switch to a Python console and import
 the ``tskit`` package to load and analyse this simulated tree sequence file.
 
 .. code-block:: python
@@ -1670,7 +1670,7 @@ We are now ready to calculate the genetic divergences.
 
 As a sanity check, this demographic model has population sizes of around :math:`N_e = 10^4`,
 and the mutation rate that was used to infer parameters for this model was :math:`\mu = 2.36 \times 10^{-8}`
-(shown in the output of ``stdpopsim``, or found in python with ``model.mutation_rate``),
+(shown in the output of ``stdvoidsim``, or found in python with ``model.mutation_rate``),
 so we expect divergence values to be of order of magnitude :math:`2 N_e \mu = 0.000472`,
 but slightly higher because of population structure.
 
@@ -1732,20 +1732,20 @@ and analyse the allele frequency spectrum (AFS) for each population
 1. Simulating the dataset
 ---------------------------
 
-This time, we will use the :meth:`stdpopsim.IsolationWithMigration` model.
+This time, we will use the :meth:`stdvoidsim.IsolationWithMigration` model.
 Since this is a generic model that can be used for any species, we must use the Python
 interface for this simulation.
 See our :ref:`Python tutorial <sec_python_tute>` for an introduction to this interface.
 
-We begin by importing ``stdpopsim`` into a Python environment and specifying our desired
+We begin by importing ``stdvoidsim`` into a Python environment and specifying our desired
 species, *Arabidopsis thaliana*. From the :ref:`Catalog <sec_catalog>`, we can see that this
 species has the ID ``AraTha``:
 
 .. code-block:: python
 
-    import stdpopsim
+    import stdvoidsim
 
-    species = stdpopsim.get_species("AraTha")
+    species = stdvoidsim.get_species("AraTha")
 
 After skimming the :ref:`Catalog <sec_catalog>` to see our options, we'll specify our
 desired chromosome ``chr4`` and genetic map ``SalomeAveraged_TAIR10``.
@@ -1755,7 +1755,7 @@ desired chromosome ``chr4`` and genetic map ``SalomeAveraged_TAIR10``.
     contig = species.get_contig("chr4", genetic_map="SalomeAveraged_TAIR10")
 
 
-From the API description, we can see that the :meth:`stdpopsim.IsolationWithMigration`
+From the API description, we can see that the :meth:`stdvoidsim.IsolationWithMigration`
 model allows us to sample from a pair of populations that diverged from a common
 ancestral population. We'll specify that the effective population size of the ancestral
 population was 5000, that the population sizes of the two modern populations are 4000
@@ -1764,7 +1764,7 @@ and that rates of migration since the split between the populations are both zer
 
 .. code-block:: python
 
-    model = stdpopsim.IsolationWithMigration(
+    model = stdvoidsim.IsolationWithMigration(
         NA=5000, N1=4000, N2=1000, T=1000, M12=0, M21=0
     )
 
@@ -1775,7 +1775,7 @@ We'll simulate 5 diploids from each of the populations using the
 .. code-block:: python
 
     samples = {"pop1": 5, "pop2": 5}
-    engine = stdpopsim.get_engine("msprime")
+    engine = stdvoidsim.get_engine("msprime")
 
 Finally, we'll run a simulation using the objects we've created and store the outputted
 dataset in an object called ``ts``. For the purposes of this tutorial, we'll also run this

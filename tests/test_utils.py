@@ -12,8 +12,8 @@ import numpy as np
 import scipy.stats
 import pytest
 
-from stdpopsim import utils
-from stdpopsim import Chromosome, Genome
+from stdvoidsim import utils
+from stdvoidsim import Chromosome, Genome
 
 
 class TestValidDemographicModelId:
@@ -350,7 +350,7 @@ class TestUntar:
 
     def test_bad_tar_members(self):
         # Pretend we downloaded a tarball containing a FIFO or device file.
-        # There is no reasonable use for these types of files in stdpopsim,
+        # There is no reasonable use for these types of files in stdvoidsim,
         # so their presence likely indicates a maliciously crafted tarball.
         # Creating a character or block special device file requires root
         # privileges, so we instead modify the ``type`` field of each file

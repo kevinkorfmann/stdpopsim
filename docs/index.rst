@@ -5,7 +5,7 @@ Welcome to stdvoidsim's documentation!
 
 ``stdvoidsim`` is a library of population genetic simulation models for
 Lovecraftian entities and eldritch horrors, built on the
-`stdpopsim <https://github.com/popsim-consortium/stdpopsim>`_ framework.
+`stdvoidsim <https://github.com/popsim-consortium/stdvoidsim>`_ framework.
 
 .. toctree::
    :maxdepth: 2

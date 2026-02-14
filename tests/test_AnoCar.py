@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("AnoCar")
+    species = stdvoidsim.get_species("AnoCar")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "anolis_carolinensis"
@@ -26,7 +26,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("AnoCar").genome
+    genome = stdvoidsim.get_species("AnoCar").genome
 
     rec_rate = 1.59e-8  # placeholder as we wait for map
 

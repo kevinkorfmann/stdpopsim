@@ -12,28 +12,28 @@ Functions to get things:
 
 .. autosummary::
 
-    stdpopsim.get_species
-    stdpopsim.Species.get_contig
-    stdpopsim.Species.get_demographic_model
-    stdpopsim.Species.get_dfe
-    stdpopsim.Species.get_annotations
-    stdpopsim.Contig.add_dfe
-    stdpopsim.get_engine
+    stdvoidsim.get_species
+    stdvoidsim.Species.get_contig
+    stdvoidsim.Species.get_demographic_model
+    stdvoidsim.Species.get_dfe
+    stdvoidsim.Species.get_annotations
+    stdvoidsim.Contig.add_dfe
+    stdvoidsim.get_engine
 
 Classes of objects:
 
 .. autosummary::
 
-   stdpopsim.Species
-   stdpopsim.Genome
-   stdpopsim.Chromosome
-   stdpopsim.Contig
-   stdpopsim.Citation
-   stdpopsim.Annotation
-   stdpopsim.DFE
-   stdpopsim.MutationType
-   stdpopsim.DemographicModel
-   stdpopsim.Population
+   stdvoidsim.Species
+   stdvoidsim.Genome
+   stdvoidsim.Chromosome
+   stdvoidsim.Contig
+   stdvoidsim.Citation
+   stdvoidsim.Annotation
+   stdvoidsim.DFE
+   stdvoidsim.MutationType
+   stdvoidsim.DemographicModel
+   stdvoidsim.Population
 
 .. _sec_api_species_definitions:
 
@@ -46,24 +46,24 @@ model definitions, which are built using a number of classes defined here.
 These are usually not intended to be instantiated directly, but should be
 accessed through the main entry point, :func:`.get_species`.
 
-.. autofunction:: stdpopsim.get_species
+.. autofunction:: stdvoidsim.get_species
 
-.. autoclass:: stdpopsim.Species()
+.. autoclass:: stdvoidsim.Species()
     :members:
 
-.. autoclass:: stdpopsim.Genome()
+.. autoclass:: stdvoidsim.Genome()
     :members:
 
-.. autoclass:: stdpopsim.Chromosome()
+.. autoclass:: stdvoidsim.Chromosome()
     :members:
 
-.. autoclass:: stdpopsim.Contig()
+.. autoclass:: stdvoidsim.Contig()
     :members:
 
-.. autoclass:: stdpopsim.Citation()
+.. autoclass:: stdvoidsim.Citation()
     :members:
 
-.. autoclass:: stdpopsim.Annotation()
+.. autoclass:: stdvoidsim.Annotation()
     :members:
 
 .. _sec_api_demographic_models:
@@ -72,10 +72,10 @@ accessed through the main entry point, :func:`.get_species`.
 Demographic Models
 ******************
 
-.. autoclass:: stdpopsim.DemographicModel()
+.. autoclass:: stdvoidsim.DemographicModel()
     :members:
 
-.. autoclass:: stdpopsim.Population()
+.. autoclass:: stdvoidsim.Population()
     :members:
 
 
@@ -118,7 +118,7 @@ include gene conversion as well as crossing over:
 
 .. code-block:: python
 
-    species = stdpopsim.get_species("DroMel")
+    species = stdvoidsim.get_species("DroMel")
     contig = species.get_contig("2L")
     contig.recombination_map.mean_rate
     # 2.40462600791e-08
@@ -161,10 +161,10 @@ Each :class:`.Contig` comes, by default, with a single, neutral DFE
 that applies to the entire Contig.
 
 
-.. autoclass:: stdpopsim.DFE()
+.. autoclass:: stdvoidsim.DFE()
     :members:
 
-.. autoclass:: stdpopsim.MutationType()
+.. autoclass:: stdvoidsim.MutationType()
     :members:
 
 .. _sec_api_generic_models:
@@ -182,7 +182,7 @@ the `extended_events` argument in `Engine.simulate`. These are intended for
 internal use only, as they may change in the future. However, a stable API is
 provided to construct the necessary events for selective sweeps.
 
-.. autofunction:: stdpopsim.selective_sweep
+.. autofunction:: stdvoidsim.selective_sweep
 
 
 **************
@@ -195,9 +195,9 @@ to simulate more generic models, which are documented here.
 Please see the :ref:`sec_tutorial_generic_models` for examples of using
 these models.
 
-.. autoclass:: stdpopsim.PiecewiseConstantSize
+.. autoclass:: stdvoidsim.PiecewiseConstantSize
 
-.. autoclass:: stdpopsim.IsolationWithMigration
+.. autoclass:: stdvoidsim.IsolationWithMigration
 
 
 .. _sec_api_simulation_engines:
@@ -212,19 +212,19 @@ subclass with :func:`.register_engine`.
 These are usually not intended to be instantiated directly, but should be
 accessed through the main entry point, :func:`.get_engine`.
 
-.. autofunction:: stdpopsim.get_engine
+.. autofunction:: stdvoidsim.get_engine
 
-.. autofunction:: stdpopsim.get_default_engine
+.. autofunction:: stdvoidsim.get_default_engine
 
-.. autofunction:: stdpopsim.register_engine
+.. autofunction:: stdvoidsim.register_engine
 
-.. autoclass:: stdpopsim.Engine()
+.. autoclass:: stdvoidsim.Engine()
     :members:
 
-.. autoclass:: stdpopsim.engines._MsprimeEngine()
+.. autoclass:: stdvoidsim.engines._MsprimeEngine()
     :show-inheritance:
     :members: id, description, simulate
 
-.. autoclass:: stdpopsim.slim_engine._SLiMEngine()
+.. autoclass:: stdvoidsim.slim_engine._SLiMEngine()
     :show-inheritance:
     :members: id, description, simulate, recap_and_rescale

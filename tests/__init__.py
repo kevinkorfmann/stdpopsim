@@ -4,7 +4,7 @@ Package definition for tests. Defined to allow cross-importing.
 
 import tempfile
 
-import stdpopsim
+import stdvoidsim
 
 
 class CacheReadingTest:
@@ -21,12 +21,12 @@ class CacheReadingTest:
 
     @classmethod
     def setup_class(cls):
-        cls.saved_cache_dir = stdpopsim.get_cache_dir()
-        stdpopsim.set_cache_dir(cls.cache_dir)
+        cls.saved_cache_dir = stdvoidsim.get_cache_dir()
+        stdvoidsim.set_cache_dir(cls.cache_dir)
 
     @classmethod
     def teardown_class(cls):
-        stdpopsim.set_cache_dir(cls.saved_cache_dir)
+        stdvoidsim.set_cache_dir(cls.saved_cache_dir)
 
 
 class CacheWritingTest:
@@ -40,11 +40,11 @@ class CacheWritingTest:
 
     @classmethod
     def setup_class(cls):
-        cls.saved_cache_dir = stdpopsim.get_cache_dir()
+        cls.saved_cache_dir = stdvoidsim.get_cache_dir()
         cls.tmp_cache_dir = tempfile.TemporaryDirectory()
-        stdpopsim.set_cache_dir(cls.tmp_cache_dir.name)
+        stdvoidsim.set_cache_dir(cls.tmp_cache_dir.name)
 
     @classmethod
     def teardown_class(cls):
-        stdpopsim.set_cache_dir(cls.saved_cache_dir)
+        stdvoidsim.set_cache_dir(cls.saved_cache_dir)
         del cls.tmp_cache_dir
