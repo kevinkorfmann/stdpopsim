@@ -25,8 +25,8 @@ matplotlib.use("Agg")  # don't try to use $DISPLAY
 import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.backends.backend_pdf import PdfPages  # noqa: E402
 
-import stdpopsim  # noqa: E402
-import stdpopsim.cli  # noqa: E402
+import stdvoidsim  # noqa: E402
+import stdvoidsim.cli  # noqa: E402
 
 
 def warning(msg):
@@ -40,7 +40,7 @@ def irradiate(contig, x=20):
     """
     Increase mutation rate by a factor of `x`.
     """
-    return stdpopsim.Contig(
+    return stdvoidsim.Contig(
         recombination_map=contig.recombination_map,
         bacterial_recombination=contig.bacterial_recombination,
         gene_conversion_fraction=contig.gene_conversion_fraction,
@@ -56,13 +56,13 @@ def irradiate(contig, x=20):
 
 
 def _onepop_PC(engine_id, out_dir, seed, N0=1000, *size_changes, **sim_kwargs):
-    species = stdpopsim.get_species("CanFam")
+    species = stdvoidsim.get_species("CanFam")
     contig = species.get_contig("chr35", right=265e3)  # ~265 kb
     contig = irradiate(contig)
-    model = stdpopsim.PiecewiseConstantSize(N0, *size_changes)
+    model = stdvoidsim.PiecewiseConstantSize(N0, *size_changes)
     model.generation_time = species.generation_time
     samples = {"pop_0": 100}
-    engine = stdpopsim.get_engine(engine_id)
+    engine = stdvoidsim.get_engine(engine_id)
     t0 = time.perf_counter()
     ts = engine.simulate(model, contig, samples, seed=seed, **sim_kwargs)
     t1 = time.perf_counter()
@@ -136,9 +136,9 @@ def onepop_bottleneck_slim3(out_dir, seed):
     )
 
 
-class _PiecewiseSize(stdpopsim.DemographicModel):
+class _PiecewiseSize(stdvoidsim.DemographicModel):
     """
-    A copy of stdpopsim.PiecewiseConstantSize that permits growth rates.
+    A copy of stdvoidsim.PiecewiseConstantSize that permits growth rates.
     """
 
     def __init__(self, N0, growth_rate, *args):
@@ -163,13 +163,13 @@ class _PiecewiseSize(stdpopsim.DemographicModel):
 
 def _onepop_expgrowth(engine_id, out_dir, seed, N0=5000, N1=500, T=1000, **sim_kwargs):
     growth_rate = -np.log(N1 / N0) / T
-    species = stdpopsim.get_species("DroMel")
+    species = stdvoidsim.get_species("DroMel")
     contig = species.get_contig("chr2R", right=250e3)  # ~250 kb
     contig = irradiate(contig)
     model = _PiecewiseSize(N0, growth_rate, (T, N1, 0))
     model.generation_time = species.generation_time
     samples = {"pop_0": 100}
-    engine = stdpopsim.get_engine(engine_id)
+    engine = stdvoidsim.get_engine(engine_id)
     t0 = time.perf_counter()
     ts = engine.simulate(model, contig, samples, seed=seed, **sim_kwargs)
     t1 = time.perf_counter()
@@ -222,10 +222,10 @@ def _twopop_IM(
     samples=None,
     **sim_kwargs,
 ):
-    species = stdpopsim.get_species("AraTha")
+    species = stdvoidsim.get_species("AraTha")
     contig = species.get_contig("chr5", right=270e3)  # ~270 kb
     contig = irradiate(contig)
-    model = stdpopsim.IsolationWithMigration(NA=NA, N1=N1, N2=N2, T=T, M12=M12, M21=M21)
+    model = stdvoidsim.IsolationWithMigration(NA=NA, N1=N1, N2=N2, T=T, M12=M12, M21=M21)
     if pulse is not None:
         model.model.events.append(pulse)
         model.model.events.sort(key=lambda x: x.time)
@@ -234,7 +234,7 @@ def _twopop_IM(
     model.generation_time = 3
     if samples is None:
         samples = {"pop1": 50, "pop2": 50, "ancestral": 0}
-    engine = stdpopsim.get_engine(engine_id)
+    engine = stdvoidsim.get_engine(engine_id)
     t0 = time.perf_counter()
     ts = engine.simulate(model, contig, samples, seed=seed, **sim_kwargs)
     t1 = time.perf_counter()
@@ -358,7 +358,7 @@ def do_cmd(cmd, out_dir, seed):
     out_file = out_dir / f"{seed}.trees"
     full_cmd = cmd + f" -o {out_file} -s {seed}".split()
     t0 = time.perf_counter()
-    stdpopsim.cli.stdpopsim_main(full_cmd)
+    stdvoidsim.cli.stdvoidsim_main(full_cmd)
     t1 = time.perf_counter()
     assert os.path.exists(out_file)
     return out_file, t1 - t0

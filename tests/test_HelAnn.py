@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("HelAnn")
+    species = stdvoidsim.get_species("HelAnn")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "helianthus_annuus"
@@ -26,7 +26,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("HelAnn").genome
+    genome = stdvoidsim.get_species("HelAnn").genome
 
     @pytest.mark.parametrize(
         ["name", "rate"],
@@ -81,6 +81,6 @@ class TestGenomeData(test_species.GenomeTestBase):
         assert rate == pytest.approx(self.genome.get_chromosome(name).mutation_rate)
 
     @pytest.mark.parametrize("chrom", [chrom for chrom in genome.chromosomes])
-    @pytest.mark.filterwarnings("ignore::stdpopsim.NonAutosomalWarning")
+    @pytest.mark.filterwarnings("ignore::stdvoidsim.NonAutosomalWarning")
     def test_chromosome_ploidy(self, chrom):
         assert chrom.ploidy == 2

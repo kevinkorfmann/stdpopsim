@@ -95,7 +95,7 @@ class EnsemblRestClient:
         Returns the genome data for the specified Ensembl species
         ID (e.g., "homo_sapiens"). This is a subset of what
         is returned by the Ensembl API, to restrict to the information
-        that we're interested in for stdpopsim.
+        that we're interested in for stdvoidsim.
         """
         output = self.get(
             endpoint=f"/info/assembly/{ensembl_id}", params={"synonyms": "1"}

@@ -18,7 +18,7 @@ jobs:
         os: [ubuntu-24.04, macos-latest, windows-latest]
         python: ["3.10", "3.12"]
     env:
-      CONDA_ENV_NAME: stdpopsim
+      CONDA_ENV_NAME: stdvoidsim
       OS: ${{ matrix.os }}
       PYTHON: ${{ matrix.python }}
     steps:
@@ -74,7 +74,7 @@ jobs:
           python -m pytest \
             -n 0 \
             -v \
-            --cov=stdpopsim \
+            --cov=stdvoidsim \
             --cov-branch \
             --cov-report=term-missing \
             --cov-report=xml \

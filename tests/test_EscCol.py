@@ -2,13 +2,13 @@
 Tests for the EscCol data definitions.
 """
 
-import stdpopsim
+import stdvoidsim
 import pytest
 from tests import test_species
 
 
 class TestSpecies(test_species.SpeciesTestBase):
-    species = stdpopsim.get_species("EscCol")
+    species = stdvoidsim.get_species("EscCol")
 
     def test_basic_attributes(self):
         # From paper https://doi.org/10.1093/molbev/msw048
@@ -25,7 +25,7 @@ class TestGenome(test_species.GenomeTestBase):
     Tests for the EscCol genome.
     """
 
-    genome = stdpopsim.get_species("EscCol").genome
+    genome = stdvoidsim.get_species("EscCol").genome
 
     def test_basic_attributes(self):
         assert len(self.genome.chromosomes) == 1

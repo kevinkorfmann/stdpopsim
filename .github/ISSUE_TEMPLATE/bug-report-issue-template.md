@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: A problem with stdpopsim
+about: A problem with stdvoidsim
 title:
 labels:
 assignees: ''

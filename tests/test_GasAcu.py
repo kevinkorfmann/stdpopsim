@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("GasAcu")
+    species = stdvoidsim.get_species("GasAcu")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "gasterosteus_aculeatus"
@@ -26,7 +26,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("GasAcu").genome
+    genome = stdvoidsim.get_species("GasAcu").genome
 
     @pytest.mark.parametrize(
         ["name", "rate"],

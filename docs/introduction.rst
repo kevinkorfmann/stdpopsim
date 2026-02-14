@@ -7,7 +7,7 @@ Introduction
 This is the documentation for ``stdvoidsim``, a library of population
 genetic simulation models for Lovecraftian entities and eldritch horrors.
 
-``stdvoidsim`` is a fork of ``stdpopsim`` that replaces real-world species with
+``stdvoidsim`` is a fork of ``stdvoidsim`` that replaces real-world species with
 40 fictional creatures from H.P. Lovecraft's Cthulhu Mythos. Each species has
 made-up but population-genetically plausible genomes and demographic models
 suitable for testing inference methods on non-standard scenarios.
@@ -34,7 +34,7 @@ First steps
 Citations
 ---------
 
-``stdvoidsim`` is built on the ``stdpopsim`` framework. If you use the simulation
+``stdvoidsim`` is built on the ``stdvoidsim`` framework. If you use the simulation
 framework, please cite:
 
   - Jeffrey R Adrion et al. (2020),
@@ -42,7 +42,7 @@ framework, please cite:
     eLife 9:e54967; doi: https://doi.org/10.7554/eLife.54967
 
   - M Elise Lauterbur et al. (2023),
-    *Expanding the stdpopsim species catalog, and lessons learned for realistic genome simulations*,
+    *Expanding the stdvoidsim species catalog, and lessons learned for realistic genome simulations*,
     eLife 12:RP84874; doi: https://doi.org/10.7554/eLife.84874
 
 

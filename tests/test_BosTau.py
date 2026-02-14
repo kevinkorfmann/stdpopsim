@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpecies(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("BosTau")
+    species = stdvoidsim.get_species("BosTau")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "bos_taurus"
@@ -26,7 +26,7 @@ class TestSpecies(test_species.SpeciesTestBase):
 
 class TestGenome(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("BosTau").genome
+    genome = stdvoidsim.get_species("BosTau").genome
 
     def test_basic_attributes(self):
         nchrom = 31  # 29 + X + MT

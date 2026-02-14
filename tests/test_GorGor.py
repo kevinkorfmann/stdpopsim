@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("GorGor")
+    species = stdvoidsim.get_species("GorGor")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "gorilla_gorilla"
@@ -27,7 +27,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("GorGor").genome
+    genome = stdvoidsim.get_species("GorGor").genome
     qc_rec_rate = 1.193e-08  # 0.944 /1000 / 4 / 19,785
 
     @pytest.mark.parametrize(

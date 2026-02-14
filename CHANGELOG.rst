@@ -57,14 +57,14 @@ as well as new species and models.
   necessary and are deprecated. (:user:`petrelharp`, :pr:`1570`)
 
 - To add the possibility for a relationship between dominance and selection
-  coefficient, now each stdpopsim MutationType might have more than one
+  coefficient, now each stdvoidsim MutationType might have more than one
   underlying SLiM mutation type; so, where this is recorded in top-level
-  metadata (under `ts.metadata["stdpopsim"]["DFEs"]`) is now a list
+  metadata (under `ts.metadata["stdvoidsim"]["DFEs"]`) is now a list
   instead of a single value. This will not affect anyone who is not
   parsing the metadata related to DFEs.
 
 - SLiM extended events and selective sweep infrastructure have been
-  moved from the `stdpopsim.ext` namespace into ``stdpopsim`` proper.
+  moved from the `stdvoidsim.ext` namespace into ``stdvoidsim`` proper.
 
 - The `length_multiplier` option to `Species.get_contig` is deprecated and
   prints a warning. The options `left` and `right` should be used to truncate a
@@ -353,8 +353,8 @@ for simulating selection via SLiM.
 **Additions to CLI**:
 
 - Sample specification has switched from positional and haploid (e.g.
-  ``stdpopsim HomSap -d OutOfAfrica_3G09 6 0 10``) to named with species-specific
-  ploidy (equivalent to ``stdpopsim HomSap -d OutOfAfrica_3G09 YRI:3 CEU:0
+  ``stdvoidsim HomSap -d OutOfAfrica_3G09 6 0 10``) to named with species-specific
+  ploidy (equivalent to ``stdvoidsim HomSap -d OutOfAfrica_3G09 YRI:3 CEU:0
   CHB:5``). Positional sample specification is still supported but will raise a
   deprecation warning.
 
@@ -482,8 +482,8 @@ The recombination rate for AraTha was also off by a factor of 10.
 **Breaking changes**:
 
 - Move the --quiet/-q command line option to the top-level. Previously
-  we would write ``stdpopsim HomSap -q 10`` whereas we now write
-  ``stdpopsim -q HomSap``. (:user:`jeromekelleher`, :issue:`515`, :pr:`547`)
+  we would write ``stdvoidsim HomSap -q 10`` whereas we now write
+  ``stdvoidsim -q HomSap``. (:user:`jeromekelleher`, :issue:`515`, :pr:`547`)
 
 - The long form ``--verbosity`` argument has been changed to ``--verbose``
   (:pr:`547`).

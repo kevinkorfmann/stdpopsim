@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("CaeEle")
+    species = stdvoidsim.get_species("CaeEle")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "caenorhabditis_elegans"
@@ -26,7 +26,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("CaeEle").genome
+    genome = stdvoidsim.get_species("CaeEle").genome
     mu = 1.84e-9
 
     # # downloading genetic map, for calculating total cM per chromosome
@@ -38,7 +38,7 @@ class TestGenomeData(test_species.GenomeTestBase):
     # except:
     #     pass
     # my_recs = {}
-    # genome = stdpopsim.get_species("CaeEle").genome
+    # genome = stdvoidsim.get_species("CaeEle").genome
     # chromlist = ["I", "II", "III", "IV", "V", "X"]
     # for chrom in chromlist:
     #     bps, rates, cM = [], [], 0

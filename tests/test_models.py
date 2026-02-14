@@ -14,9 +14,9 @@ import numpy as np
 import msprime
 import pytest
 
-import stdpopsim
-from stdpopsim import models
-from stdpopsim import utils
+import stdvoidsim
+from stdvoidsim import models
+from stdvoidsim import utils
 
 
 class DemographicModelTestMixin:
@@ -42,7 +42,7 @@ class DemographicModelTestMixin:
             recombination_rate = 0
         else:
             recombination_rate = self.model.recombination_rate
-        contig = stdpopsim.Contig.basic_contig(
+        contig = stdvoidsim.Contig.basic_contig(
             length=100,
             mutation_rate=self.model.mutation_rate,
             recombination_rate=recombination_rate,
@@ -54,7 +54,7 @@ class DemographicModelTestMixin:
                 samples[p.name] = 2
             else:
                 samples[p.name] = 0
-        engine = stdpopsim.get_default_engine()
+        engine = stdvoidsim.get_default_engine()
         ts = engine.simulate(self.model, contig, samples)
         assert ts.num_populations == self.model.num_populations
 
@@ -98,7 +98,7 @@ class QcdCatalogDemographicModelTestMixin(CatalogDemographicModelTestMixin):
 
 # Add model specific test classes, derived from one of the above.
 qc_test_classes = []
-for species in stdpopsim.all_species():
+for species in stdvoidsim.all_species():
     for model in species.demographic_models:
         superclasses = []
         if model.qc_model is not None:
@@ -150,9 +150,9 @@ class TestAllModels:
     """
 
     def test_non_empty(self):
-        assert len(list(stdpopsim.all_demographic_models())) > 0
+        assert len(list(stdvoidsim.all_demographic_models())) > 0
 
-    @pytest.mark.parametrize("model", stdpopsim.all_demographic_models())
+    @pytest.mark.parametrize("model", stdvoidsim.all_demographic_models())
     def test_all_instances(self, model):
         assert isinstance(model, models.DemographicModel)
         assert len(model.id) > 0
@@ -169,7 +169,7 @@ class TestAllModels:
 
 class TestModelOutput:
     def test_str(self):
-        model = stdpopsim.DemographicModel(
+        model = stdvoidsim.DemographicModel(
             id="xyz",
             description="abc",
             long_description="ABC",
@@ -183,7 +183,7 @@ class TestModelOutput:
         assert "1234" in s
 
     def test_wrap_long_lines(self):
-        model = stdpopsim.DemographicModel(
+        model = stdvoidsim.DemographicModel(
             id="xyz",
             description="abc",
             long_description="ABC " * 50,
@@ -215,7 +215,7 @@ class TestModelsEqual:
 
     def test_known_models(self):
         other_model = msprime.Demography.isolated_model([1])
-        for model in stdpopsim.all_demographic_models():
+        for model in stdvoidsim.all_demographic_models():
             model.model.assert_equivalent(model.model)
             model.model.assert_equal(model.model)
             assert not model.model.is_equivalent(other_model)
@@ -294,9 +294,9 @@ class TestIsolationWithMigration:
 class TestPopulationSampling:
     def make_model(self):
         # Create populations to test on
-        _pop1 = stdpopsim.Population("pop_0", "Test pop. 0")
-        _pop2 = stdpopsim.Population("pop_1", "Test pop. 1", sampling_time=10)
-        _pop3 = stdpopsim.Population("pop_2", "Test pop. 2", sampling_time=None)
+        _pop1 = stdvoidsim.Population("pop_0", "Test pop. 0")
+        _pop2 = stdvoidsim.Population("pop_1", "Test pop. 1", sampling_time=10)
+        _pop3 = stdvoidsim.Population("pop_2", "Test pop. 2", sampling_time=None)
 
         # Create an model to hold populations
         base_mod = models.DemographicModel(
@@ -345,7 +345,7 @@ class TestPopulationSampling:
         sample_populations = [i.population for i in test_samples]
         assert sample_populations == [0, 1]
 
-    @pytest.mark.filterwarnings("ignore::stdpopsim.DeprecatedFeatureWarning")
+    @pytest.mark.filterwarnings("ignore::stdvoidsim.DeprecatedFeatureWarning")
     def test_deprecated_get_samples(self):
         base_mod = self.make_model()
         test_samples = base_mod.get_samples(2, 1)
@@ -353,7 +353,7 @@ class TestPopulationSampling:
         assert sum([ss.num_samples for ss in test_samples]) == 3
 
         # Check that deprecation warning is raised
-        with pytest.warns(stdpopsim.DeprecatedFeatureWarning):
+        with pytest.warns(stdvoidsim.DeprecatedFeatureWarning):
             base_mod.get_samples(2, 1)
         # Check for error when prohibited sampling asked for
         with pytest.raises(ValueError):
@@ -370,7 +370,7 @@ class TestPopulationSampling:
     # Test that all sampling populations are specified before non-sampling populations
     # in the model.populations list
     def test_population_order(self):
-        for model in stdpopsim.all_demographic_models():
+        for model in stdvoidsim.all_demographic_models():
             allow_sample_status = [int(p.allow_samples) for p in model.populations]
             num_sampling = sum(allow_sample_status)
             # All sampling populations must be at the start of the list
@@ -379,7 +379,7 @@ class TestPopulationSampling:
 
 class TestBrowningWarning:
     def test_browning_produces_warning(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         with pytest.warns(UserWarning, match="AmericanAdmixture_4B18"):
             model = species.get_demographic_model("AmericanAdmixture_4B11")
         assert model.id == "AmericanAdmixture_4B18"
@@ -387,11 +387,11 @@ class TestBrowningWarning:
 
 class TestMutationRates:
     def test_mutation_rate_warning(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         model = copy.deepcopy(species.get_demographic_model("OutOfAfrica_3G09"))
         contig = species.get_contig("chr22")
         samples = {"YRI": 5, "CEU": 5, "CHB": 5}
-        for engine in stdpopsim.all_engines():
+        for engine in stdvoidsim.all_engines():
             with pytest.warns(
                 UserWarning,
                 match="model has mutation rate.*but this simulation used",
@@ -402,7 +402,7 @@ class TestMutationRates:
         "error:.*model has mutation rate.*but this simulation used.*"
     )
     def test_mutation_rate_match(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         model = copy.deepcopy(species.get_demographic_model("OutOfAfrica_3G09"))
         contig = species.get_contig("chr22")
         assert model.mutation_rate != contig.mutation_rate
@@ -414,17 +414,17 @@ class TestMutationRates:
         assert model.mutation_rate == contig.mutation_rate
 
         samples = {"YRI": 5, "CEU": 5, "CHB": 5}
-        for engine in stdpopsim.all_engines():
+        for engine in stdvoidsim.all_engines():
             engine.simulate(model, contig, samples, dry_run=True)
 
 
 class TestRecombinationRates:
     def test_recombination_rate_warning(self):
-        species = stdpopsim.get_species("BosTau")
+        species = stdvoidsim.get_species("BosTau")
         model = copy.deepcopy(species.get_demographic_model("HolsteinFriesian_1M13"))
         contig = species.get_contig("chr25", mutation_rate=model.mutation_rate)
         samples = {"Holstein_Friesian": 1}
-        for engine in stdpopsim.all_engines():
+        for engine in stdvoidsim.all_engines():
             with pytest.warns(
                 UserWarning,
                 match="model has recombination rate.*but this simulation used",
@@ -435,7 +435,7 @@ class TestRecombinationRates:
         "error:.*model has recombination rate.*but this simulation used.*"
     )
     def test_recombination_rate_match(self):
-        species = stdpopsim.get_species("BosTau")
+        species = stdvoidsim.get_species("BosTau")
         model = copy.deepcopy(species.get_demographic_model("HolsteinFriesian_1M13"))
         contig = species.get_contig("chr25")
         assert model.recombination_rate != contig.recombination_map.mean_rate
@@ -453,13 +453,13 @@ class TestRecombinationRates:
         assert model.recombination_rate == contig.recombination_map.mean_rate
 
         samples = {"Holstein_Friesian": 1}
-        for engine in stdpopsim.all_engines():
+        for engine in stdvoidsim.all_engines():
             engine.simulate(model, contig, samples, dry_run=True)
 
 
 class TestParameterTables:
     def test_params_match_docs_tables(self):
-        for species in stdpopsim.all_species():
+        for species in stdvoidsim.all_species():
             for model in species.demographic_models:
                 table_path = pathlib.Path(
                     os.path.join(

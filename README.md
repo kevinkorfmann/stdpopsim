@@ -3,7 +3,7 @@
 A community-maintained library of population genetic simulation models for
 **Lovecraftian entities and eldritch horrors**.
 
-Built on the [stdpopsim](https://github.com/popsim-consortium/stdpopsim) framework,
+Built on the [stdvoidsim](https://github.com/popsim-consortium/stdvoidsim) framework,
 `stdvoidsim` provides fictional but population-genetically plausible demographic models
 for creatures from H.P. Lovecraft's Cthulhu Mythos. All models use realistic population
 genetic parameters and are fully simulatable with `msprime` and `SLiM`.
@@ -100,10 +100,10 @@ genetic parameters and are fully simulatable with `msprime` and `SLiM`.
 ## Quick Start
 
 ```python
-import stdpopsim
+import stdvoidsim
 
 # Get the Shoggoth species (hexaploid engineered servitors)
-species = stdpopsim.get_species("ShoNig")
+species = stdvoidsim.get_species("ShoNig")
 
 # Use the Antarctic Revolt demographic model
 model = species.get_demographic_model("AntarcticRevolt_1D31")
@@ -112,7 +112,7 @@ model = species.get_demographic_model("AntarcticRevolt_1D31")
 contig = species.get_contig(length=100_000)
 
 # Simulate with msprime
-engine = stdpopsim.get_engine("msprime")
+engine = stdvoidsim.get_engine("msprime")
 ts = engine.simulate(model, contig, samples={"Antarctic": 20}, seed=42)
 
 print(f"Trees: {ts.num_trees}, Mutations: {ts.num_mutations}")
@@ -153,7 +153,7 @@ polyploidy, highly asymmetric migration, etc.).
 
 ## Citation
 
-This project is a fork of [stdpopsim](https://github.com/popsim-consortium/stdpopsim).
+This project is a fork of [stdvoidsim](https://github.com/popsim-consortium/stdvoidsim).
 If you use the simulation framework, please cite:
 
 * [Adrion, et al. (2020)](https://doi.org/10.7554/eLife.54967)

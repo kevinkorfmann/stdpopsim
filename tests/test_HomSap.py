@@ -2,7 +2,7 @@
 Tests for the human data definitions.
 """
 
-import stdpopsim
+import stdvoidsim
 
 import pytest
 
@@ -10,7 +10,7 @@ from tests import test_species
 
 
 class TestSpecies(test_species.SpeciesTestBase):
-    species = stdpopsim.get_species("HomSap")
+    species = stdvoidsim.get_species("HomSap")
 
     def test_basic_attributes(self):
         assert self.species.population_size == 10**4
@@ -20,7 +20,7 @@ class TestSpecies(test_species.SpeciesTestBase):
 
 class TestGenome(test_species.GenomeTestBase):
 
-    species = stdpopsim.get_species("HomSap")
+    species = stdvoidsim.get_species("HomSap")
     genome = species.genome
 
     def test_basic_attributes(self):
@@ -31,7 +31,7 @@ class TestGenome(test_species.GenomeTestBase):
         genetic_map = "HapMapII_GRCh38"
         chrom = self.genome.get_chromosome(chr_id)
         if chr_id in ["X", "Y", "MT"]:
-            with pytest.warns(stdpopsim.NonAutosomalWarning):
+            with pytest.warns(stdvoidsim.NonAutosomalWarning):
                 contig = self.species.get_contig(chr_id, genetic_map=genetic_map)
         else:
             contig = self.species.get_contig(chr_id, genetic_map=genetic_map)

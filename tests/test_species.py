@@ -8,8 +8,8 @@ import numpy as np
 import msprime
 import pytest
 
-import stdpopsim
-from stdpopsim import utils
+import stdvoidsim
+from stdvoidsim import utils
 
 
 class TestSpecies:
@@ -18,71 +18,71 @@ class TestSpecies:
     """
 
     def test_str(self):
-        for species in stdpopsim.all_species():
+        for species in stdvoidsim.all_species():
             s = str(species)
             assert isinstance(s, str)
             assert len(s) > 0
 
     def test_ensembl_id(self):
         # Test the Ensembl species ID for some known species.
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         assert species.ensembl_id == "homo_sapiens"
-        species = stdpopsim.get_species("DroMel")
+        species = stdvoidsim.get_species("DroMel")
         assert species.ensembl_id == "drosophila_melanogaster"
 
     def test_get_known_species(self):
         good = ["HomSap", "EscCol"]
         for species_id in good:
-            species = stdpopsim.get_species(species_id)
-            assert isinstance(species, stdpopsim.Species)
+            species = stdvoidsim.get_species(species_id)
+            assert isinstance(species, stdvoidsim.Species)
             assert species.id == species_id
 
     def test_get_unknown_species(self):
         bad = ["XXXX", ""]
         for species_name in bad:
             with pytest.raises(ValueError):
-                stdpopsim.get_species(species_name)
+                stdvoidsim.get_species(species_name)
 
     def test_add_duplicate_species(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         with pytest.raises(ValueError):
-            stdpopsim.register_species(species)
+            stdvoidsim.register_species(species)
 
     def test_get_known_genetic_map(self):
         good = ["HapMapII_GRCh37", "DeCodeSexAveraged_GRCh36"]
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         for name in good:
             gmap = species.get_genetic_map(name)
-            assert isinstance(gmap, stdpopsim.GeneticMap)
+            assert isinstance(gmap, stdvoidsim.GeneticMap)
             assert gmap.id == name
 
     def test_get_unknown_genetic_map(self):
         bad = ["GDXXX", "", None]
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         for name in bad:
             with pytest.raises(ValueError):
                 species.get_genetic_map(name)
 
     def test_add_duplicate_genetic_map(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         genetic_map = species.get_genetic_map("HapMapII_GRCh37")
         with pytest.raises(ValueError):
             species.add_genetic_map(genetic_map)
 
     def test_add_duplicate_model(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         model = species.get_demographic_model("OutOfAfrica_3G09")
         with pytest.raises(ValueError):
             species.add_demographic_model(model)
 
     def test_add_duplicate_dfe(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         model = species.get_dfe("Gamma_K17")
         with pytest.raises(ValueError):
             species.add_dfe(model)
 
     def test_get_unknown_dfe(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         bad = ["Fakedfe_K17", "", None]
         for name in bad:
             with pytest.raises(ValueError):
@@ -90,13 +90,13 @@ class TestSpecies:
 
     def test_get_unknown_annotation(self):
         bad = ["GDXXX", "", None]
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         for name in bad:
             with pytest.raises(ValueError):
                 species.get_annotations(name)
 
     def test_add_duplicate_annotation(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         an = species.annotations[0]
         with pytest.raises(ValueError):
             species.add_annotations(an)
@@ -127,22 +127,22 @@ class SpeciesTestBase:
         assert utils.is_valid_species_common_name(self.species.name)
 
     def test_genome_type(self):
-        assert isinstance(self.species.genome, stdpopsim.Genome)
+        assert isinstance(self.species.genome, stdvoidsim.Genome)
 
     def test_demographic_model_types(self):
         assert isinstance(self.species.demographic_models, list)
         for model in self.species.demographic_models:
-            assert isinstance(model, stdpopsim.DemographicModel)
+            assert isinstance(model, stdvoidsim.DemographicModel)
 
     def test_dfes(self):
         assert isinstance(self.species.dfes, list)
         for model in self.species.dfes:
-            assert isinstance(model, stdpopsim.DFE)
+            assert isinstance(model, stdvoidsim.DFE)
 
     def test_citation_properties(self):
         for citation in self.species.citations:
             # Test some basic stuff about the citations.
-            assert isinstance(citation, stdpopsim.Citation)
+            assert isinstance(citation, stdvoidsim.Citation)
             citation.assert_valid()
 
     def test_generation_time_defined(self):
@@ -151,7 +151,7 @@ class SpeciesTestBase:
     def test_population_size_defined(self):
         assert self.species.population_size > 0
 
-    @pytest.mark.filterwarnings("ignore::stdpopsim.NonAutosomalWarning")
+    @pytest.mark.filterwarnings("ignore::stdvoidsim.NonAutosomalWarning")
     def test_default_gc(self):
         for chrom in self.species.genome.chromosomes:
             contig = self.species.get_contig(chrom.id)
@@ -177,7 +177,7 @@ class SpeciesTestBase:
                         chrom.id, use_species_gene_conversion=True
                     )
 
-    @pytest.mark.filterwarnings("ignore::stdpopsim.NonAutosomalWarning")
+    @pytest.mark.filterwarnings("ignore::stdvoidsim.NonAutosomalWarning")
     def test_default_ploidy(self):
         for chrom in self.species.genome.chromosomes:
             contig = self.species.get_contig(chrom.id)
@@ -229,7 +229,7 @@ class GenomeTestBase:
     def test_chromosomes(self):
         assert len(self.genome.chromosomes) > 0
         for chrom in self.genome.chromosomes:
-            assert isinstance(chrom, stdpopsim.Chromosome)
+            assert isinstance(chrom, stdvoidsim.Chromosome)
 
     def test_mutation_rates_set(self):
         for chrom in self.genome.chromosomes:
@@ -242,7 +242,7 @@ class GenomeTestBase:
     def test_citation_properties(self):
         for citation in self.genome.citations:
             # Test some basic stuff about the citations.
-            assert isinstance(citation, stdpopsim.Citation)
+            assert isinstance(citation, stdvoidsim.Citation)
             citation.assert_valid()
 
 
@@ -252,7 +252,7 @@ class TestAllGenomes:
     """
 
     def test_str(self):
-        for species in stdpopsim.all_species():
+        for species in stdvoidsim.all_species():
             s = str(species.genome)
             assert isinstance(s, str)
             assert len(s) > 0
@@ -263,9 +263,9 @@ class TestGetContig:
     Tests for the get contig method.
     """
 
-    species = stdpopsim.get_species("HomSap")
+    species = stdvoidsim.get_species("HomSap")
 
-    @pytest.mark.filterwarnings("ignore::stdpopsim.DeprecatedFeatureWarning")
+    @pytest.mark.filterwarnings("ignore::stdvoidsim.DeprecatedFeatureWarning")
     def test_length_multiplier(self):
         contig1 = self.species.get_contig("chr22")
         for x in [0.125, 1.0, 2.0]:
@@ -275,7 +275,7 @@ class TestGetContig:
                 == contig2.recombination_map.position[-1]
             )
 
-    @pytest.mark.filterwarnings("ignore::stdpopsim.DeprecatedFeatureWarning")
+    @pytest.mark.filterwarnings("ignore::stdvoidsim.DeprecatedFeatureWarning")
     def test_length_multiplier_on_empirical_map(self):
         with pytest.raises(ValueError):
             self.species.get_contig(
@@ -286,10 +286,10 @@ class TestGetContig:
     def test_genetic_map(self):
         # TODO we should use a different map here so we're not hitting the cache.
         contig = self.species.get_contig("chr22", genetic_map="HapMapII_GRCh37")
-        assert isinstance(contig.genetic_map, stdpopsim.GeneticMap)
+        assert isinstance(contig.genetic_map, stdvoidsim.GeneticMap)
         assert isinstance(contig.recombination_map, msprime.RateMap)
 
-    @pytest.mark.filterwarnings("ignore::stdpopsim.DeprecatedFeatureWarning")
+    @pytest.mark.filterwarnings("ignore::stdvoidsim.DeprecatedFeatureWarning")
     def test_contig_options(self):
         with pytest.raises(ValueError, match="Cannot use genetic map"):
             # cannot use genetic map with generic contig

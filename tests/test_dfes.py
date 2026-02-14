@@ -4,11 +4,11 @@ Tests for simulation dfe infrastructure
 
 import sys
 import pytest
-import stdpopsim
+import stdvoidsim
 import textwrap
 import numpy as np
-from stdpopsim import dfe
-from stdpopsim import utils
+from stdvoidsim import dfe
+from stdvoidsim import utils
 
 IS_WINDOWS = sys.platform.startswith("win")
 
@@ -358,9 +358,9 @@ class TestAllDFEs:
     """
 
     def test_non_empty(self):
-        assert len(list(stdpopsim.all_dfes())) > 0
+        assert len(list(stdvoidsim.all_dfes())) > 0
 
-    @pytest.mark.parametrize("d", stdpopsim.all_dfes())
+    @pytest.mark.parametrize("d", stdvoidsim.all_dfes())
     def test_all_instances(self, d):
         assert isinstance(d, dfe.DFE)
         assert len(d.id) > 0
@@ -560,10 +560,10 @@ class TestCreateDFE:
             )
 
     def test_dfe_errors(self):
-        m1 = stdpopsim.MutationType()
-        m2 = stdpopsim.MutationType()
+        m1 = stdvoidsim.MutationType()
+        m2 = stdvoidsim.MutationType()
         with pytest.raises(ValueError, match="must be lists of the same length"):
-            _ = stdpopsim.DFE(
+            _ = stdvoidsim.DFE(
                 id="abc",
                 description="test test",
                 long_description="test test test test",
@@ -580,7 +580,7 @@ class TestCreateDFE:
             [0.8, 0.8],
         ]:
             with pytest.raises(ValueError):
-                _ = stdpopsim.DFE(
+                _ = stdvoidsim.DFE(
                     id="abc",
                     description="test test",
                     long_description="test test test test",
@@ -589,7 +589,7 @@ class TestCreateDFE:
                 )
         for bad_mut_types in ["abc", {}, [1.0, 2.0], [m1], m1, ["a", "b"]]:
             with pytest.raises(ValueError):
-                _ = stdpopsim.DFE(
+                _ = stdvoidsim.DFE(
                     id="abc",
                     description="test test",
                     long_description="test test test test",
@@ -598,7 +598,7 @@ class TestCreateDFE:
                 )
         for bad_sums in [[-0.4, 0.5], [0.6, 0.8], [139487135987, 0.0], [0.2, 0.3]]:
             with pytest.raises(ValueError):
-                _ = stdpopsim.DFE(
+                _ = stdvoidsim.DFE(
                     id="abc",
                     description="test test",
                     long_description="test test test test",
@@ -633,12 +633,12 @@ class TestCreateDFE:
                 else:
                     svals = [0.0, 0.1]
                 mt = [
-                    stdpopsim.MutationType(
+                    stdvoidsim.MutationType(
                         distribution_type=dist, distribution_args=[s]
                     )
                     for s in svals
                 ]
-                d = stdpopsim.DFE(
+                d = stdvoidsim.DFE(
                     id=0,
                     description="test",
                     long_description="test test",
@@ -663,7 +663,7 @@ class TestCreateDFE:
             long_description=long_desc,
             mutation_types=[m1],
         )
-        contig = stdpopsim.Contig.basic_contig(
+        contig = stdvoidsim.Contig.basic_contig(
             length=10000,
             mutation_rate=1e-6,
             ploidy=2,
@@ -672,9 +672,9 @@ class TestCreateDFE:
             intervals=np.array([[0, contig.length / 2]], dtype="int"),
             DFE=d,
         )
-        model = stdpopsim.PiecewiseConstantSize(1000)
+        model = stdvoidsim.PiecewiseConstantSize(1000)
         samples = {"pop_0": 1}
-        engine = stdpopsim.get_engine("msprime")
+        engine = stdvoidsim.get_engine("msprime")
         with pytest.raises(ValueError, match="but you are using .* msprime"):
             _ = engine.simulate(
                 model,
@@ -747,9 +747,9 @@ class DFETestMixin:
 
     dfe = None
 
-    @pytest.mark.filterwarnings("ignore::stdpopsim.SLiMScalingFactorWarning")
+    @pytest.mark.filterwarnings("ignore::stdvoidsim.SLiMScalingFactorWarning")
     def test_simulation_runs(self):
-        contig = stdpopsim.Contig.basic_contig(
+        contig = stdvoidsim.Contig.basic_contig(
             length=1_000_000,
             mutation_rate=1e-8,  # Ne=1e3 and length=1e6 so theta=40
             ploidy=2,
@@ -760,9 +760,9 @@ class DFETestMixin:
             DFE=self.dfe,
         )
 
-        model = stdpopsim.PiecewiseConstantSize(1000)
+        model = stdvoidsim.PiecewiseConstantSize(1000)
         samples = {"pop_0": 1}
-        engine = stdpopsim.get_engine("slim")
+        engine = stdvoidsim.get_engine("slim")
         ts = engine.simulate(
             model, contig, samples, slim_scaling_factor=10, slim_burn_in=10, seed=42
         )
@@ -826,7 +826,7 @@ class QcdCatalogDFETestMixin(CatalogDFETestMixin):
 
 
 qc_test_classes = []
-for species in stdpopsim.all_species():
+for species in stdvoidsim.all_species():
     for d in species.dfes:
         superclasses = []
         if d.qc_dfe is not None:

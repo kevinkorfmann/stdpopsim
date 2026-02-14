@@ -8,7 +8,7 @@ import numpy as np
 import msprime
 import pytest
 
-import stdpopsim.utils
+import stdvoidsim.utils
 
 IS_WINDOWS = sys.platform.startswith("win")
 
@@ -25,8 +25,8 @@ class TestMasking:
             for c, i in intervals_in.items():
                 for left, right in i:
                     fout.write(f"{c}\t{left}\t{right}\n")
-        intervals_chr1 = stdpopsim.utils.read_bed(bedfile, "chr1")
-        intervals_chr22 = stdpopsim.utils.read_bed(bedfile, "chr22")
+        intervals_chr1 = stdvoidsim.utils.read_bed(bedfile, "chr1")
+        intervals_chr22 = stdvoidsim.utils.read_bed(bedfile, "chr22")
         for interval in intervals_chr1:
             assert tuple(interval) in intervals_in["chr1"]
         for interval in intervals_chr22:
@@ -34,9 +34,9 @@ class TestMasking:
         assert len(intervals_chr1) == len(intervals_in["chr1"])
         assert len(intervals_chr22) == len(intervals_in["chr22"])
 
-    @pytest.mark.filterwarnings("ignore::stdpopsim.DeprecatedFeatureWarning")
+    @pytest.mark.filterwarnings("ignore::stdvoidsim.DeprecatedFeatureWarning")
     def test_length_interval_invalid(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         with pytest.raises(ValueError, match="Cannot use length multiplier"):
             species.get_contig(
                 "chr22", length_multiplier=0.1, inclusion_mask="test.bed"
@@ -60,13 +60,13 @@ class TestMasking:
                 for left, right in i:
                     fout.write(f"{c}\t{left}\t{right}\n")
         intervals_test = intervals_to_keep_test_func(bedfile, "chr1")
-        intervals_utils = stdpopsim.utils.read_bed(bedfile, "chr1")
+        intervals_utils = stdvoidsim.utils.read_bed(bedfile, "chr1")
         for i1, i2 in zip(intervals_utils, intervals_test):
             assert i1[0] == i2[0]
             assert i1[1] == i2[1]
 
     def test_mask_from_intervals(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         contig = species.get_contig("chr22", exclusion_mask=[(0, 16.5e6)])
         assert contig.inclusion_mask is None
         assert contig.exclusion_mask[0][0] == 0
@@ -77,7 +77,7 @@ class TestMasking:
         assert contig.exclusion_mask is None
 
     def test_multiple_masks(self):
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         with pytest.raises(ValueError):
             species.get_contig(
                 "chr22", exclusion_mask=[(0, 16.5e6)], inclusion_mask=[(16.5e6, 50e6)]
@@ -91,7 +91,7 @@ class TestMasking:
             for c, i in intervals_in.items():
                 for left, right in i:
                     fout.write(f"{c}\t{left}\t{right}\n")
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         contig = species.get_contig("chr1", inclusion_mask=bedfile)
         assert contig.exclusion_mask is None
         assert len(contig.inclusion_mask) == 4
@@ -105,13 +105,13 @@ class TestMasking:
         ts = msprime.mutate(ts, rate=1e-4)
 
         exclude = False
-        ts_mask = stdpopsim.utils.mask_tree_sequence(ts, intervals, exclude)
+        ts_mask = stdvoidsim.utils.mask_tree_sequence(ts, intervals, exclude)
         # check we get the right number of trees (simulated with no recomb)
         assert ts_mask.num_trees == len(intervals) * 2 - 1
 
         exclude = True
         intervals = np.array([[0, 100], [200, 1000]])
-        ts_mask = stdpopsim.utils.mask_tree_sequence(ts, intervals, exclude)
+        ts_mask = stdvoidsim.utils.mask_tree_sequence(ts, intervals, exclude)
         # check we get the right number of trees (simulated with no recomb)
         assert ts_mask.num_trees == len(intervals) * 2 - 1
         # check that positions of mutations in ts_mask are within mask
@@ -126,15 +126,15 @@ class TestSimulate:
     @pytest.mark.filterwarnings("ignore::msprime.IncompletePopulationMetadataWarning")
     def test_simulate_with_mask(self):
         engines = ["msprime", "slim"]
-        species = stdpopsim.get_species("HomSap")
+        species = stdvoidsim.get_species("HomSap")
         L = 1000
         contig = species.get_contig(length=L)
         contig.mutation_rate = 1e-3
         contig.recombination_map = msprime.RateMap.uniform(L, 0)
         samples = [msprime.SampleSet(2, population=0, ploidy=1)]
-        model = stdpopsim.PiecewiseConstantSize(100)
+        model = stdvoidsim.PiecewiseConstantSize(100)
         for engine_name in engines:
-            engine = stdpopsim.get_engine(engine_name)
+            engine = stdvoidsim.get_engine(engine_name)
 
             # test engine with exclusion mask
             contig.inclusion_mask = None

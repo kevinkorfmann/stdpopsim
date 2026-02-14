@@ -4,9 +4,9 @@
 Development
 ===========
 
-``stdpopsim`` **is a community effort, and we welcome YOU to join us!**
+``stdvoidsim`` **is a community effort, and we welcome YOU to join us!**
 
-We envision at least three main types of ``stdpopsim`` developers:
+We envision at least three main types of ``stdvoidsim`` developers:
 
 1. Contributors of new species, demographic models, and other features
    (such as recombination/genetic maps, annotations, DFE models)
@@ -16,7 +16,7 @@ We envision at least three main types of ``stdpopsim`` developers:
 Contributors add simulation code for new or existing species in the catalog.
 This is the main way we envision biologists to continually add
 to the catalog of available models, and it is a great first step for new
-contributors to learn the ins and outs of ``stdpopsim`` development.
+contributors to learn the ins and outs of ``stdvoidsim`` development.
 See the appropriate sections below:
 
 * `Adding a new species`_
@@ -26,36 +26,36 @@ See the appropriate sections below:
 
 `API developers` work on infrastructure development for the PopSim Consortium,
 which could include improvements and additions to the internal code base of
-``stdpopsim``, establishment of benchmarking pipelines,
+``stdvoidsim``, establishment of benchmarking pipelines,
 and new projects that align with consortium goals.
 
 `Documentation and tutorial curators` help maintain the documentation and tutorials.
 This can be as easy as pointing out confusing bits of the documentation in a
-GitHub `issue <http://github.com/popgensims/stdpopsim/issues>`__., or adding or editing
+GitHub `issue <http://github.com/kevinkorfmann/stdvoidsim/issues>`__., or adding or editing
 the documentation. See the section `Documentation`_.
 
-Get into contact with the ``stdpopsim`` community by subscribing to our
+Get into contact with the ``stdvoidsim`` community by subscribing to our
 `email list serve <https://lists.uoregon.edu/mailman/listinfo/popgen_benchmark>`__
 and by creating and commenting on
-Github `issue <http://github.com/popgensims/stdpopsim/issues>`__.
+Github `issue <http://github.com/kevinkorfmann/stdvoidsim/issues>`__.
 There is a lot of chatter through
-`Github <http://github.com/popgensims/stdpopsim>`__, and we’ve been building code
+`Github <http://github.com/kevinkorfmann/stdvoidsim>`__, and we've been building code
 there cooperatively.
 If you want to help out and don't know where to start, you can look through the
 list of
 `Good first issues
-<https://github.com/popgensims/stdpopsim/issues?q=is%3Aopen+is%3Aissue+label%3A%22
+<https://github.com/kevinkorfmann/stdvoidsim/issues?q=is%3Aopen+is%3Aissue+label%3A%22
 good+first+issue%22>`__
 or
 `Help wanted issues
-<https://github.com/popgensims/stdpopsim/issues?q=is%3Aopen+is%3Aissue+label%3A%22
+<https://github.com/kevinkorfmann/stdvoidsim/issues?q=is%3Aopen+is%3Aissue+label%3A%22
 help+wanted%22>`__
 
 
-To get started helping with ``stdpopsim`` development, please read the
+To get started helping with ``stdvoidsim`` development, please read the
 following sections to learn how to contribute.
 And, importantly, please have a look at our
-`code of conduct <https://github.com/popsim-consortium/stdpopsim/blob/main/CODE_OF_CONDUCT.md>`__.
+`code of conduct <https://github.com/kevinkorfmann/stdvoidsim/blob/main/CODE_OF_CONDUCT.md>`__.
 
 .. _sec_development_installation:
 
@@ -66,13 +66,13 @@ Installation
 Before installing, be sure to make a fork of the repo and clone it locally
 following the instructions in the `GitHub Workflow`_.
 
-The ``stdpopsim`` library requires Python 3.4 or later.
+The ``stdvoidsim`` library requires Python 3.4 or later.
 
 For ``pip`` users, install the packages required for development using::
 
     $ python3 -m pip install -r requirements/development.txt
 
-You can then install the development version of ``stdpopsim`` like this::
+You can then install the development version of ``stdvoidsim`` like this::
 
     $ python3 setup.py install
 
@@ -100,25 +100,25 @@ For ``pip``, you can use ``venv``.
 
 First, create the virtual environment (You only need to do this once)::
 
-    $ python3 -m venv stdpopsim_env
+    $ python3 -m venv stdvoidsim_env
 
 Next, activate the virtual environment::
 
-    $ source stdpopsim_env/bin/activate
+    $ source stdvoidsim_env/bin/activate
 
 You will then see the virtual environment in your prompt. Like so::
 
-    (stdpopsim_env) $
+    (stdvoidsim_env) $
 
 Once the virtual environment is activated, install the requirements::
 
-    (stdpopsim_env) $ python3 -m pip install -r requirements/development.txt
+    (stdvoidsim_env) $ python3 -m pip install -r requirements/development.txt
 
 You can then run any of the code in the virtual environment with the packages installed,
 without conflicting with other packages in your local environment.
 To deactivate the virtual environment::
 
-    (stdpopsim_env) $ deactivate
+    (stdvoidsim_env) $ deactivate
 
 
 ***************
@@ -126,7 +126,7 @@ GitHub workflow
 ***************
 
     1. Make your own `fork <https://help.github.com/articles/fork-a-repo/>`__
-       of the ``stdpopsim`` repository on GitHub, and
+       of the ``stdvoidsim`` repository on GitHub, and
        `clone <https://help.github.com/articles/cloning-a-repository/>`__
        a local copy.
     2. Install the pre-commit hooks with::
@@ -184,7 +184,7 @@ Rebasing is used for two basic tasks we might ask for during review:
 `Rebasing <https://help.github.com/articles/about-git-rebase/>`__ in git
 basically means changing where your branch forked off the main code
 in ``upstream/main``. A good way of visualising what's happening is to
-look at the `Network <https://github.com/popgensims/stdpopsim/network>`__ view on
+look at the `Network <https://github.com/kevinkorfmann/stdvoidsim/network>`__ view on
 GitHub. This shows you all the forks and branches that GitHub knows about
 and how they relate to the main repository. Rebasing lets you change where
 your branch splits off.
@@ -403,9 +403,9 @@ message:
 .. code-block:: none
 
     $ git push origin topic_branch_name
-    To github.com:jeromekelleher/stdpopsim.git
+    To github.com:jeromekelleher/stdvoidsim.git
     ! [rejected]        topic_branch_name -> topic_branch_name (non-fast-forward)
-    error: failed to push some refs to 'git@github.com:jeromekelleher/stdpopsim.git'
+    error: failed to push some refs to 'git@github.com:jeromekelleher/stdvoidsim.git'
     hint: Updates were rejected because the tip of your current branch is behind
     hint: its remote counterpart. Integrate the remote changes (e.g.
     hint: 'git pull ...') before pushing again.
@@ -426,7 +426,7 @@ by "force-pushing":
     Writing objects: 100% (4/4), 4.33 KiB | 1.44 MiB/s, done.
     Total 4 (delta 2), reused 0 (delta 0)
     remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
-    To github.com:jeromekelleher/stdpopsim.git
+    To github.com:jeromekelleher/stdvoidsim.git
      + 6b8a2a5...d033ffa topic_branch_name -> topic_branch_name (forced update)
 
 Success! We can check the history again to see if everything looks OK:
@@ -518,18 +518,18 @@ Adding a new species
 Which information do I need to have for my species?
 ---------------------------------------------------
 
-In ``stdpopsim``, we aim to be inclusive and facilitate adding a diverse range of species.
+In ``stdvoidsim``, we aim to be inclusive and facilitate adding a diverse range of species.
 That said, there are certain basic requirements we have
 for every species added to the :ref:`sec_catalog`.
 We specify these requirements below.
 If you are unsure whether your species satisfies these baseline requirements,
-but you still think it will be useful to add it to ``stdpopsim``,
-then we encourage you to `open an issue <http://github.com/popgensims/stdpopsim/issues/new>`__
+but you still think it will be useful to add it to ``stdvoidsim``,
+then we encourage you to `open an issue <http://github.com/kevinkorfmann/stdvoidsim/issues/new>`__
 on the GitHub repository to discuss this.
 Others researchers in the community may be able to help you fill in the missing details
 or find other solutions.
 
-Every species added to ``stdpopsim`` should have the following information available:
+Every species added to ``stdvoidsim`` should have the following information available:
 
 1. A chromosome-level genome assembly
 2. Mutation rate (per generation)
@@ -545,8 +545,8 @@ with a brief discussion of possible courses of action to take when components ha
 
 1. The **genome assembly** should consist of a list of chromosomes or scaffolds and their lengths.
    Having a good quality assembly with complete chromosomes, or at least very long scaffolds,
-   is essential for chromosome-level simulations produced by ``stdpopsim``.
-   Thus, currently, ``stdpopsim`` only supports adding species with near-complete
+   is essential for chromosome-level simulations produced by ``stdvoidsim``.
+   Thus, currently, ``stdvoidsim`` only supports adding species with near-complete
    chromosome-level genome assemblies (i.e., close to one contig per chromosome).
 
 2. An **average mutation rate**
@@ -585,28 +585,28 @@ with a brief discussion of possible courses of action to take when components ha
 
 All values used in the species model should be based on current knowledge for a typical population
 in that species, as represented in the literature.
-Before you add your species to ``stdpopsim``, see that you can collect the values
+Before you add your species to ``stdvoidsim``, see that you can collect the values
 mentioned above from the literature.
 You will later need to specify these citations in your code files
 (see `Coding the species parameters`_).
 If you are unsure whether your species of interest satisfies the base requirements above
 (such as a near-complete genome assembly), or have questions about how to set some parameters,
-feel free to `open an issue <http://github.com/popgensims/stdpopsim/issues/new>`__
-on the GitHub repository to get assistance from other members of the ``stdpopsim`` community.
+feel free to `open an issue <http://github.com/kevinkorfmann/stdvoidsim/issues/new>`__
+on the GitHub repository to get assistance from other members of the ``stdvoidsim`` community.
 
 
 -----------------------------------
 Getting set up to add a new species
 -----------------------------------
 
-If this is your first time adding a species to ``stdpopsim``, it's a good
+If this is your first time adding a species to ``stdvoidsim``, it's a good
 idea to take some time browsing the :ref:`sec_catalog`
 to see how existing species are typically specified and documented. If you have
 any questions or confusion about the required code, please
 don't hesitate to
-`open a new issue <https://github.com/popsim-consortium/stdpopsim/issues/new>`__.
+`open a new issue <https://github.com/kevinkorfmann/stdvoidsim/issues/new>`__.
 We're more than happy to answer any questions and help get you up and running.
-Before you add any code, be sure to have forked the ``stdpopsim`` repository
+Before you add any code, be sure to have forked the ``stdvoidsim`` repository
 and cloned it locally, following the instructions in the `GitHub Workflow`_ section.
 
 
@@ -618,10 +618,10 @@ All code associated with simulation of this species should go into this director
 unless explicitly specified otherwise
 (code for documentation and testing  is written in other directories).
 For example, the simulation code for *D. melanogaster* resides in directory
-``stdpopsim/catalog/DroMel/`` in the repository.
+``stdvoidsim/catalog/DroMel/`` in the repository.
 
 Once the species directory is set up, you may use the ``maintenance`` utility
-of ``stdpopsim`` to generate template files where you can enter
+of ``stdvoidsim`` to generate template files where you can enter
 all relevant information for your species.
 The ``maintenance`` utility downloads useful information on a genome build published
 in `Ensembl <https://www.ensembl.org/index.html>`__,
@@ -637,7 +637,7 @@ For example, the template files for *A. thaliana* were generated by executing th
     $ python -m maintenance add-species arabidopsis_thaliana
 
 The ``maintenance`` utility generates three new files inside the species directory
-(``stdpopsim/catalog/<SPECIES_ID>/``):
+(``stdvoidsim/catalog/<SPECIES_ID>/``):
 
 * ``__init__.py``: a  script that loads all the relevant libraries for your species.
   It should be edited only when you add components to your species, such as demographic models,
@@ -691,25 +691,25 @@ The ``_species`` object contains the remaining information about the species,
 including its **full name**, **abbreviated name**, **id**, **effective population size**
 and **average generation time**.
 Each value specified in these two object should be accompanied by a
-``stdpopsim.Citation`` object indicating the publication from which it was derived.
-Each ``stdpopsim.Citation`` object is initialized with the following information:
+``stdvoidsim.Citation`` object indicating the publication from which it was derived.
+Each ``stdvoidsim.Citation`` object is initialized with the following information:
 
 * author (`string`): abbreviated author list in a single string,
   such as `"1000GenomesConsortium"` or `"Huber et al."`.
 * year   (`int`): year of publication.
 * doi (`string`): a URL for the `doi.org <https://doi.org/>`__ webpage of the publication.
-* reasons (list of ``stdpopsim.CiteReason``):
+* reasons (list of ``stdvoidsim.CiteReason``):
   possible reasons to include a citation in ``species.py`` are:
 
-  * ``stdpopsim.CiteReason.ASSEMBLY``
-  * ``stdpopsim.CiteReason.REC_RATE``
-  * ``stdpopsim.CiteReason.MUT_RATE``
-  * ``stdpopsim.CiteReason.POP_SIZE``
-  * ``stdpopsim.CiteReason.GEN_TIME``
+  * ``stdvoidsim.CiteReason.ASSEMBLY``
+  * ``stdvoidsim.CiteReason.REC_RATE``
+  * ``stdvoidsim.CiteReason.MUT_RATE``
+  * ``stdvoidsim.CiteReason.POP_SIZE``
+  * ``stdvoidsim.CiteReason.GEN_TIME``
 
 To demonstrate how the ``_genome`` and ``_species`` objects are set,
 we provide below a detailed example for *A. thaliana*
-(see also ``stdpopsim/catalog/AraTha/species.py``).
+(see also ``stdvoidsim/catalog/AraTha/species.py``).
 
 We start by defining auxiliary objects that specify the recombination rate,
 mutation rate, and ploidy for each chromosome.
@@ -745,38 +745,38 @@ The genome-wide mutation rate is associated with all chromosomes.
   _ploidy["Pt"] = 1
 
 
-The ``_genome`` object is then defined by calling the ``stdpopsim`` function
-``stdpopsim.Genome.from_data``.
+The ``_genome`` object is then defined by calling the ``stdvoidsim`` function
+``stdvoidsim.Genome.from_data``.
 This functions generates the genome object based on information from the
 ``data`` object defined in the ``genome_data.py`` file,
 the auxiliary objects defined above,
-and a list of ``stdpopsim.Citation`` objects.
+and a list of ``stdvoidsim.Citation`` objects.
 
 .. code-block:: python
 
-  _genome = stdpopsim.Genome.from_data(
+  _genome = stdvoidsim.Genome.from_data(
       genome_data.data,
       recombination_rate=_recombination_rate,
       mutation_rate=_mutation_rate,
       ploidy=_ploidy,
       citations=[
-          stdpopsim.Citation(
+          stdvoidsim.Citation(
               author="Ossowski et al.",
               year=2010,
               doi="https://doi.org/10.1126/science.1180677",
-              reasons={stdpopsim.CiteReason.MUT_RATE},
+              reasons={stdvoidsim.CiteReason.MUT_RATE},
           ),
-          stdpopsim.Citation(
+          stdvoidsim.Citation(
               author="Huber et al.",
               year=2014,
               doi="https://doi.org/10.1093/molbev/msu247",
-              reasons={stdpopsim.CiteReason.REC_RATE},
+              reasons={stdvoidsim.CiteReason.REC_RATE},
           ),
-          stdpopsim.Citation(
+          stdvoidsim.Citation(
               doi="https://doi.org/10.1093/nar/gkm965",
               year=2007,
               author="Swarbreck et al.",
-              reasons={stdpopsim.CiteReason.ASSEMBLY},
+              reasons={stdvoidsim.CiteReason.ASSEMBLY},
           ),
       ],
   )
@@ -786,11 +786,11 @@ and a list of ``stdpopsim.Citation`` objects.
 The ``_species`` object contains a reference to the ``_genome`` object and
 the remaining information about the species,
 including the **effective population size** and **average generation time**,
-accompanied by the appropriate ``stdpopsim.Citation`` objects.
+accompanied by the appropriate ``stdvoidsim.Citation`` objects.
 
 .. code-block:: python
 
-    _species = stdpopsim.Species(
+    _species = stdvoidsim.Species(
         id="AraTha",
         ensembl_id="arabidopsis_thaliana",
         name="Arabidopsis thaliana",
@@ -800,31 +800,31 @@ accompanied by the appropriate ``stdpopsim.Citation`` objects.
         population_size=10_000,
         ploidy=_species_ploidy,
         citations=[
-            stdpopsim.Citation(
+            stdvoidsim.Citation(
                 doi="https://doi.org/10.1890/0012-9658(2002)083[1006:GTINSO]2.0.CO;2",
                 year=2002,
                 author="Donohue",
-                reasons={stdpopsim.CiteReason.GEN_TIME},
+                reasons={stdvoidsim.CiteReason.GEN_TIME},
             ),
-            stdpopsim.Citation(
+            stdvoidsim.Citation(
                 doi="https://doi.org/10.1016/j.cell.2016.05.063",
                 year=2016,
                 author="1001GenomesConsortium",
-                reasons={stdpopsim.CiteReason.POP_SIZE},
+                reasons={stdvoidsim.CiteReason.POP_SIZE},
             ),
         ],
     )
 
 
 Once these two objects (``_genome`` and ``_species``) are specified in the ``species.py`` file,
-you should be able to load and simulate the newly added species using ``stdpopsim``.
+you should be able to load and simulate the newly added species using ``stdvoidsim``.
 
 ----------------------------------------------
 Testing your species model and submitting a PR
 ----------------------------------------------
 
 The ``maintenance`` utility that generated the three species template files
-in the species directory (``stdpopsim/catalog/<SPECIES_ID>/``)
+in the species directory (``stdvoidsim/catalog/<SPECIES_ID>/``)
 also generates test code for the species in a separate file, ``tests/test_<SPECIES_ID>.py``.
 The tests in this file are executed as follows
 (where ``<SPECIES_ID>`` is the six-character species id):
@@ -848,17 +848,17 @@ you should submit a pull request (PR) with your changes to the catalog.
 See the `GitHub workflow`_ for more details about this process.
 
 At this point, most of your work is done.
-**You have officially joined the** ``stdpopsim`` **development team. Welcome!!**
+**You have officially joined the** ``stdvoidsim`` **development team. Welcome!!**
 Your code still needs to undergo review by another member (or members)
-of the development team before it is fully incorporated into ``stdpopsim``.
+of the development team before it is fully incorporated into ``stdvoidsim``.
 This will likely require additional feedback from you,
 so, stay tuned for discussion during the review process.
 
 ----------------------------------------
-Overview of the stdpopsim review process
+Overview of the stdvoidsim review process
 ----------------------------------------
 
-We provide here a general outline for the review process we use in ``stdpopsim``,
+We provide here a general outline for the review process we use in ``stdvoidsim``,
 including guidelines for how to settle discrepancies that are found during review
 (see Step 6 below).
 The seven steps described below should be followed whenever a **new species** is added,
@@ -867,14 +867,14 @@ already in the catalog.
 
 1. After the original contributor submitted a PR with their new code,
    the code is checked by one of the core maintainers of
-   ``stdpopsim`` for basic problems or style issues.
+   ``stdvoidsim`` for basic problems or style issues.
    Once the code meets the basic standards, the maintainer merges the PR,
    and the newly added code is considered **provisional**.
 
 2. The original contributor then opens a new **QC issue** on GitHub
    to track the progress of the review.
    One simple way to do this is to use one of the `template issues
-   <https://github.com/popsim-consortium/stdpopsim/issues/new/choose>`__
+   <https://github.com/kevinkorfmann/stdvoidsim/issues/new/choose>`__
    we provide.
    For example, the ``Species QC issue template`` should be used when adding
    a new species and the ``Model QC issue template`` should be used when adding
@@ -883,14 +883,14 @@ already in the catalog.
    and fill in the required details.
    If you don't find an appropriate template for your purpose,
    you should simply `open a new blank issue
-   <https://github.com/popsim-consortium/stdpopsim/issues/new>`__
+   <https://github.com/kevinkorfmann/stdvoidsim/issues/new>`__
    and add the relevant details manually.
    Make sure to include information about the primary sources (citations)
    you used as well as other considerations you made in your code.
    The **QC issue** contains a checklist and all the items on this list
    should be checked off for the review process to complete.
 
-3. A different member of the ``stdpopsim`` community volunteers to review the
+3. A different member of the ``stdvoidsim`` community volunteers to review the
    newly added demographic model.
    If you volunteer to review a model, you should state your intention on the
    **QC issue**, so we don't duplicate effort.
@@ -909,7 +909,7 @@ already in the catalog.
    If the reviewer is uncertain about some aspects of the implementation,
    they can discuss this with the original contributor in the **QC issue**.
    Different types of tests are involved when you are reviewing a **new species**
-   added to ``stdpopsim`` or when you are reviewing a **demographic model**
+   added to ``stdvoidsim`` or when you are reviewing a **demographic model**
    added to an existing species.
    See the appropriate sections below for specific instructions on how to
    implement the different tests.
@@ -960,7 +960,7 @@ already in the catalog.
 
 7. Once the **review PR** submitted in Step 5 passes all unit tests,
    it is merged, and the **QC issue** opened in Step 2 is closed.
-   **The new code is now officially added to the** ``stdpopsim`` **catalog!**
+   **The new code is now officially added to the** ``stdvoidsim`` **catalog!**
 
 
 ------------------------------------------------
@@ -1011,7 +1011,7 @@ The tests compare the values specified in the
 test file to the values in the ``species.py`` and ``genome_data.py`` files,
 and they produce error messages if differences are found.
 Differences should be resolved using the general process outlined in
-Step 6 of the `Overview of the stdpopsim review process`_.
+Step 6 of the `Overview of the stdvoidsim review process`_.
 
 ******************************
 Adding a new demographic model
@@ -1028,7 +1028,7 @@ fit from different data or by different methods or different assumptions/paramet
 -----------------------------------
 What models are appropriate to add?
 -----------------------------------
-Any model added to ``stdpopsim`` should be based the **published literature**
+Any model added to ``stdvoidsim`` should be based the **published literature**
 and a clear citation to the relevant paper(s) should be provided with the model.
 The demographic model should include, at a minimum,
 a single population with a series of population sizes changes.
@@ -1041,13 +1041,13 @@ to these units by making some assumptions on the mutation rate (sometimes even r
 typically the same assumptions made by the study that published the demographic model.
 
 
-The ``stdpopsim`` :ref:`sec_catalog` also contains a collection of **generic models**,
+The ``stdvoidsim`` :ref:`sec_catalog` also contains a collection of **generic models**,
 which are not associated with a certain species and are primarily used for development
 and testing of demographic inference methods.
 Due to their nature, the rationale for adding such models is different,
 and they are also implemented in a slightly different way.
 If you wish to contribute a new **generic model**,
-then we suggest that you `open a new issue <http://github.com/popgensims/stdpopsim/issues>`__
+then we suggest that you `open a new issue <http://github.com/kevinkorfmann/stdvoidsim/issues>`__
 to discuss your suggestion with others in the community and decide on the best
 way to implement your suggestion.
 
@@ -1055,30 +1055,30 @@ way to implement your suggestion.
 Getting set up to add a new demographic model
 ---------------------------------------------
 
-If this is your first time implementing a demographic model in ``stdpopsim``, it's a good
+If this is your first time implementing a demographic model in ``stdvoidsim``, it's a good
 idea to take some time browsing the :ref:`sec_catalog`
 to see how existing demographic models are coded and documented.
 If you have any questions or confusion about formatting or implementing demographic models, please
-don't hesitate to `open a new issue <http://github.com/popgensims/stdpopsim/issues>`__.
+don't hesitate to `open a new issue <http://github.com/kevinkorfmann/stdvoidsim/issues>`__.
 We're more than happy to answer any questions and help get you up and running.
-Before you add any code, be sure to have forked the ``stdpopsim`` repository
+Before you add any code, be sure to have forked the ``stdvoidsim`` repository
 and cloned it locally, following the instructions in the `GitHub Workflow`_ section.
 
 
 All code for a species' demographic models is written in the ``demographic_models.py``
-file in that species directory ``stdpopsim/catalog/<SPECIES_ID>/``
+file in that species directory ``stdvoidsim/catalog/<SPECIES_ID>/``
 (where ``<SPECIES_ID>`` is the six-character identifier of the species;
 e.g., CanFam).
 If the species does not currently have any demographic model,
-then you should add this file to ``stdpopsim/catalog/<SPECIES_ID>/``,
+then you should add this file to ``stdvoidsim/catalog/<SPECIES_ID>/``,
 with the following three lines of code:
 
 .. code-block:: python
 
   import msprime
-  import stdpopsim
+  import stdvoidsim
 
-  _species = stdpopsim.get_species("<SPECIES_ID>")
+  _species = stdvoidsim.get_species("<SPECIES_ID>")
 
 Furthermore, to ensure that the demographic model(s) are fully incorporated to the
 species' code base, you should add the following import to the ``__init__.py`` file
@@ -1094,7 +1094,7 @@ Coding the demographic model
 
 The demographic model should be coded in the ``demographic_models.py`` file
 by defining a specialized function, which essentially returns
-a ``stdpopsim.DemographicModel`` object initialized with the appropriate values.
+a ``stdvoidsim.DemographicModel`` object initialized with the appropriate values.
 This function should then be added to the ``_species`` object using the ``add_demographic_model``
 function.
 We provide below a template block of code for these two operations:
@@ -1102,7 +1102,7 @@ We provide below a template block of code for these two operations:
 .. code-block:: python
 
   def _model_func_name():
-      return stdpopsim.DemographicModel(
+      return stdvoidsim.DemographicModel(
           id=...,
           description=...,
           long_description=...,
@@ -1135,17 +1135,17 @@ The first eight attributes are quite straightforward:
 
 * ``long_description`` (`string`): A more detailed textual description of the model (short paragraph).
 
-* ``populations``: A list of ``stdpopsim.Population`` objects, which have their own
+* ``populations``: A list of ``stdvoidsim.Population`` objects, which have their own
   ``id`` and ``description``. For example, the Thousand Genomes Project Yoruba panel
-  could be defined as ``stdpopsim.Population(id="YRI", description="1000 Genomes YRI
+  could be defined as ``stdvoidsim.Population(id="YRI", description="1000 Genomes YRI
   (Yorubans)")``.
 
-* ``citations``: A list of ``stdpopsim.Citation`` objects for the publications
+* ``citations``: A list of ``stdvoidsim.Citation`` objects for the publications
   from which this model was derived.
   The citation object requires author, year, and doi information, and
   a specified reason for citing this model (see `Coding the species parameters`_).
   The reason associated with demographic model citations will typically be
-  ``stdpopsim.CiteReason.DEM_MODEL``.
+  ``stdvoidsim.CiteReason.DEM_MODEL``.
 
 * ``generation_time`` (`double`): The generation time for the species in years.
   The value of this parameter does not directly affect the simulation,
@@ -1171,7 +1171,7 @@ The first eight attributes are quite straightforward:
   than mutation rates, we provide this option for completness.
   Namely, a demographic model might have been inferred under the assumption of a specific
   recombination rate, which does not match with the species' recombination rate implemented
-  in ``stdpopsim``.
+  in ``stdvoidsim``.
   Also, some demographic models were inferred under the assumptions of a specifc ratio of
   mutation to recombination rates.
 
@@ -1224,8 +1224,8 @@ Testing your demographic model and submitting a PR
 --------------------------------------------------
 
 Once you have written the demographic model function in the ``demographic_models.py`` file,
-you should test it locally using the development version of ``stdpopsim``.
-First, make sure to install the development version of ``stdpopsim`` and its requirements,
+you should test it locally using the development version of ``stdvoidsim``.
+First, make sure to install the development version of ``stdvoidsim`` and its requirements,
 by following the :ref:`sec_development_installation` instructions.
 Then, check that your new demographic model function has been imported
 by executing the following Python code,
@@ -1233,9 +1233,9 @@ where ``<SPECIES_ID>`` is the six-character species id (e.g., HomSap or AraTha):
 
 .. code-block:: python
 
-  import stdpopsim
+  import stdvoidsim
 
-  species = stdpopsim.get_species("<SPECIES_ID>")
+  species = stdvoidsim.get_species("<SPECIES_ID>")
   for x in species.demographic_models:
       print(x.id)
 
@@ -1251,8 +1251,8 @@ You should make sure that the identifier of your newly added model is printed.
     in the end of the ``demographic_models.py`` file.
 
     If you are still having trouble, check the
-    `GitHub issues <https://github.com/popsim-consortium/stdpopsim/issues?q=is%3Aissue+adding+demographic+model+>`__
-    or `open a new issue <https://github.com/popsim-consortium/stdpopsim/issues/new>`__ to get help from others.
+    `GitHub issues <https://github.com/kevinkorfmann/stdvoidsim/issues?q=is%3Aissue+adding+demographic+model+>`__
+    or `open a new issue <https://github.com/kevinkorfmann/stdvoidsim/issues/new>`__ to get help from others.
 
 After you confirmed that your demographic model was added to the species code,
 you should check that you can successfully simulate it with the Python API.
@@ -1262,9 +1262,9 @@ you should submit a pull request (PR) with your changes to the code.
 See the `GitHub workflow`_ for more details about this process.
 
 At this point, most of your work is done.
-**You have officially joined the** ``stdpopsim`` **development team. Welcome!!**
+**You have officially joined the** ``stdvoidsim`` **development team. Welcome!!**
 Your model still needs to undergo review by another member (or members)
-of the development team before it is fully incorporated into ``stdpopsim``.
+of the development team before it is fully incorporated into ``stdvoidsim``.
 This will likely require additional feedback from you,
 so, stay tuned for discussion during the review process.
 
@@ -1274,21 +1274,21 @@ Implementing tests for the review of a demographic model
 
 After a contributor submits a PR with a new demographic model,
 the code undergoes seven steps of review before it
-is officially added to ``stdpopsim`` (see `Overview of the stdpopsim review process`_).
+is officially added to ``stdvoidsim`` (see `Overview of the stdvoidsim review process`_).
 In Step 3 of this process, the reviewer writes testing code for the newly
 added demographic model.
-This is done in file ``stdpopsim/qc/<SPECIES_ID>.py``
+This is done in file ``stdvoidsim/qc/<SPECIES_ID>.py``
 (where ``<SPECIES_ID>`` is the six-character identifier of the species).
 If this is the first demographic model added for this species,
 the reviewer should create this file and add an import
-statement for the species to ``stdpopsim/qc/__init__.py``.
+statement for the species to ``stdvoidsim/qc/__init__.py``.
 
-The code written by the reviewer in ``stdpopsim/qc/<SPECIES_ID>.py``
+The code written by the reviewer in ``stdvoidsim/qc/<SPECIES_ID>.py``
 should define a function that returns a
-``stdpopsim.DemographicModel`` object, parallel to the function defined
+``stdvoidsim.DemographicModel`` object, parallel to the function defined
 by the original contributor of the demographic model (see `Coding the demographic model`_).
 After this function is defined, it should be **registered as the QC function** of the
-original function by adding this bit of code to ``stdpopsim/qc/<SPECIES_ID>.py``:
+original function by adding this bit of code to ``stdvoidsim/qc/<SPECIES_ID>.py``:
 
 .. code-block:: python
 
@@ -1299,7 +1299,7 @@ Where ``_MODEL_ID_`` is the string specified by the original contributor as the
 implemented by the reviewer.
 
 The original demographic model and its registered QC model are compared as part of
-the ``stdpopsim`` `Unit tests`_.
+the ``stdvoidsim`` `Unit tests`_.
 
 ************************************************
 Adding a recombination/genetic map or annotation
@@ -1308,7 +1308,7 @@ Adding a recombination/genetic map or annotation
 .. note::
     Recombination map and genetic map are terms used to describe
     maps of recombination rates that vary across and along chromosomes.
-    In the ``stdpopsim`` code and documentation, we use the term
+    In the ``stdvoidsim`` code and documentation, we use the term
     **genetic map** to refer specifically to a "crossing-over rate map" and
     **recombination map** to refer to a "crossing-over and gene conversion rate map.""
     See :ref:`further details <sec_api_gene_conversion>` on this distinction.
@@ -1322,8 +1322,8 @@ The following documentation describes adding genetic maps;
 the procedure for annotations is similar (but see the important note below).
 
 Genetic maps can be added to
-`stdpopsim` by creating a new `GeneticMap` object and providing a formatted file
-detailing recombination rates to a designated ``stdpopsim`` maintainer who then uploads
+`stdvoidsim` by creating a new `GeneticMap` object and providing a formatted file
+detailing recombination rates to a designated ``stdvoidsim`` maintainer who then uploads
 it to AWS. If there is one for your species that you wish to include, create a space
 delimited file with four columns: Chromosome, Position(bp), Rate(cM/Mb), and Map(cM).
 Each chromosome should be placed in a separate file and with the chromosome id in the
@@ -1339,28 +1339,28 @@ for more details)::
 
 Once you have the genetic map files formatted, tar and gzip them into a single
 compressed archive. The gzipped tarball must be FLAT (there are no directories in the
-tarball). This file will be sent to one of the ``stdpopsim`` uploaders for placement in the
+tarball). This file will be sent to one of the ``stdvoidsim`` uploaders for placement in the
 AWS cloud once the new genetic map(s) are approved. Finally, you must add a `GeneticMap`
-object to the file named for your species in the ``stdpopsim/catalog/<SPECIES_ID>/`` directory
+object to the file named for your species in the ``stdvoidsim/catalog/<SPECIES_ID>/`` directory
 (the one that contains all the simulation code for that species,
 see `Getting set up to add a new species`_):
 
 .. code-block:: python
 
-    _genetic_map_citation = stdpopsim.Citation(
-        doi="FILL_ME", author="FILL_ME", year=9999, reasons={stdpopsim.CiteReason.GEN_MAP}
+    _genetic_map_citation = stdvoidsim.Citation(
+        doi="FILL_ME", author="FILL_ME", year=9999, reasons={stdvoidsim.CiteReason.GEN_MAP}
     )
     """
     The file_pattern argument is a pattern that matches the genetic map filenames,
     where '{id}' is replaced with the 'id' field of a given chromosome.
     """
-    _gm = stdpopsim.GeneticMap(
+    _gm = stdvoidsim.GeneticMap(
         species=_species,
         id="FILL_ME",  # ID for genetic map, see naming conventions
         description="FILL_ME",
         long_description="FILL_ME",
         url=(
-            "https://stdpopsim.s3-us-west-2.amazonaws.com/"
+            "https://stdvoidsim.s3-us-west-2.amazonaws.com/"
             "genetic_maps/dir/filename.tar.gz"
         ),
         sha256="FILL_ME",
@@ -1376,7 +1376,7 @@ system, the following can instead be used:
 
 .. code-block:: sh
 
-   python -c 'from stdpopsim.utils import sha256; print(sha256("genetic_map.tgz"))'
+   python -c 'from stdvoidsim.utils import sha256; print(sha256("genetic_map.tgz"))'
 
 Once all this is done, submit a PR containing the code changes and wait for directions
 on whom to send the compressed archive of genetic maps to (currently Andrew Kern is the
@@ -1387,7 +1387,7 @@ Since the checksum for the file uploaded to AWS is hardcoded into the package,
 it is important that we do not change that file in the future on AWS.
 For instance, if we uploaded a different annotation file with the same name
 (and hence obtainable by the same URL),
-then users of previous versions of stdpopsim who try to use that annotation
+then users of previous versions of stdvoidsim who try to use that annotation
 would receive an error when the package downloads the file and finds
 its checksum does not match what is expected.
 So, when updating an existing resource file (such as a genetic map or annotation),
@@ -1406,7 +1406,7 @@ Lifting over a recombination/genetic map
 ****************************************
 
 Existing genetic maps will need to be lifted over to a new assembly, if and when the
-current assembly is updated in ``stdpopsim``. This process can be partially automated by running
+current assembly is updated in ``stdvoidsim``. This process can be partially automated by running
 the ``liftOver`` maintenance code.
 
 First, you must download and install the ``liftOver`` executable from the
@@ -1457,13 +1457,13 @@ system, the following can instead be used:
 
 .. code-block:: sh
 
-   python -c 'from stdpopsim.utils import sha256; print(sha256("genetic_map.tgz"))'
+   python -c 'from stdvoidsim.utils import sha256; print(sha256("genetic_map.tgz"))'
 
 The newly lifted over maps will be formatted in a compressed archive and
 automatically named using the assembly name from the chain file.
-This file will be sent to one of the ``stdpopsim`` uploaders for placement in the
+This file will be sent to one of the ``stdvoidsim`` uploaders for placement in the
 AWS cloud, once the new map is approved. Finally, you must add a `GeneticMap`
-object to the file named for your species in the `stdpopsim/catalog/<SPECIES_ID>/`
+object to the file named for your species in the `stdvoidsim/catalog/<SPECIES_ID>/`
 directory, as shown in `Adding a recombination/genetic map or annotation`_.
 
 Again, once all this is done, submit a PR containing the code changes and wait for
@@ -1504,7 +1504,7 @@ A distribution of fitness effects (DFE) describes
 the probability distribution of selection coefficients
 (deleterious, neutral, and beneficial)
 for mutations occurring in a certain set of genomic regions.
-This is a central component of the way that ``stdpopsim``
+This is a central component of the way that ``stdvoidsim``
 incorporates natural selection in its simulations.
 See :ref:`sec_simulating_sel`.
 There are various computational methods for estimating DFEs from genomic data
@@ -1514,29 +1514,29 @@ and you may use published DFEs to code a DFE model, as described below.
 Getting set up to add a new DFE model
 ---------------------------------------------
 
-If this is your first time implementing a DFE in ``stdpopsim``, it's a good
+If this is your first time implementing a DFE in ``stdvoidsim``, it's a good
 idea to take some time browsing the :ref:`sec_catalog`
 to see how existing DFE models are coded and documented.
 If you have any questions or confusion about formatting or implementing demographic models, please
-don't hesitate to `open a new issue <http://github.com/popgensims/stdpopsim/issues>`__.
+don't hesitate to `open a new issue <http://github.com/kevinkorfmann/stdvoidsim/issues>`__.
 We're more than happy to answer any questions and help get you up and running.
-Before you add any code, be sure to have forked the ``stdpopsim`` repository
+Before you add any code, be sure to have forked the ``stdvoidsim`` repository
 and cloned it locally, following the instructions in the `GitHub Workflow`_ section.
 
 The code for for a species' DFE models is written in the ``dfes.py``
-file in that species directory ``stdpopsim/catalog/<SPECIES_ID>/``
+file in that species directory ``stdvoidsim/catalog/<SPECIES_ID>/``
 (where ``<SPECIES_ID>`` is the six-character identifier of the species;
 e.g., AraTha).
 If the species does not currently have any DFE model,
-then you should add this file to ``stdpopsim/catalog/<SPECIES_ID>/``,
+then you should add this file to ``stdvoidsim/catalog/<SPECIES_ID>/``,
 with the following two lines of code:
 
 
 .. code-block:: python
 
-  import stdpopsim
+  import stdvoidsim
 
-  _species = stdpopsim.get_species("<SPECIES_ID>")
+  _species = stdvoidsim.get_species("<SPECIES_ID>")
 
 Furthermore, to ensure that the DFE model is fully incorporated to the
 species' code base, you should add the following import to the ``__init__.py`` file
@@ -1552,7 +1552,7 @@ Coding the DFE model
 
 The DFE model should be coded in the ``dfes.py`` file
 by defining a specialized function, which essentially returns
-a ``stdpopsim.DFE`` object initialized with the appropriate values.
+a ``stdvoidsim.DFE`` object initialized with the appropriate values.
 This function should then be added to the ``_species`` object using the ``add_dfe``
 function.
 We provide below a template block of code for these two operations:
@@ -1560,7 +1560,7 @@ We provide below a template block of code for these two operations:
 .. code-block:: python
 
   def _dfe_func_name():
-      return stdpopsim.DFE(
+      return stdvoidsim.DFE(
           id=...,
           description=...,
           long_description=...,
@@ -1586,16 +1586,16 @@ A DFE model is thus defined using six different attributes.
 
 * ``long_description`` (`string`): A more detailed textual description of the model (short paragraph).
 
-* ``citations``: A list of ``stdpopsim.Citation`` objects for the publications
+* ``citations``: A list of ``stdvoidsim.Citation`` objects for the publications
   from which this model was derived.
   The citation object requires author, year, and doi information, and
   a specified reason for citing this model (see `Coding the species parameters`_).
   The reason associated with demographic model citations will typically be
-  ``stdpopsim.CiteReason.DFE``.
+  ``stdvoidsim.CiteReason.DFE``.
 
-* ``mutation_types``: A list of ``stdpopsim.MutationType`` objects corresponding to different
+* ``mutation_types``: A list of ``stdvoidsim.MutationType`` objects corresponding to different
   mutation types (such as negative, neutral, or positive).
-  For more details, see the example below and the documentation of :class:`stdpopsim.MutationType`
+  For more details, see the example below and the documentation of :class:`stdvoidsim.MutationType`
 
 * ``proportions``: A list of positive numbers that sum to 1 of the same length as ``mutation_types``.
   This list specifies the proportion of each mutation type.
@@ -1614,15 +1614,15 @@ but they have a fixed selection coefficient of ``0.01``.
     def _dfe_func_name():
 
         # Default mutation type is neutral
-        neutral = stdpopsim.MutationType()
+        neutral = stdvoidsim.MutationType()
         # Negative mutation type with gamma-distributed selection coefficients
-        negative = stdpopsim.MutationType(
+        negative = stdvoidsim.MutationType(
             dominance_coeff=0.5,
             distribution_type="g",  # gamma distribution
             distribution_args=[-0.0004, 0.27],  # mean and shape of distributoin
         )
         # Positive mutation type with fixed selection coefficient of 0.01
-        positive = stdpopsim.MutationType(
+        positive = stdvoidsim.MutationType(
             dominance_coeff=0.5,
             distribution_type="f",  # fixed selection coefficient
             distribution_args=[0.01],  # fixed value
@@ -1633,7 +1633,7 @@ but they have a fixed selection coefficient of ``0.01``.
         p_negative = 0.299
         p_positive = 1 - p_neutral - p_negative
 
-        return stdpopsim.DFE(
+        return stdvoidsim.DFE(
             id=...,
             description=...,
             long_description=...,
@@ -1653,22 +1653,22 @@ Testing your DFE model and submitting a PR
 After you finished your implementation, and specified all the
 necessary citations,
 we recommend that you run some basic local checks to see that
-the model was successfully loaded to ``stdpopsim``.
+the model was successfully loaded to ``stdvoidsim``.
 You may follow the process outlined for `Testing your demographic model and submitting a PR`_.
 
-Once you are convinced that the model was accurately implemented and loaded to ``stdpopsim``,
+Once you are convinced that the model was accurately implemented and loaded to ``stdvoidsim``,
 you should submit a pull request (PR) with your changes to the code.
 See the `GitHub workflow`_ for more details about this process.
 
 At this point, most of your work is done.
-**You have officially joined the** ``stdpopsim`` **development team. Welcome!!**
+**You have officially joined the** ``stdvoidsim`` **development team. Welcome!!**
 Your DFE model still needs to undergo review by another member
-of the development team before it is fully incorporated into ``stdpopsim``.
+of the development team before it is fully incorporated into ``stdvoidsim``.
 This will likely require additional feedback from you,
 so, stay tuned for discussion during the review process.
 
 To facilitate this, there is one more step: please open a
-`new issue <https://github.com/popsim-consortium/stdpopsim/issues/new>`__,
+`new issue <https://github.com/kevinkorfmann/stdvoidsim/issues/new>`__,
 using the "DFE QC" template.
 The template asks for the basic information that someone will need
 to independently verify the implemented DFE.
@@ -1678,11 +1678,11 @@ Reviewing a DFE model
 ---------------------
 
 The process for reviewing a DFE is essentially the same
-as for reviewing a demographic model (see `Overview of the stdpopsim review process`_).
+as for reviewing a demographic model (see `Overview of the stdvoidsim review process`_).
 Briefly, you will re-implement the DFE "blind", i.e., without looking at the DFE
 implementation already added to the code.
 Then, the unit tests check whether the implementations are equivalent.
-To do this, you add your implementation to ``stdpopsim/qc/<SPECIES_ID>.py``,
+To do this, you add your implementation to ``stdvoidsim/qc/<SPECIES_ID>.py``,
 followed by a call like
 
 .. code-block:: python
@@ -1697,7 +1697,7 @@ that returns a DFE object.
 Coding standards
 ****************
 
-To ensure that the code in ``stdpopsim`` is as readable as possible
+To ensure that the code in ``stdvoidsim`` is as readable as possible
 and follows a reasonably uniform style, we require that all code follows
 the `PEP8 <https://www.python.org/dev/peps/pep-0008/>`__ style guide.
 Lines of code should be no more than 89 characters.
@@ -1710,7 +1710,7 @@ testing suite.
 Naming conventions
 ******************
 
-To ensure uniformity in naming schemes across objects in ``stdpopsim``
+To ensure uniformity in naming schemes across objects in ``stdvoidsim``
 we have strict conventions for species, genetic maps, and demographic
 models.
 
@@ -1743,11 +1743,11 @@ then ``LogNormal`` might be the descriptive string.
 Unit tests
 **********
 
-All code added to ``stdpopsim`` should have
+All code added to ``stdvoidsim`` should have
 `unit tests <https://en.wikipedia.org/wiki/Unit_testing>`__. These are typically
 simple and fast checks to ensure that the code makes basic sense (the
 entire unit test suite should not require more than a few seconds to run).
-Test coverage is checked using `CodeCov <https://codecov.io/gh/popgensims/stdpopsim>`__,
+Test coverage is checked using `CodeCov <https://codecov.io/gh/kevinkorfmann/stdvoidsim>`__,
 which generates reports about each pull request.
 
 It is not practical to test the statistical properties of simulation models
@@ -1768,12 +1768,12 @@ To set this up use either ``pip`` or ``conda`` to install ``flake8``
 
 To run the test simply use::
 
-    $ flake8 --max-line-length 89 stdpopsim tests
+    $ flake8 --max-line-length 89 stdvoidsim tests
 
 If you would like to automatically run this test before a commit is permitted,
-add the following line in the file ``stdpopsim/.git/hooks/pre-commit.sample``::
+add the following line in the file ``stdvoidsim/.git/hooks/pre-commit.sample``::
 
-    exec flake8 --max-line-length 89 setup.py stdpopsim tests
+    exec flake8 --max-line-length 89 setup.py stdvoidsim tests
 
 before::
 
@@ -1791,10 +1791,10 @@ well the test units cover the source code. As a result it's very helpful
 to check locally how well your tests are covering your code by asking
 `pytest` for coverage reports. This can be done with::
 
-    $ pytest --cov-report html --cov=stdpopsim tests/
+    $ pytest --cov-report html --cov=stdvoidsim tests/
 
 this will output a directory of html files for you to browse test coverage
-for every file in ``stdpopsim`` in a reasonably straightfoward graphical
+for every file in ``stdvoidsim`` in a reasonably straightfoward graphical
 way. To see them, direct your web browser to the `htmlcov/index.html` file.
 You'll be looking for lines of code that are highlighted yellow or red
 indicated that tests do not currently cover that bit of code.
@@ -1813,7 +1813,7 @@ HTML output in the ``docs/_build/html/`` directory.
 
 .. note::
 
-    You will need ``stdpopsim`` to be installed for the build to work.
+    You will need ``stdvoidsim`` to be installed for the build to work.
 
 
 ********************
@@ -1831,6 +1831,6 @@ Here is a list of things to do when making a new release:
 4. Upload to PyPI: `twine upload dist/{version just tagged}.tar.gz`
 5. After the release, if everything looks OK,
    update the symlink for ``stable`` in the
-   `stdpopsim-docs <https://github.com/popsim-consortium/stdpopsim-docs>`__
+   `stdvoidsim-docs <https://github.com/kevinkorfmann/stdvoidsim-docs>`__
    repository
 6. Check on the conda feedstock PR.

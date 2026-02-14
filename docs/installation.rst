@@ -4,14 +4,14 @@
 Installation
 ============
 
-You can get started right away, without installing ``stdpopsim`` locally, by using the
-`Jupyter Binder <https://mybinder.org/v2/gh/popsim-consortium/stdpopsim/main?filepath=stdpopsim_example.ipynb>`_. |binder|
+You can get started right away, without installing ``stdvoidsim`` locally, by using the
+`Jupyter Binder <https://mybinder.org/v2/gh/kevinkorfmann/stdvoidsim/main?filepath=stdvoidsim_example.ipynb>`_. |binder|
 
 .. |binder| image:: https://mybinder.org/badge_logo.svg
- :target: https://mybinder.org/v2/gh/popsim-consortium/stdpopsim/main?filepath=stdpopsim_example.ipynb
+ :target: https://mybinder.org/v2/gh/kevinkorfmann/stdvoidsim/main?filepath=stdvoidsim_example.ipynb
 
 
-There are two basic options for installing ``stdpopsim`` and its dependencies: either
+There are two basic options for installing ``stdvoidsim`` and its dependencies: either
 using :ref:`sec_installation_conda` or :ref:`sec_installation_pip`.
 We recommend conda for most users (particularly those using OSX or Windows),
 although pip can be more convenient in certain cases.
@@ -22,10 +22,10 @@ although pip can be more convenient in certain cases.
 Requirements
 ************
 
-Library requirements for ``stdpopsim`` should be installed automatically when using
+Library requirements for ``stdvoidsim`` should be installed automatically when using
 either conda or pip.
 
-``stdpopsim`` requires Python 3.10 or later.
+``stdvoidsim`` requires Python 3.10 or later.
 
 
 .. _sec_installation_conda:
@@ -34,12 +34,12 @@ either conda or pip.
 Conda
 *****
 
-Pre-built binary packages for ``stdpopsim`` are available through
+Pre-built binary packages for ``stdvoidsim`` are available through
 `conda <https://conda.io/docs/>`_, and built using `conda-forge <https://conda-forge.org/>`_.
 Packages for recent version of Python are available for Linux, OSX and Windows. Install
 using::
 
-    $ conda install -c conda-forge stdpopsim
+    $ conda install -c conda-forge stdvoidsim
 
 
 +++++++++++
@@ -51,8 +51,8 @@ Quick Start
    installation!
 2. Set up the `conda-forge channel <https://conda-forge.org/>`_ using
    ``conda config --add channels conda-forge``.
-3. Install stdpopsim: ``conda install stdpopsim``.
-4. Try it out: ``stdpopsim --version``.
+3. Install stdvoidsim: ``conda install stdvoidsim``.
+4. Try it out: ``stdvoidsim --version``.
 
 
 There are several different ways to obtain ``conda``. Please see the
@@ -68,9 +68,9 @@ Pip
 
 Installing using pip is usually as simple as::
 
-    $ python -m pip install stdpopsim --user
+    $ python -m pip install stdvoidsim --user
 
-This will install ``stdpopsim`` into your local user Python packages
+This will install ``stdvoidsim`` into your local user Python packages
 (on some systems you will need to use ``python3`` rather than
 ``python``). Please see the Python `package installation
 <https://packaging.python.org/tutorials/installing-packages/>`_
@@ -103,15 +103,15 @@ of two ways:
 
 1. The most reliable way is to use ::
 
-       $ python -m stdpopsim
+       $ python -m stdvoidsim
 
    Once the ``python`` executable is the same one as was used when installing
    ``conda`` or ``pip``, this is guaranteed to work.
 
-2. It is also possible to run ``stdpopsim`` like a regular Unix program
+2. It is also possible to run ``stdvoidsim`` like a regular Unix program
    using::
 
-    $ stdpopsim
+    $ stdvoidsim
 
    However, this requires that your `PATH <https://en.wikipedia.org/wiki/PATH_(variable)>`_
    environment variable contains the directory where conda or pip installed the

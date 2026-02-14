@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: A suggestion for something to add to stdpopsim.
+about: A suggestion for something to add to stdvoidsim.
 title:
 labels: enhancement
 assignees: ''
@@ -10,7 +10,7 @@ assignees: ''
 *This template is a suggestion that may not fit your issue: delete/modify anything!*
 
 **Short description of what you'd like added:**
-*Describe briefly how you think stdpopsim could be better.*
+*Describe briefly how you think stdvoidsim could be better.*
 
 **Rationale and considerations:**
 *Give some more explanation of why this is a good idea,

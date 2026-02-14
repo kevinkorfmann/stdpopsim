@@ -364,7 +364,7 @@ def create_readme(postmapDir, cli_cmd, gmID, chainFile, newAssemb):
     cli = " ".join([str(x) for x in cli_cmd]) + "\n"
     readme = """\tThis directory contains a build of the {newAssemb} genetic map.\n
     The map was generated automatically by lifting over {gmID} to {newAssemb} \
-            using `liftOver_assemblies.py` in stdpopsim.
+            using `liftOver_assemblies.py` in stdvoidsim.
     The chain file `{chainFile}` was downloaded from the UCSC Genome Browser \
             and the UCSC liftOver tool was used to perform the lift.\n
     The following command was used:\n
@@ -394,7 +394,7 @@ def create_readme_dm3TOdm6(postmapDir, cli_cmd, gmID, chainFile, newAssemb):
     readme = """\tThis directory contains a build of the {newAssemb} genetic map.\n
     The map was generated automatically by lifting over {gmID}
     (ftp://ftp.flybase.org/flybase/associated_files/Comeron.2012.10.15.xlsx)
-    to {newAssemb} using `liftOver_assemblies_dm3TOdm6.py` in stdpopsim.
+    to {newAssemb} using `liftOver_assemblies_dm3TOdm6.py` in stdvoidsim.
     The chain file `{chainFile}` was downloaded from the UCSC Genome Browser,
     and the UCSC liftOver tool was used to perform the lift over.\n
     The following command was used:

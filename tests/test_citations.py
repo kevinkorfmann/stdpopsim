@@ -5,7 +5,7 @@ Test cases for methods related to citations.
 from unittest import mock
 import urllib.error
 
-import stdpopsim
+import stdvoidsim
 import pytest
 
 
@@ -39,7 +39,7 @@ class TestFetchBibtex:
 
     def test_get_bibtex_success(self):
         # Tests a success
-        citation = stdpopsim.Citation(doi="DOI", author="Authors", year="2000")
+        citation = stdvoidsim.Citation(doi="DOI", author="Authors", year="2000")
         with mock.patch(
             "urllib.request.urlopen",
             return_value=mocked_response(code=200, text=b"test"),
@@ -52,14 +52,14 @@ class TestFetchBibtex:
     def test_get_bibtex_bad_connection(self):
         # Tests an invalid URL
         # Asserts that it raises a value error.
-        citation = stdpopsim.Citation(doi="DOI", author="Authors", year="2000")
+        citation = stdvoidsim.Citation(doi="DOI", author="Authors", year="2000")
         with pytest.raises(ValueError):
             citation.fetch_bibtex()
 
     def test_get_bibtex_404(self):
         # Tests a 404.  The previous URL here, http://doi.org/url-does-not-exist,
         # started just not responding.
-        citation = stdpopsim.Citation(
+        citation = stdvoidsim.Citation(
             doi="http://github.com/popsim-consortium/this_is_not_a_repo",
             author="Authors",
             year="2000",
@@ -74,7 +74,7 @@ class TestEverythingHappensForAReason:
     """
 
     def test_reasons_for_engine_citations(self):
-        for engine in stdpopsim.all_engines():
+        for engine in stdvoidsim.all_engines():
             for citation in engine.citations:
                 assert len(citation.reasons) > 0, (
                     f"No reason given for '{citation.author}' citation "
@@ -82,7 +82,7 @@ class TestEverythingHappensForAReason:
                 )
 
     def test_reason_for_genetic_map_citations(self):
-        for genetic_map in stdpopsim.all_genetic_maps():
+        for genetic_map in stdvoidsim.all_genetic_maps():
             for citation in genetic_map.citations:
                 assert len(citation.reasons) > 0, (
                     f"No reason given for '{citation.author}' citation "
@@ -91,7 +91,7 @@ class TestEverythingHappensForAReason:
                 )
 
     def test_reason_for_model_citations(self):
-        for model in stdpopsim.all_demographic_models():
+        for model in stdvoidsim.all_demographic_models():
             for citation in model.citations:
                 assert len(citation.reasons) > 0, (
                     f"No reason given for '{citation.author}' citation "
@@ -99,7 +99,7 @@ class TestEverythingHappensForAReason:
                 )
 
     def test_reason_for_dfe_citations(self):
-        for dfe in stdpopsim.all_dfes():
+        for dfe in stdvoidsim.all_dfes():
             for citation in dfe.citations:
                 assert len(citation.reasons) > 0, (
                     f"No reason given for '{citation.author}' citation "

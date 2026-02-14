@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("AnaPla")
+    species = stdvoidsim.get_species("AnaPla")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "anas_platyrhynchos"
@@ -26,7 +26,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("AnaPla").genome
+    genome = stdvoidsim.get_species("AnaPla").genome
 
     # total map lengths for chromosomes 1-18 taken from from Huang et al 2006
     # Table 1. See: https://academic.oup.com/view-large/280279985

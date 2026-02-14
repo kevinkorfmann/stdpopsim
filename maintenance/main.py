@@ -1,7 +1,7 @@
 """
 Command line interface for managing routine maintenance tasks.
 
-This interface is for stdpopsim developers only.
+This interface is for stdvoidsim developers only.
 """
 
 import contextlib
@@ -14,7 +14,7 @@ import click
 import black
 import daiquiri
 
-import stdpopsim
+import stdvoidsim
 from . import ensembl
 from . import ncbi
 from . import annotation_maint
@@ -23,7 +23,7 @@ logger = logging.getLogger("maint")
 
 species_template = string.Template(
     """
-import stdpopsim
+import stdvoidsim
 
 from . import genome_data
 
@@ -66,7 +66,7 @@ _mutation_rate = $chromosome_rate_dict
 
 _ploidy = $chromosome_rate_dict
 
-_genome = stdpopsim.Genome.from_data(
+_genome = stdvoidsim.Genome.from_data(
     genome_data.data,
     recombination_rate=_recombination_rate,
     mutation_rate=_mutation_rate,
@@ -75,16 +75,16 @@ _genome = stdpopsim.Genome.from_data(
     # the estimates for recombination and mutation rates. The assembly
     # citation is optional and can be deleted if not needed.]
     citations=[
-        stdpopsim.Citation(
-            author="", year=-1, doi="", reasons={stdpopsim.CiteReason.ASSEMBLY}),
-        stdpopsim.Citation(
-            author="", year=-1, doi="", reasons={stdpopsim.CiteReason.REC_RATE}),
-        stdpopsim.Citation(
-            author="", year=-1, doi="", reasons={stdpopsim.CiteReason.MUT_RATE})
+        stdvoidsim.Citation(
+            author="", year=-1, doi="", reasons={stdvoidsim.CiteReason.ASSEMBLY}),
+        stdvoidsim.Citation(
+            author="", year=-1, doi="", reasons={stdvoidsim.CiteReason.REC_RATE}),
+        stdvoidsim.Citation(
+            author="", year=-1, doi="", reasons={stdvoidsim.CiteReason.MUT_RATE})
     ]
 )
 
-_species = stdpopsim.Species(
+_species = stdvoidsim.Species(
     id="$sps_id",
     ensembl_id="$ensembl_id",
     name="$scientific_name",
@@ -100,14 +100,14 @@ _species = stdpopsim.Species(
     # Please also add a citation for this below..]
     population_size=0,
     citations=[
-        stdpopsim.Citation(
-            author="", year=-1, doi="", reasons={stdpopsim.CiteReason.POP_SIZE}),
-        stdpopsim.Citation(
-            author="", year=-1, doi="", reasons={stdpopsim.CiteReason.GEN_TIME})
+        stdvoidsim.Citation(
+            author="", year=-1, doi="", reasons={stdvoidsim.CiteReason.POP_SIZE}),
+        stdvoidsim.Citation(
+            author="", year=-1, doi="", reasons={stdvoidsim.CiteReason.GEN_TIME})
     ],
 )
 
-stdpopsim.register_species(_species)
+stdvoidsim.register_species(_species)
 """
 )
 
@@ -115,13 +115,13 @@ species_test_template = string.Template(
     """
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("$sps_id")
+    species = stdvoidsim.get_species("$sps_id")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "$ensembl_id"
@@ -152,7 +152,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("$sps_id").genome
+    genome = stdvoidsim.get_species("$sps_id").genome
 
     @pytest.mark.skip("Recombination rate QC not done yet")
     @pytest.mark.parametrize(
@@ -198,7 +198,7 @@ def black_format(code):
     return black.format_file_contents(code, fast=False, mode=black.FileMode())
 
 
-def ensembl_stdpopsim_id(ensembl_id):
+def ensembl_stdvoidsim_id(ensembl_id):
     # Here is commented-out example code for dealing with name changes
     # in Ensembl: when they changed the Ensembl ID of 'dog' from
     # 'canis_familiaris' to 'canis_lupus_familiaris", we inserted these two lines;
@@ -213,7 +213,7 @@ def ensembl_stdpopsim_id(ensembl_id):
     return sps_id
 
 
-def ncbi_stdpopsim_id(ncbi_id):
+def ncbi_stdvoidsim_id(ncbi_id):
     tmp = ncbi_id.split(" ")[:2]
     sps_id = "".join([x[0:3].capitalize() for x in tmp])
     if len(sps_id) != 6:
@@ -222,7 +222,7 @@ def ncbi_stdpopsim_id(ncbi_id):
 
 
 def catalog_path(sps_id):
-    return pathlib.Path(f"stdpopsim/catalog/{sps_id}")
+    return pathlib.Path(f"stdvoidsim/catalog/{sps_id}")
 
 
 def write_catalog_stub(*, path, sps_id, ensembl_id, species_data, genome_data):
@@ -274,7 +274,7 @@ def write_catalog_stub(*, path, sps_id, ensembl_id, species_data, genome_data):
 
 class DataWriter:
     """
-    Writes data obtained from upstream sources into the stdpopsim
+    Writes data obtained from upstream sources into the stdvoidsim
     package hierarchy.
     """
 
@@ -288,7 +288,7 @@ class DataWriter:
             yield f
 
     def add_species(self, ensembl_id, force=False):
-        sps_id = ensembl_stdpopsim_id(ensembl_id)
+        sps_id = ensembl_stdvoidsim_id(ensembl_id)
         logger.info(f"Adding new species {sps_id} for Ensembl ID {ensembl_id}")
         root = catalog_path(sps_id)
         if force:
@@ -331,7 +331,7 @@ class DataWriter:
         )
 
     def write_genome_data(self, ensembl_id):
-        sps_id = ensembl_stdpopsim_id(ensembl_id)
+        sps_id = ensembl_stdvoidsim_id(ensembl_id)
         path = catalog_path(sps_id)
         if not path.exists():
             raise ValueError(
@@ -424,7 +424,7 @@ class DataWriter:
     def write_ensembl_release(self):
         release = self.ensembl_client.get_release()
         logger.info(f"Using Ensembl release {release}")
-        path = pathlib.Path("stdpopsim/catalog/ensembl_info.py")
+        path = pathlib.Path("stdvoidsim/catalog/ensembl_info.py")
         code = f"release = {release}"
         with self.write(path) as f:
             f.write(black_format(code))
@@ -451,10 +451,10 @@ def cli(debug):
 @cli.command()
 def list_species():
     """
-    List species in stdpopsim with their Ensembl IDs.
+    List species in stdvoidsim with their Ensembl IDs.
     """
     click.echo("ID       Ensembl ID")
-    for species in stdpopsim.all_species():
+    for species in stdvoidsim.all_species():
         click.echo(f"{species.id}   {species.ensembl_id}")
 
 
@@ -475,7 +475,7 @@ def update_genome_data(species):
 
     # Original species processing logic
     if len(species) == 0:
-        species_list = list(stdpopsim.all_species())
+        species_list = list(stdvoidsim.all_species())
         logger.info(f"Found {len(species_list)} species in catalog")
         embl_ids = []
         for s in species_list:

@@ -10,14 +10,14 @@ import multiprocessing as mp
 import tarfile
 import urllib.request
 import shutil
-import stdpopsim
+import stdvoidsim
 import liftOver
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--species", dest="species", help="stdpopsim species name")
-    parser.add_argument("--map", dest="map", help="stdpopsim map name")
+    parser.add_argument("--species", dest="species", help="stdvoidsim species name")
+    parser.add_argument("--map", dest="map", help="stdvoidsim map name")
     parser.add_argument(
         "--chainFile", dest="chainFile", help="liftOver chain file from UCSC"
     )
@@ -77,8 +77,8 @@ def main():
     # Save cli command
     cli_cmd = sys.argv
 
-    # Grab metadata from stdpopsim
-    species = stdpopsim.get_species(args.species)
+    # Grab metadata from stdvoidsim
+    species = stdvoidsim.get_species(args.species)
     genome = species.genome
     gm = species.get_genetic_map(args.map)
 

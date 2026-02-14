@@ -10,7 +10,7 @@ from Bio import Entrez
 
 logger = logging.getLogger("ncbi")
 
-Entrez.email = "stdpopsim@popsimconsortium.org"
+Entrez.email = "stdvoidsim@popsimconsortium.org"
 
 # TODO This is very badly factored, we're making the same call 3 or 4 times.
 # Fix up!

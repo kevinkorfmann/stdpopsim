@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("MusMus")
+    species = stdvoidsim.get_species("MusMus")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "mus_musculus"
@@ -32,7 +32,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("MusMus").genome
+    genome = stdvoidsim.get_species("MusMus").genome
 
     # @pytest.mark.skip("Recombination rate QC not done yet")
     @pytest.mark.parametrize(

@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("PhoSin")
+    species = stdvoidsim.get_species("PhoSin")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "phocoena_sinus"
@@ -30,7 +30,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("PhoSin").genome
+    genome = stdvoidsim.get_species("PhoSin").genome
 
     @pytest.mark.parametrize(
         ["name", "rate"],

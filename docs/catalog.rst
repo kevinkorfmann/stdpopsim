@@ -138,5 +138,5 @@ In addition to the species-specific models listed in this catalog, ``stdvoidsim`
 a number of generic demographic models that can be run with any species.
 These are described in more detail in the :ref:`API <sec_api_generic_models>`.
 
- - :meth:`stdpopsim.PiecewiseConstantSize`
- - :meth:`stdpopsim.IsolationWithMigration`
+ - :meth:`stdvoidsim.PiecewiseConstantSize`
+ - :meth:`stdvoidsim.IsolationWithMigration`

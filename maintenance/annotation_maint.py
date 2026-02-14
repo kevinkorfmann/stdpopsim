@@ -6,7 +6,7 @@ import logging
 import os
 import glob
 import tarfile
-import stdpopsim
+import stdvoidsim
 
 logger = logging.getLogger(__name__)
 # make root directory for annotations
@@ -47,10 +47,10 @@ def merged(intervals, *, closed: bool):
     return list(iter_merged(intervals, closed=closed))
 
 
-def gff_recarray_to_stdpopsim_intervals(gff):
+def gff_recarray_to_stdvoidsim_intervals(gff):
     """
     Merge overlapping intervals and convert coordinates. GFF intervals are
-    1-based [i,j], but stdpopsim intervals are 0-based [i-1,j).
+    1-based [i,j], but stdvoidsim intervals are 0-based [i-1,j).
     """
     intervals = np.array(merged(zip(gff.start, gff.end), closed=True))
     intervals[:, 0] = intervals[:, 0] - 1
@@ -62,10 +62,10 @@ def get_gff_recarray(url, sha256):
 
     if not pathlib.Path(local_path).exists():
         logger.info(f"downloading {url}")
-        stdpopsim.utils.download(url, local_path)
+        stdvoidsim.utils.download(url, local_path)
 
     logger.info("checking sha256")
-    local_sha256 = stdpopsim.utils.sha256(local_path)
+    local_sha256 = stdvoidsim.utils.sha256(local_path)
     if local_sha256 != sha256:
         logger.info(
             f"{local_path}: sha256: expected {sha256}, but found {local_sha256}. "
@@ -98,7 +98,7 @@ def download_process_annotations():
     NOTE: files need to be renamed before upload,
     to avoid clobbering existing files!
     """
-    for spc in stdpopsim.all_species():
+    for spc in stdvoidsim.all_species():
         if spc.annotations:
             for an in spc.annotations:
                 CHROM_IDS = [chrom.id for chrom in spc.genome.chromosomes]
@@ -121,9 +121,9 @@ def download_process_annotations():
                     chrom_exons = exons[np.where(exons.seqid == chrom_id)]
                     if len(chrom_exons) == 0:
                         continue
-                    intervals = gff_recarray_to_stdpopsim_intervals(chrom_exons)
-                    # double check that the intervals can be used in stdpopsim
-                    stdpopsim.utils._check_intervals_validity(intervals)
+                    intervals = gff_recarray_to_stdvoidsim_intervals(chrom_exons)
+                    # double check that the intervals can be used in stdvoidsim
+                    stdvoidsim.utils._check_intervals_validity(intervals)
                     out_file = os.path.join(
                         spc_name_path, an.file_pattern.format(id=chrom_id)
                     )

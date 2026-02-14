@@ -1,6 +1,6 @@
 ---
 name: New species
-about: Adding a new species to the stdpopsim catalogue.
+about: Adding a new species to the stdvoidsim catalogue.
 title:
 labels: enhancement
 assignees: ''

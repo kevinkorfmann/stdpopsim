@@ -1,6 +1,6 @@
 import random
 import logging
-import stdpopsim
+import stdvoidsim
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +18,7 @@ def adaptive_introgression(seed):
     The time of mutation introduction, the time of selection onset, and the
     selection coefficient, are each random variables.
     """
-    species = stdpopsim.get_species("HomSap")
+    species = stdvoidsim.get_species("HomSap")
     model = species.get_demographic_model("PapuansOutOfAfrica_10J19")
     contig = species.get_contig("chr1", length_multiplier=0.001)
     samples = {"YRI": 50, "Papuan": 50, "DenA": 1, "NeaA": 1}
@@ -62,7 +62,7 @@ def adaptive_introgression(seed):
     # generations before present.
     extended_events = [
         # Draw mutation in DenA.
-        stdpopsim.DrawMutation(
+        stdvoidsim.DrawMutation(
             time=T_mut,
             single_site_id=locus_id,
             population="DenA",
@@ -74,11 +74,11 @@ def adaptive_introgression(seed):
         # returned to the point where the mutation was introduced.
         # Conditioning should start one generation after T_mut (not at T_mut!),
         # to avoid checking for the mutation before SLiM can introduce it.
-        stdpopsim.ConditionOnAlleleFrequency(
+        stdvoidsim.ConditionOnAlleleFrequency(
             # Note: if T_mut ~= T_Den_split, then we end up with:
             #       GenerationAfter(T_mut) < T_Den_split,
             #       which will give an error due to "start_time < end_time".
-            start_time=stdpopsim.GenerationAfter(T_mut),
+            start_time=stdvoidsim.GenerationAfter(T_mut),
             end_time=T_Den_split,
             single_site_id=locus_id,
             population="DenA",
@@ -87,8 +87,8 @@ def adaptive_introgression(seed):
         ),
         # Denisovans split into DenA and Den1 at time T_Den_split,
         # so now we condition on having AF > 0 in Den1.
-        stdpopsim.ConditionOnAlleleFrequency(
-            start_time=stdpopsim.GenerationAfter(T_Den_split),
+        stdvoidsim.ConditionOnAlleleFrequency(
+            start_time=stdvoidsim.GenerationAfter(T_Den_split),
             end_time=T_mig,
             single_site_id=locus_id,
             population="Den1",
@@ -97,8 +97,8 @@ def adaptive_introgression(seed):
         ),
         # The Den1 lineage has migrants entering the Papaun lineage at T_mig,
         # so condition on AF > 0 in Papuans.
-        stdpopsim.ConditionOnAlleleFrequency(
-            start_time=stdpopsim.GenerationAfter(T_mig),
+        stdvoidsim.ConditionOnAlleleFrequency(
+            start_time=stdvoidsim.GenerationAfter(T_mig),
             end_time=0,
             single_site_id=locus_id,
             population="Papuan",
@@ -108,7 +108,7 @@ def adaptive_introgression(seed):
         # The mutation is positively selected in Papuans at T_sel.
         # Note that this will have no effect, unless/until a mutation with the
         # specified mutation_type_id is found in the population.
-        stdpopsim.ChangeMutationFitness(
+        stdvoidsim.ChangeMutationFitness(
             start_time=T_sel,
             end_time=0,
             single_site_id=locus_id,
@@ -117,7 +117,7 @@ def adaptive_introgression(seed):
             dominance_coeff=0.5,
         ),
         # Condition on AF > 0.05 in Papuans at the end of the simulation.
-        stdpopsim.ConditionOnAlleleFrequency(
+        stdvoidsim.ConditionOnAlleleFrequency(
             start_time=0,
             end_time=0,
             single_site_id=locus_id,
@@ -128,7 +128,7 @@ def adaptive_introgression(seed):
     ]
 
     # Simulate.
-    engine = stdpopsim.get_engine("slim")
+    engine = stdvoidsim.get_engine("slim")
     ts = engine.simulate(
         model,
         contig,
@@ -146,7 +146,7 @@ def adaptive_introgression(seed):
 
 if __name__ == "__main__":
     import sys
-    import stdpopsim.cli
+    import stdvoidsim.cli
     import collections
 
     if len(sys.argv) == 2:
@@ -156,6 +156,6 @@ if __name__ == "__main__":
 
     # Setup logging at verbosity level 2.
     args = collections.namedtuple("_", ["quiet", "verbose"])(False, 2)
-    stdpopsim.cli.setup_logging(args)
+    stdvoidsim.cli.setup_logging(args)
 
     ts, T_mut, T_sel, s = adaptive_introgression(seed)

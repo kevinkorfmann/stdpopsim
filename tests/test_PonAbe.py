@@ -1,12 +1,12 @@
 import pytest
 
-import stdpopsim
+import stdvoidsim
 from tests import test_species
 
 
 class TestSpeciesData(test_species.SpeciesTestBase):
 
-    species = stdpopsim.get_species("PonAbe")
+    species = stdvoidsim.get_species("PonAbe")
 
     def test_ensembl_id(self):
         assert self.species.ensembl_id == "pongo_abelii"
@@ -26,7 +26,7 @@ class TestSpeciesData(test_species.SpeciesTestBase):
 
 class TestGenomeData(test_species.GenomeTestBase):
 
-    genome = stdpopsim.get_species("PonAbe").genome
+    genome = stdvoidsim.get_species("PonAbe").genome
 
     # Average rates obtained from the NaterPA_PonAbe3 maps.
     # Loading all maps takes ~60 seconds, so we just hardcode the values.
