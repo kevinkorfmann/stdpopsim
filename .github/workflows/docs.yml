@@ -47,13 +47,14 @@ jobs:
         with:
           path: docs/_build/html
 
-  deploy:
-    if: (!github.event.pull_request) && github.repository == 'kevinkorfmann/stdvoidsim'
-    needs: build
-    runs-on: ubuntu-24.04
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
-      - id: deploy
-        uses: actions/deploy-pages@v4
+  # Uncomment the deploy job and enable Pages (Settings → Pages → Source: GitHub Actions) to publish docs.
+  # deploy:
+  #   if: (!github.event.pull_request) && github.repository == 'kevinkorfmann/stdvoidsim'
+  #   needs: build
+  #   runs-on: ubuntu-24.04
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deploy.outputs.page_url }}
+  #   steps:
+  #     - id: deploy
+  #       uses: actions/deploy-pages@v4
