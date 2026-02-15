@@ -12,4 +12,9 @@ htmlcov
 _test_cache
 test_cache
 .manuscript
-.test
+.test/*
+!.test/run_slim_test.py
+!.test/run_simulation.py
+!.test/README.txt
+!.test/run_cli_test.sh
+!.test/install_and_run.sh
