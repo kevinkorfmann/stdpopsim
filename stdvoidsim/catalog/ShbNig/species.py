@@ -8,12 +8,14 @@ _citation = stdvoidsim.Citation(
     reasons={stdvoidsim.CiteReason.GEN_TIME, stdvoidsim.CiteReason.POP_SIZE},
 )
 _assembly_citation = stdvoidsim.Citation(
-    author="Lovecraft, H.P.", year=1928,
+    author="Lovecraft, H.P.",
+    year=1928,
     doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.ASSEMBLY},
 )
 _mutation_citation = stdvoidsim.Citation(
-    author="Lovecraft, H.P.", year=1928,
+    author="Lovecraft, H.P.",
+    year=1928,
     doi="https://en.wikipedia.org/wiki/Necronomicon",
     reasons={stdvoidsim.CiteReason.MUT_RATE, stdvoidsim.CiteReason.REC_RATE},
 )

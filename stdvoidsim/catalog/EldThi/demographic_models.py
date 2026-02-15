@@ -24,7 +24,9 @@ _cc_ref = stdvoidsim.Citation(
 
 def _civilization_collapse():
     id = "CivilizationCollapse_1D31"
-    description = "Single population four-epoch model of Elder Thing civilization decline"
+    description = (
+        "Single population four-epoch model of Elder Thing civilization decline"
+    )
     long_description = """
         A single-population model with four epochs representing the history
         of the Elder Thing civilization on Earth. The modern era has only
@@ -99,7 +101,9 @@ _ar_ref = stdvoidsim.Citation(
 
 def _antarctic_retreat():
     id = "AntarcticRetreat_2L30"
-    description = "Two-population model of Elder Thing surface cities and underground refuges"
+    description = (
+        "Two-population model of Elder Thing surface cities and underground refuges"
+    )
     long_description = """
         A two-population model representing the retreat of Elder Things
         underground. The ancestral surface civilization had N=1000000 during
@@ -137,17 +141,13 @@ def _antarctic_retreat():
 
     demographic_events = [
         # Surface population was 5000 right after the split
-        msprime.PopulationParametersChange(
-            time=0, initial_size=500, population_id=0
-        ),
+        msprime.PopulationParametersChange(time=0, initial_size=500, population_id=0),
         # At the time of the split, surface had size 5000
         msprime.PopulationParametersChange(
             time=1000, initial_size=5000, population_id=0
         ),
         # Underground merges back into Surface (ancestral population)
-        msprime.MassMigration(
-            time=1000, source=1, destination=0, proportion=1.0
-        ),
+        msprime.MassMigration(time=1000, source=1, destination=0, proportion=1.0),
         # Ancestral population size (golden age)
         msprime.PopulationParametersChange(
             time=1000, initial_size=1000000, population_id=0

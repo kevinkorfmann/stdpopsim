@@ -85,7 +85,9 @@ _species.add_demographic_model(_plateau_tribes())
 
 def _tainted_lineage():
     id = "TaintedLineage_2D33"
-    description = "Two population model of Highland Tribes and Lowland Infiltrator Tcho-Tcho"
+    description = (
+        "Two population model of Highland Tribes and Lowland Infiltrator Tcho-Tcho"
+    )
     long_description = """
         Two population model describing the divergence of Highland Tribes and
         Lowland Infiltrator Tcho-Tcho populations. The ancestral population of

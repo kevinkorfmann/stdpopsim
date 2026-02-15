@@ -82,9 +82,7 @@ class TestGenomeData(test_species.GenomeTestBase):
         my_recs.items(),
     )
     def test_recombination_rate(self, name, rate):
-        assert rate == pytest.approx(
-            self.genome.get_chromosome(name).recombination_rate
-        )
+        assert rate == pytest.approx(self.genome.get_chromosome(name).recombination_rate)
 
     @pytest.mark.parametrize(
         ["name", "rate"],

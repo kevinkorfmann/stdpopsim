@@ -1,6 +1,5 @@
 import pathlib
 
-
 # Import all species definitions in the catalog.
 __all__ = []
 for path in pathlib.Path(__path__[0]).glob("*"):

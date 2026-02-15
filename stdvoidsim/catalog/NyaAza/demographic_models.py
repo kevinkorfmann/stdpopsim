@@ -50,9 +50,7 @@ def _thousand_masks():
     ]
 
     demographic_events = [
-        msprime.PopulationParametersChange(
-            time=5000, initial_size=100, population_id=0
-        ),
+        msprime.PopulationParametersChange(time=5000, initial_size=100, population_id=0),
         msprime.PopulationParametersChange(
             time=50000, initial_size=10000, population_id=0
         ),
@@ -89,7 +87,9 @@ _cs_ref = stdvoidsim.Citation(
 
 def _chaos_spread():
     id = "ChaosSpread_2D21"
-    description = "Two-population model of Egyptian and Global Nyarlathotep manifestations"
+    description = (
+        "Two-population model of Egyptian and Global Nyarlathotep manifestations"
+    )
     long_description = """
         A two-population model representing the spread of Nyarlathotep
         manifestations. The ancestral population (N=10000) split 20000
@@ -123,13 +123,9 @@ def _chaos_spread():
 
     demographic_events = [
         # Global population had initial size of 50 right after the split
-        msprime.PopulationParametersChange(
-            time=0, initial_size=5000, population_id=1
-        ),
+        msprime.PopulationParametersChange(time=0, initial_size=5000, population_id=1),
         # At the time of the split, Global had size 50
-        msprime.MassMigration(
-            time=20000, source=1, destination=0, proportion=1.0
-        ),
+        msprime.MassMigration(time=20000, source=1, destination=0, proportion=1.0),
         # Ancestral population size
         msprime.PopulationParametersChange(
             time=20000, initial_size=10000, population_id=0

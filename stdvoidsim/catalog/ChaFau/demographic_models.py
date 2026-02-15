@@ -102,7 +102,9 @@ _species.add_demographic_model(_hill_shrine())
 
 def _migration_from_asia():
     id = "MigrationFromAsia_2L32"
-    description = "Two-population model of Pyrenees Shrine and Asian Origin Chaugnar Faugn"
+    description = (
+        "Two-population model of Pyrenees Shrine and Asian Origin Chaugnar Faugn"
+    )
     long_description = """
         Two-population model representing Pyrenees Shrine entities and
         Asian Origin entities of Chaugnar Faugn. An ancestral population
@@ -157,9 +159,7 @@ def _migration_from_asia():
             time=T_bottleneck, initial_size=N_asian_bottleneck, population_id=1
         ),
         # Split: Asian Origin merges back into Pyrenees Shrine at T_split
-        msprime.MassMigration(
-            time=T_split, source=1, destination=0, proportion=1.0
-        ),
+        msprime.MassMigration(time=T_split, source=1, destination=0, proportion=1.0),
         # Ancestral population size
         msprime.PopulationParametersChange(
             time=T_split, initial_size=N_ancestral, population_id=0

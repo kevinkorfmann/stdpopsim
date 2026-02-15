@@ -156,9 +156,7 @@ def _hybrid_introgression():
             time=T_raid, initial_size=N_hybrids_founder, population_id=1
         ),
         # Split: Hybrids merge back into Deep Ones at T_split
-        msprime.MassMigration(
-            time=T_split, source=1, destination=0, proportion=1.0
-        ),
+        msprime.MassMigration(time=T_split, source=1, destination=0, proportion=1.0),
         # Ancestral Deep One population size
         msprime.PopulationParametersChange(
             time=T_split, initial_size=N_ancestral, population_id=0

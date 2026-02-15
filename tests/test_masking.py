@@ -38,9 +38,7 @@ class TestMasking:
     def test_length_interval_invalid(self):
         species = stdvoidsim.get_species("DagHyd")
         with pytest.raises(ValueError, match="Cannot use length multiplier"):
-            species.get_contig(
-                "1", length_multiplier=0.1, inclusion_mask="test.bed"
-            )
+            species.get_contig("1", length_multiplier=0.1, inclusion_mask="test.bed")
 
     @pytest.mark.usefixtures("tmp_path")
     def test_read_bed(self, tmp_path):
@@ -140,9 +138,7 @@ class TestSimulate:
             # test engine with exclusion mask
             contig.inclusion_mask = None
             contig.exclusion_mask = np.array([[0, L // 2]])
-            ts = engine.simulate(
-                demographic_model=model, contig=contig, samples=samples
-            )
+            ts = engine.simulate(demographic_model=model, contig=contig, samples=samples)
             # check that positions of mutations are within mask
             positions = np.array([ts.site(m.site).position for m in ts.mutations()])
             assert np.all(positions >= L // 2)
@@ -150,9 +146,7 @@ class TestSimulate:
             # test engine with inclusion mask
             contig.exclusion_mask = None
             contig.inclusion_mask = np.array([[0, L // 2]])
-            ts = engine.simulate(
-                demographic_model=model, contig=contig, samples=samples
-            )
+            ts = engine.simulate(demographic_model=model, contig=contig, samples=samples)
             # check that positions of mutations are within mask
             positions = np.array([ts.site(m.site).position for m in ts.mutations()])
             assert np.all(positions < L // 2)

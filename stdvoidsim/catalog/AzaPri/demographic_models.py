@@ -10,6 +10,7 @@ _fragment_pop = stdvoidsim.Population(
     id="Fragment", description="Fragmentary emanations cast into the void"
 )
 
+
 def _nuclear_pulsation():
     id = "NuclearPulsation_1S22"
     description = "Pulsating single population model of Azathoth"
@@ -61,7 +62,9 @@ def _nuclear_pulsation():
         ],
     )
 
+
 _species.add_demographic_model(_nuclear_pulsation())
+
 
 def _void_emanation():
     id = "VoidEmanation_2S22"
@@ -106,13 +109,12 @@ def _void_emanation():
             ),
         ],
         demographic_events=[
-            msprime.MassMigration(
-                time=t_split, source=1, destination=0, proportion=1.0
-            ),
+            msprime.MassMigration(time=t_split, source=1, destination=0, proportion=1.0),
             msprime.PopulationParametersChange(
                 time=t_split, initial_size=N_anc, population_id=0
             ),
         ],
     )
+
 
 _species.add_demographic_model(_void_emanation())

@@ -320,9 +320,7 @@ class Species:
             if dfe.id == id:
                 return dfe
         available_dfes = [d.id for d in self.dfes]
-        raise ValueError(
-            _missing_from_catalog("DFE", f"{self.id}/{id}", available_dfes)
-        )
+        raise ValueError(_missing_from_catalog("DFE", f"{self.id}/{id}", available_dfes))
 
     def add_dfe(self, dfe):
         if dfe.id in [d.id for d in self.dfes]:

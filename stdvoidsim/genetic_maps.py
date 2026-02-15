@@ -115,9 +115,7 @@ class GeneticMap:
                 " on map: '{}', substituting a flat map with chromosome "
                 "recombination rate {}".format(id, self.id, chrom.recombination_rate)
             )
-            genetic_map = msprime.RateMap.uniform(
-                chrom.length, chrom.recombination_rate
-            )
+            genetic_map = msprime.RateMap.uniform(chrom.length, chrom.recombination_rate)
         map_length = genetic_map.sequence_length
         if map_length < chrom.length:
             # Extend map to the end of the chromosome.

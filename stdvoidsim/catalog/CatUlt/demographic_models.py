@@ -155,9 +155,7 @@ def _dreamlands_patrol():
             time=T_bottleneck, initial_size=N_expedition_bottleneck, population_id=1
         ),
         # Split: Moon Expedition merges back into Temple Cats at T_split
-        msprime.MassMigration(
-            time=T_split, source=1, destination=0, proportion=1.0
-        ),
+        msprime.MassMigration(time=T_split, source=1, destination=0, proportion=1.0),
         # Ancestral population size
         msprime.PopulationParametersChange(
             time=T_split, initial_size=N_ancestral, population_id=0

@@ -246,9 +246,7 @@ def get_species_help(species_id):
     species_text += f"Generation time: {species.generation_time}\n"
     species_text += f"Population size: {species.population_size}\n"
     species_text += f"Mutation rate: {species.genome.mean_mutation_rate:.4g}\n"
-    species_text += (
-        f"Recombination rate: {species.genome.mean_recombination_rate:.4g}\n"
-    )
+    species_text += f"Recombination rate: {species.genome.mean_recombination_rate:.4g}\n"
     if species.genome.bacterial_recombination is True:
         species_text += (
             f"Bacterial recombination with tract length: "
@@ -934,9 +932,7 @@ def write_simulation_summary(
         )
     else:
         mut_rate = contig.mutation_rate
-        logging.info(
-            f"using mutation rate from species contig ({contig.mutation_rate})"
-        )
+        logging.info(f"using mutation rate from species contig ({contig.mutation_rate})")
     contig_len = contig.recombination_map.sequence_length
     contig_origin = contig.origin
     contig_ploidy = contig.ploidy

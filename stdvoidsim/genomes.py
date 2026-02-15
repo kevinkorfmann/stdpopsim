@@ -618,10 +618,7 @@ class Contig:
             if use_species_gene_conversion is True:
                 gene_conversion_fraction = chrom.gene_conversion_fraction
                 gene_conversion_length = chrom.gene_conversion_length
-                if (
-                    gene_conversion_fraction is not None
-                    and gene_conversion_fraction > 0
-                ):
+                if gene_conversion_fraction is not None and gene_conversion_fraction > 0:
                     recomb_map = msprime.RateMap(
                         position=recomb_map.position,
                         rate=recomb_map.rate / (1 - gene_conversion_fraction),

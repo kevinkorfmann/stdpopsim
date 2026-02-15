@@ -73,9 +73,7 @@ class TestGenomeData(test_species.GenomeTestBase):
         }.items(),
     )
     def test_recombination_rate(self, name, rate):
-        assert rate == pytest.approx(
-            self.genome.get_chromosome(name).recombination_rate
-        )
+        assert rate == pytest.approx(self.genome.get_chromosome(name).recombination_rate)
 
     # De-novo mutation rate per site per generation
     # (Rochus et al., 2025: Table 1, page 4, also page 5)

@@ -84,9 +84,7 @@ class TestCreateMutationType:
             )
 
         for dc in [np.inf, np.nan, -np.inf]:
-            with pytest.raises(
-                ValueError, match=f"Invalid dominance coefficient {dc}."
-            ):
+            with pytest.raises(ValueError, match=f"Invalid dominance coefficient {dc}."):
                 dfe.MutationType(
                     dominance_coeff=dc,
                 )
@@ -516,9 +514,7 @@ class TestCreateDFE:
                 proportions=[1.0],
             )
 
-        with pytest.raises(
-            ValueError, match="proportions must be nonnegative numbers."
-        ):
+        with pytest.raises(ValueError, match="proportions must be nonnegative numbers."):
             # proportions must be numbers
             dfe.DFE(
                 id="test",
@@ -528,9 +524,7 @@ class TestCreateDFE:
                 proportions=[True, "666"],
             )
 
-        with pytest.raises(
-            ValueError, match="proportions must be nonnegative numbers."
-        ):
+        with pytest.raises(ValueError, match="proportions must be nonnegative numbers."):
             # proportions must be positive
             dfe.DFE(
                 id="test",

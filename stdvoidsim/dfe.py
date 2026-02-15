@@ -123,9 +123,7 @@ class MutationType(object):
             lb = -1 * np.inf
             for b in self.dominance_coeff_breaks:
                 if not isinstance(b, (float, int)):
-                    raise ValueError(
-                        "dominance_coeff_breaks must be a list of numbers."
-                    )
+                    raise ValueError("dominance_coeff_breaks must be a list of numbers.")
                 if not np.isfinite(b):
                     raise ValueError(f"Invalid dominance coefficient break {b}.")
                 if b < lb:

@@ -130,9 +130,7 @@ def _interplanetary_spread():
             time=T_bottleneck, initial_size=100, population_id=1
         ),
         # Earth colony merges back into Yuggoth at the split time
-        msprime.MassMigration(
-            time=T_split, source=1, destination=0, proportion=1.0
-        ),
+        msprime.MassMigration(time=T_split, source=1, destination=0, proportion=1.0),
         # Ancestral Yuggoth population size
         msprime.PopulationParametersChange(
             time=T_split, initial_size=5000000, population_id=0

@@ -156,9 +156,7 @@ def _deep_one_progenitor():
             time=T_bottleneck, initial_size=N_reef_bottleneck, population_id=1
         ),
         # Split: Reef Manifestations merge back into Abyssal Progenitors at T_split
-        msprime.MassMigration(
-            time=T_split, source=1, destination=0, proportion=1.0
-        ),
+        msprime.MassMigration(time=T_split, source=1, destination=0, proportion=1.0),
         # Ancestral population size
         msprime.PopulationParametersChange(
             time=T_split, initial_size=N_ancestral, population_id=0

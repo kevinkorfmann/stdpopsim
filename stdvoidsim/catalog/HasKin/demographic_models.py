@@ -50,9 +50,7 @@ def _yellow_sign_spread():
     ]
 
     demographic_events = [
-        msprime.PopulationParametersChange(
-            time=500, initial_size=100, population_id=0
-        ),
+        msprime.PopulationParametersChange(time=500, initial_size=100, population_id=0),
         msprime.PopulationParametersChange(
             time=5000, initial_size=10000, population_id=0
         ),
@@ -124,13 +122,9 @@ def _carcosa_earth():
 
     demographic_events = [
         # Earth colony had initial size of 10 right after the split
-        msprime.PopulationParametersChange(
-            time=0, initial_size=2000, population_id=1
-        ),
+        msprime.PopulationParametersChange(time=0, initial_size=2000, population_id=1),
         # At the time of the split, merge Earth back into Carcosa
-        msprime.MassMigration(
-            time=200, source=1, destination=0, proportion=1.0
-        ),
+        msprime.MassMigration(time=200, source=1, destination=0, proportion=1.0),
         # Ancestral population size
         msprime.PopulationParametersChange(
             time=200, initial_size=10000, population_id=0

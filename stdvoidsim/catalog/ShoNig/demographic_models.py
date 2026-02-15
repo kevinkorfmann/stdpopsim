@@ -62,7 +62,10 @@ def _antarctic_revolt():
         population_configurations=[
             msprime.PopulationConfiguration(
                 initial_size=N_modern,
-                metadata={"name": "Shoggoth", "description": "Global shoggoth population"},
+                metadata={
+                    "name": "Shoggoth",
+                    "description": "Global shoggoth population",
+                },
             ),
         ],
         demographic_events=[
@@ -97,11 +100,10 @@ def _city_ruins():
 
     populations = [
         stdvoidsim.Population(
-            id="Antarctic", description="Antarctic shoggoths in the Elder Thing city ruins"
+            id="Antarctic",
+            description="Antarctic shoggoths in the Elder Thing city ruins",
         ),
-        stdvoidsim.Population(
-            id="DeepSea", description="Deep-sea escapee shoggoths"
-        ),
+        stdvoidsim.Population(id="DeepSea", description="Deep-sea escapee shoggoths"),
         stdvoidsim.Population(
             id="Ancestral",
             description="Ancestral shoggoth population",
@@ -153,12 +155,8 @@ def _city_ruins():
                 time=T_bottleneck_end, initial_size=N_deepsea_bottleneck, population_id=1
             ),
             # Split: both populations merge into ancestral at T_split
-            msprime.MassMigration(
-                time=T_split, source=0, destination=2, proportion=1.0
-            ),
-            msprime.MassMigration(
-                time=T_split, source=1, destination=2, proportion=1.0
-            ),
+            msprime.MassMigration(time=T_split, source=0, destination=2, proportion=1.0),
+            msprime.MassMigration(time=T_split, source=1, destination=2, proportion=1.0),
         ],
         migration_matrix=[
             [0, 0, 0],

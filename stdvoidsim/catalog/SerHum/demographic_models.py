@@ -2,8 +2,13 @@ import msprime
 import stdvoidsim
 
 _species = stdvoidsim.get_species("SerHum")
-_valusia_pop = stdvoidsim.Population(id="Valusia", description="Ancient Valusian serpent empire")
-_infiltrator_pop = stdvoidsim.Population(id="Infiltrators", description="Human-disguised infiltrators")
+_valusia_pop = stdvoidsim.Population(
+    id="Valusia", description="Ancient Valusian serpent empire"
+)
+_infiltrator_pop = stdvoidsim.Population(
+    id="Infiltrators", description="Human-disguised infiltrators"
+)
+
 
 def _valusian_empire():
     id = "ValusianEmpire_1K29"
@@ -14,20 +19,40 @@ def _valusian_empire():
         golden Valusian empire 20000 gen ago (N=500000).
     """
     populations = [_valusia_pop]
-    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
-        doi="https://en.wikipedia.org/wiki/Necronomicon",
-        reasons={stdvoidsim.CiteReason.DEM_MODEL})]
+    citations = [
+        stdvoidsim.Citation(
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
+            reasons={stdvoidsim.CiteReason.DEM_MODEL},
+        )
+    ]
     return stdvoidsim.DemographicModel(
-        id=id, description=description, long_description=long_description,
-        populations=populations, citations=citations,
-        generation_time=_species.generation_time, mutation_rate=1e-8,
+        id=id,
+        description=description,
+        long_description=long_description,
+        populations=populations,
+        citations=citations,
+        generation_time=_species.generation_time,
+        mutation_rate=1e-8,
         population_configurations=[
-            msprime.PopulationConfiguration(initial_size=40000, metadata=populations[0].asdict())],
+            msprime.PopulationConfiguration(
+                initial_size=40000, metadata=populations[0].asdict()
+            )
+        ],
         demographic_events=[
-            msprime.PopulationParametersChange(time=2000, initial_size=5000, population_id=0),
-            msprime.PopulationParametersChange(time=20000, initial_size=500000, population_id=0)])
+            msprime.PopulationParametersChange(
+                time=2000, initial_size=5000, population_id=0
+            ),
+            msprime.PopulationParametersChange(
+                time=20000, initial_size=500000, population_id=0
+            ),
+        ],
+    )
+
 
 _species.add_demographic_model(_valusian_empire())
+
 
 def _infiltration():
     id = "Infiltration_2K29"
@@ -38,19 +63,40 @@ def _infiltration():
         Infiltrators bottleneck to 100, grow to 10000.
     """
     populations = [_valusia_pop, _infiltrator_pop]
-    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
-        doi="https://en.wikipedia.org/wiki/Necronomicon",
-        reasons={stdvoidsim.CiteReason.DEM_MODEL})]
+    citations = [
+        stdvoidsim.Citation(
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
+            reasons={stdvoidsim.CiteReason.DEM_MODEL},
+        )
+    ]
     return stdvoidsim.DemographicModel(
-        id=id, description=description, long_description=long_description,
-        populations=populations, citations=citations,
-        generation_time=_species.generation_time, mutation_rate=1e-8,
+        id=id,
+        description=description,
+        long_description=long_description,
+        populations=populations,
+        citations=citations,
+        generation_time=_species.generation_time,
+        mutation_rate=1e-8,
         population_configurations=[
-            msprime.PopulationConfiguration(initial_size=30000, metadata=populations[0].asdict()),
-            msprime.PopulationConfiguration(initial_size=10000, metadata=populations[1].asdict())],
+            msprime.PopulationConfiguration(
+                initial_size=30000, metadata=populations[0].asdict()
+            ),
+            msprime.PopulationConfiguration(
+                initial_size=10000, metadata=populations[1].asdict()
+            ),
+        ],
         demographic_events=[
-            msprime.PopulationParametersChange(time=1000, initial_size=100, population_id=1),
+            msprime.PopulationParametersChange(
+                time=1000, initial_size=100, population_id=1
+            ),
             msprime.MassMigration(time=5000, source=1, destination=0, proportion=1.0),
-            msprime.PopulationParametersChange(time=5000, initial_size=500000, population_id=0)])
+            msprime.PopulationParametersChange(
+                time=5000, initial_size=500000, population_id=0
+            ),
+        ],
+    )
+
 
 _species.add_demographic_model(_infiltration())

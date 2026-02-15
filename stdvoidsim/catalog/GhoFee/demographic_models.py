@@ -152,12 +152,8 @@ def _dreamlands_passage():
                 population_id=1,
             ),
             # Split: both populations merge into ancestral at T_split
-            msprime.MassMigration(
-                time=T_split, source=0, destination=2, proportion=1.0
-            ),
-            msprime.MassMigration(
-                time=T_split, source=1, destination=2, proportion=1.0
-            ),
+            msprime.MassMigration(time=T_split, source=0, destination=2, proportion=1.0),
+            msprime.MassMigration(time=T_split, source=1, destination=2, proportion=1.0),
         ],
         migration_matrix=[
             [0, 0, 0],

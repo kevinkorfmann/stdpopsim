@@ -156,9 +156,7 @@ def _irem_ruins():
             time=T_bottleneck, initial_size=N_ruins_bottleneck, population_id=1
         ),
         # Split: Ruin Dwellers merge back into Deep Desert at T_split
-        msprime.MassMigration(
-            time=T_split, source=1, destination=0, proportion=1.0
-        ),
+        msprime.MassMigration(time=T_split, source=1, destination=0, proportion=1.0),
         # Ancestral population size
         msprime.PopulationParametersChange(
             time=T_split, initial_size=N_ancestral, population_id=0

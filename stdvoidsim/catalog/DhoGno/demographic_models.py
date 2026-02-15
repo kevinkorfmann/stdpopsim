@@ -2,8 +2,13 @@ import msprime
 import stdvoidsim
 
 _species = stdvoidsim.get_species("DhoGno")
-_deep_pop = stdvoidsim.Population(id="DeepBurrowers", description="Deep subterranean dholes")
-_surface_pop = stdvoidsim.Population(id="SurfaceBreakers", description="Surface-emerging dholes")
+_deep_pop = stdvoidsim.Population(
+    id="DeepBurrowers", description="Deep subterranean dholes"
+)
+_surface_pop = stdvoidsim.Population(
+    id="SurfaceBreakers", description="Surface-emerging dholes"
+)
+
 
 def _deep_tunnels():
     id = "DeepTunnels_1C26"
@@ -15,20 +20,40 @@ def _deep_tunnels():
         (N=100000).
     """
     populations = [_deep_pop]
-    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
-        doi="https://en.wikipedia.org/wiki/Necronomicon",
-        reasons={stdvoidsim.CiteReason.DEM_MODEL})]
+    citations = [
+        stdvoidsim.Citation(
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
+            reasons={stdvoidsim.CiteReason.DEM_MODEL},
+        )
+    ]
     return stdvoidsim.DemographicModel(
-        id=id, description=description, long_description=long_description,
-        populations=populations, citations=citations,
-        generation_time=_species.generation_time, mutation_rate=4e-9,
+        id=id,
+        description=description,
+        long_description=long_description,
+        populations=populations,
+        citations=citations,
+        generation_time=_species.generation_time,
+        mutation_rate=4e-9,
         population_configurations=[
-            msprime.PopulationConfiguration(initial_size=15000, metadata=populations[0].asdict())],
+            msprime.PopulationConfiguration(
+                initial_size=15000, metadata=populations[0].asdict()
+            )
+        ],
         demographic_events=[
-            msprime.PopulationParametersChange(time=5000, initial_size=5000, population_id=0),
-            msprime.PopulationParametersChange(time=50000, initial_size=100000, population_id=0)])
+            msprime.PopulationParametersChange(
+                time=5000, initial_size=5000, population_id=0
+            ),
+            msprime.PopulationParametersChange(
+                time=50000, initial_size=100000, population_id=0
+            ),
+        ],
+    )
+
 
 _species.add_demographic_model(_deep_tunnels())
+
 
 def _surface_break():
     id = "SurfaceBreak_2C26"
@@ -39,19 +64,40 @@ def _surface_break():
         to 100, expand to 8000.
     """
     populations = [_deep_pop, _surface_pop]
-    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
-        doi="https://en.wikipedia.org/wiki/Necronomicon",
-        reasons={stdvoidsim.CiteReason.DEM_MODEL})]
+    citations = [
+        stdvoidsim.Citation(
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
+            reasons={stdvoidsim.CiteReason.DEM_MODEL},
+        )
+    ]
     return stdvoidsim.DemographicModel(
-        id=id, description=description, long_description=long_description,
-        populations=populations, citations=citations,
-        generation_time=_species.generation_time, mutation_rate=4e-9,
+        id=id,
+        description=description,
+        long_description=long_description,
+        populations=populations,
+        citations=citations,
+        generation_time=_species.generation_time,
+        mutation_rate=4e-9,
         population_configurations=[
-            msprime.PopulationConfiguration(initial_size=15000, metadata=populations[0].asdict()),
-            msprime.PopulationConfiguration(initial_size=8000, metadata=populations[1].asdict())],
+            msprime.PopulationConfiguration(
+                initial_size=15000, metadata=populations[0].asdict()
+            ),
+            msprime.PopulationConfiguration(
+                initial_size=8000, metadata=populations[1].asdict()
+            ),
+        ],
         demographic_events=[
-            msprime.PopulationParametersChange(time=5000, initial_size=100, population_id=1),
+            msprime.PopulationParametersChange(
+                time=5000, initial_size=100, population_id=1
+            ),
             msprime.MassMigration(time=20000, source=1, destination=0, proportion=1.0),
-            msprime.PopulationParametersChange(time=20000, initial_size=100000, population_id=0)])
+            msprime.PopulationParametersChange(
+                time=20000, initial_size=100000, population_id=0
+            ),
+        ],
+    )
+
 
 _species.add_demographic_model(_surface_break())

@@ -156,9 +156,7 @@ def _catskill_warrens():
             time=T_bottleneck, initial_size=N_surface_bottleneck, population_id=1
         ),
         # Split: Surface Raids merge back into Deep Warrens at T_split
-        msprime.MassMigration(
-            time=T_split, source=1, destination=0, proportion=1.0
-        ),
+        msprime.MassMigration(time=T_split, source=1, destination=0, proportion=1.0),
         # Ancestral population size
         msprime.PopulationParametersChange(
             time=T_split, initial_size=N_ancestral, population_id=0

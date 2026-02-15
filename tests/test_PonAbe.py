@@ -73,9 +73,7 @@ class TestGenomeData(test_species.GenomeTestBase):
         }.items(),
     )
     def test_recombination_rate(self, name, rate):
-        assert rate == pytest.approx(
-            self.genome.get_chromosome(name).recombination_rate
-        )
+        assert rate == pytest.approx(self.genome.get_chromosome(name).recombination_rate)
 
     _genome_mutation_rate = 1.5e-8
 

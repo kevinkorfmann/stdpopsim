@@ -2,8 +2,13 @@ import msprime
 import stdvoidsim
 
 _species = stdvoidsim.get_species("ZooGul")
-_enchanted_pop = stdvoidsim.Population(id="EnchantedWood", description="Zoogs of the Enchanted Wood")
-_upper_pop = stdvoidsim.Population(id="UpperDreamlands", description="Upper Dreamlands zoog colony")
+_enchanted_pop = stdvoidsim.Population(
+    id="EnchantedWood", description="Zoogs of the Enchanted Wood"
+)
+_upper_pop = stdvoidsim.Population(
+    id="UpperDreamlands", description="Upper Dreamlands zoog colony"
+)
+
 
 def _enchanted_wood():
     id = "EnchantedWood_1C26"
@@ -14,20 +19,40 @@ def _enchanted_wood():
         ancient forest founding 100000 gen ago (N=200000).
     """
     populations = [_enchanted_pop]
-    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
-        doi="https://en.wikipedia.org/wiki/Necronomicon",
-        reasons={stdvoidsim.CiteReason.DEM_MODEL})]
+    citations = [
+        stdvoidsim.Citation(
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
+            reasons={stdvoidsim.CiteReason.DEM_MODEL},
+        )
+    ]
     return stdvoidsim.DemographicModel(
-        id=id, description=description, long_description=long_description,
-        populations=populations, citations=citations,
-        generation_time=_species.generation_time, mutation_rate=2.5e-8,
+        id=id,
+        description=description,
+        long_description=long_description,
+        populations=populations,
+        citations=citations,
+        generation_time=_species.generation_time,
+        mutation_rate=2.5e-8,
         population_configurations=[
-            msprime.PopulationConfiguration(initial_size=500000, metadata=populations[0].asdict())],
+            msprime.PopulationConfiguration(
+                initial_size=500000, metadata=populations[0].asdict()
+            )
+        ],
         demographic_events=[
-            msprime.PopulationParametersChange(time=10000, initial_size=50000, population_id=0),
-            msprime.PopulationParametersChange(time=100000, initial_size=200000, population_id=0)])
+            msprime.PopulationParametersChange(
+                time=10000, initial_size=50000, population_id=0
+            ),
+            msprime.PopulationParametersChange(
+                time=100000, initial_size=200000, population_id=0
+            ),
+        ],
+    )
+
 
 _species.add_demographic_model(_enchanted_wood())
+
 
 def _dreamlands_spread():
     id = "DreamlandsSpread_2C26"
@@ -38,19 +63,40 @@ def _dreamlands_spread():
         bottleneck to 1000, grow to 100000.
     """
     populations = [_enchanted_pop, _upper_pop]
-    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
-        doi="https://en.wikipedia.org/wiki/Necronomicon",
-        reasons={stdvoidsim.CiteReason.DEM_MODEL})]
+    citations = [
+        stdvoidsim.Citation(
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
+            reasons={stdvoidsim.CiteReason.DEM_MODEL},
+        )
+    ]
     return stdvoidsim.DemographicModel(
-        id=id, description=description, long_description=long_description,
-        populations=populations, citations=citations,
-        generation_time=_species.generation_time, mutation_rate=2.5e-8,
+        id=id,
+        description=description,
+        long_description=long_description,
+        populations=populations,
+        citations=citations,
+        generation_time=_species.generation_time,
+        mutation_rate=2.5e-8,
         population_configurations=[
-            msprime.PopulationConfiguration(initial_size=500000, metadata=populations[0].asdict()),
-            msprime.PopulationConfiguration(initial_size=100000, metadata=populations[1].asdict())],
+            msprime.PopulationConfiguration(
+                initial_size=500000, metadata=populations[0].asdict()
+            ),
+            msprime.PopulationConfiguration(
+                initial_size=100000, metadata=populations[1].asdict()
+            ),
+        ],
         demographic_events=[
-            msprime.PopulationParametersChange(time=5000, initial_size=1000, population_id=1),
+            msprime.PopulationParametersChange(
+                time=5000, initial_size=1000, population_id=1
+            ),
             msprime.MassMigration(time=30000, source=1, destination=0, proportion=1.0),
-            msprime.PopulationParametersChange(time=30000, initial_size=200000, population_id=0)])
+            msprime.PopulationParametersChange(
+                time=30000, initial_size=200000, population_id=0
+            ),
+        ],
+    )
+
 
 _species.add_demographic_model(_dreamlands_spread())

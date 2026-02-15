@@ -2,8 +2,13 @@ import msprime
 import stdvoidsim
 
 _species = stdvoidsim.get_species("SanDre")
-_kadath_pop = stdvoidsim.Population(id="KadathPeaks", description="Shantaks nesting on Kadath peaks")
-_plateau_pop = stdvoidsim.Population(id="LengPlateau", description="Shantaks of the Plateau of Leng")
+_kadath_pop = stdvoidsim.Population(
+    id="KadathPeaks", description="Shantaks nesting on Kadath peaks"
+)
+_plateau_pop = stdvoidsim.Population(
+    id="LengPlateau", description="Shantaks of the Plateau of Leng"
+)
+
 
 def _kadath_nesting():
     id = "KadathNesting_1C26"
@@ -14,20 +19,40 @@ def _kadath_nesting():
         wild ancestral flock 30000 gen ago (N=150000).
     """
     populations = [_kadath_pop]
-    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
-        doi="https://en.wikipedia.org/wiki/Necronomicon",
-        reasons={stdvoidsim.CiteReason.DEM_MODEL})]
+    citations = [
+        stdvoidsim.Citation(
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
+            reasons={stdvoidsim.CiteReason.DEM_MODEL},
+        )
+    ]
     return stdvoidsim.DemographicModel(
-        id=id, description=description, long_description=long_description,
-        populations=populations, citations=citations,
-        generation_time=_species.generation_time, mutation_rate=1.5e-8,
+        id=id,
+        description=description,
+        long_description=long_description,
+        populations=populations,
+        citations=citations,
+        generation_time=_species.generation_time,
+        mutation_rate=1.5e-8,
         population_configurations=[
-            msprime.PopulationConfiguration(initial_size=60000, metadata=populations[0].asdict())],
+            msprime.PopulationConfiguration(
+                initial_size=60000, metadata=populations[0].asdict()
+            )
+        ],
         demographic_events=[
-            msprime.PopulationParametersChange(time=3000, initial_size=20000, population_id=0),
-            msprime.PopulationParametersChange(time=30000, initial_size=150000, population_id=0)])
+            msprime.PopulationParametersChange(
+                time=3000, initial_size=20000, population_id=0
+            ),
+            msprime.PopulationParametersChange(
+                time=30000, initial_size=150000, population_id=0
+            ),
+        ],
+    )
+
 
 _species.add_demographic_model(_kadath_nesting())
+
 
 def _leng_split():
     id = "LengSplit_2C26"
@@ -38,19 +63,40 @@ def _leng_split():
         grow to 25000.
     """
     populations = [_kadath_pop, _plateau_pop]
-    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
-        doi="https://en.wikipedia.org/wiki/Necronomicon",
-        reasons={stdvoidsim.CiteReason.DEM_MODEL})]
+    citations = [
+        stdvoidsim.Citation(
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
+            reasons={stdvoidsim.CiteReason.DEM_MODEL},
+        )
+    ]
     return stdvoidsim.DemographicModel(
-        id=id, description=description, long_description=long_description,
-        populations=populations, citations=citations,
-        generation_time=_species.generation_time, mutation_rate=1.5e-8,
+        id=id,
+        description=description,
+        long_description=long_description,
+        populations=populations,
+        citations=citations,
+        generation_time=_species.generation_time,
+        mutation_rate=1.5e-8,
         population_configurations=[
-            msprime.PopulationConfiguration(initial_size=60000, metadata=populations[0].asdict()),
-            msprime.PopulationConfiguration(initial_size=25000, metadata=populations[1].asdict())],
+            msprime.PopulationConfiguration(
+                initial_size=60000, metadata=populations[0].asdict()
+            ),
+            msprime.PopulationConfiguration(
+                initial_size=25000, metadata=populations[1].asdict()
+            ),
+        ],
         demographic_events=[
-            msprime.PopulationParametersChange(time=2000, initial_size=300, population_id=1),
+            msprime.PopulationParametersChange(
+                time=2000, initial_size=300, population_id=1
+            ),
             msprime.MassMigration(time=10000, source=1, destination=0, proportion=1.0),
-            msprime.PopulationParametersChange(time=10000, initial_size=150000, population_id=0)])
+            msprime.PopulationParametersChange(
+                time=10000, initial_size=150000, population_id=0
+            ),
+        ],
+    )
+
 
 _species.add_demographic_model(_leng_split())

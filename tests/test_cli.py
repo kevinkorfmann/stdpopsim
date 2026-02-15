@@ -977,9 +977,7 @@ class TestRecombinationRate:
     def test_recomb_rate(self, caplog):
         sp = stdvoidsim.get_species("BosTau")
         mod = sp.get_demographic_model("HolsteinFriesian_1M13")
-        cmd = (
-            "BosTau -D -c 1 -o /dev/null -d HolsteinFriesian_1M13 Holstein_Friesian:10"
-        )
+        cmd = "BosTau -D -c 1 -o /dev/null -d HolsteinFriesian_1M13 Holstein_Friesian:10"
         with mock.patch("stdvoidsim.cli.setup_logging", autospec=True):
             out, err = capture_output(stdvoidsim.cli.stdvoidsim_main, cmd.split())
             assert len(out) == 0

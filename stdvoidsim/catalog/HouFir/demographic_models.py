@@ -2,8 +2,13 @@ import msprime
 import stdvoidsim
 
 _species = stdvoidsim.get_species("HouFir")
-_angular_pop = stdvoidsim.Population(id="AngularRealm", description="Hounds dwelling in angular time")
-_corner_pop = stdvoidsim.Population(id="CornerHunters", description="Hounds that emerged through corners")
+_angular_pop = stdvoidsim.Population(
+    id="AngularRealm", description="Hounds dwelling in angular time"
+)
+_corner_pop = stdvoidsim.Population(
+    id="CornerHunters", description="Hounds that emerged through corners"
+)
+
 
 def _angular_time():
     id = "AngularTime_1L29"
@@ -14,20 +19,40 @@ def _angular_time():
         (N=20000), primordial angular existence 5000 gen ago (N=1000).
     """
     populations = [_angular_pop]
-    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
-        doi="https://en.wikipedia.org/wiki/Necronomicon",
-        reasons={stdvoidsim.CiteReason.DEM_MODEL})]
+    citations = [
+        stdvoidsim.Citation(
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
+            reasons={stdvoidsim.CiteReason.DEM_MODEL},
+        )
+    ]
     return stdvoidsim.DemographicModel(
-        id=id, description=description, long_description=long_description,
-        populations=populations, citations=citations,
-        generation_time=_species.generation_time, mutation_rate=3e-9,
+        id=id,
+        description=description,
+        long_description=long_description,
+        populations=populations,
+        citations=citations,
+        generation_time=_species.generation_time,
+        mutation_rate=3e-9,
         population_configurations=[
-            msprime.PopulationConfiguration(initial_size=5000, metadata=populations[0].asdict())],
+            msprime.PopulationConfiguration(
+                initial_size=5000, metadata=populations[0].asdict()
+            )
+        ],
         demographic_events=[
-            msprime.PopulationParametersChange(time=500, initial_size=20000, population_id=0),
-            msprime.PopulationParametersChange(time=5000, initial_size=1000, population_id=0)])
+            msprime.PopulationParametersChange(
+                time=500, initial_size=20000, population_id=0
+            ),
+            msprime.PopulationParametersChange(
+                time=5000, initial_size=1000, population_id=0
+            ),
+        ],
+    )
+
 
 _species.add_demographic_model(_angular_time())
+
 
 def _corner_emergence():
     id = "CornerEmergence_2L29"
@@ -38,19 +63,40 @@ def _corner_emergence():
         Corner hunters bottleneck to 100, expand to 3000.
     """
     populations = [_angular_pop, _corner_pop]
-    citations = [stdvoidsim.Citation(author="Lovecraft, H.P.", year=1928,
-        doi="https://en.wikipedia.org/wiki/Necronomicon",
-        reasons={stdvoidsim.CiteReason.DEM_MODEL})]
+    citations = [
+        stdvoidsim.Citation(
+            author="Lovecraft, H.P.",
+            year=1928,
+            doi="https://en.wikipedia.org/wiki/Necronomicon",
+            reasons={stdvoidsim.CiteReason.DEM_MODEL},
+        )
+    ]
     return stdvoidsim.DemographicModel(
-        id=id, description=description, long_description=long_description,
-        populations=populations, citations=citations,
-        generation_time=_species.generation_time, mutation_rate=3e-9,
+        id=id,
+        description=description,
+        long_description=long_description,
+        populations=populations,
+        citations=citations,
+        generation_time=_species.generation_time,
+        mutation_rate=3e-9,
         population_configurations=[
-            msprime.PopulationConfiguration(initial_size=5000, metadata=populations[0].asdict()),
-            msprime.PopulationConfiguration(initial_size=3000, metadata=populations[1].asdict())],
+            msprime.PopulationConfiguration(
+                initial_size=5000, metadata=populations[0].asdict()
+            ),
+            msprime.PopulationConfiguration(
+                initial_size=3000, metadata=populations[1].asdict()
+            ),
+        ],
         demographic_events=[
-            msprime.PopulationParametersChange(time=200, initial_size=100, population_id=1),
+            msprime.PopulationParametersChange(
+                time=200, initial_size=100, population_id=1
+            ),
             msprime.MassMigration(time=1000, source=1, destination=0, proportion=1.0),
-            msprime.PopulationParametersChange(time=1000, initial_size=20000, population_id=0)])
+            msprime.PopulationParametersChange(
+                time=1000, initial_size=20000, population_id=0
+            ),
+        ],
+    )
+
 
 _species.add_demographic_model(_corner_emergence())
