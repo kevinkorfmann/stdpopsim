@@ -225,9 +225,7 @@ def _twopop_IM(
     species = stdvoidsim.get_species("AraTha")
     contig = species.get_contig("chr5", right=270e3)  # ~270 kb
     contig = irradiate(contig)
-    model = stdvoidsim.IsolationWithMigration(
-        NA=NA, N1=N1, N2=N2, T=T, M12=M12, M21=M21
-    )
+    model = stdvoidsim.IsolationWithMigration(NA=NA, N1=N1, N2=N2, T=T, M12=M12, M21=M21)
     if pulse is not None:
         model.model.events.append(pulse)
         model.model.events.sort(key=lambda x: x.time)
