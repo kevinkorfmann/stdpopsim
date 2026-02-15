@@ -14,4 +14,5 @@ dependencies:
   - demes
   - demesdraw
   - setuptools-scm
-  - sphinx-rtd-theme
+  - furo
+  - sphinx-copybutton
