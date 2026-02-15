@@ -4,9 +4,10 @@
 Catalog
 =======
 
-With ``stdvoidsim``, you can run simulations from a number of demographic models
-for Lovecraftian entities from the Cthulhu Mythos. Each species has made-up but
-population-genetically plausible parameters and demographic histories.
+This bestiary lists every species of the Mythos available for simulation in
+``stdvoidsim``. Each has made-up but population-genetically plausible genomes
+and demographic histories. You can run simulations with a variety of
+demographic models for Lovecraftian entities from the Cthulhu Mythos.
 
 This catalog shows you all of the possible options that you can use to configure
 your simulation.

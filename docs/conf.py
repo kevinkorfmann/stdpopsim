@@ -46,7 +46,6 @@ except Exception:
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "sphinx_rtd_theme",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
@@ -54,6 +53,7 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.ifconfig",
     "sphinx.ext.viewcode",
+    "sphinx_copybutton",
     "speciescatalog",
     "sphinxarg.ext",
     "sphinxcontrib.programoutput",
@@ -93,28 +93,38 @@ pygments_style = None
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "sphinx_rtd_theme"
+html_theme = "furo"
 
-# Theme options are theme-specific and customize the look and feel of a theme
-# further.  For a list of options available for each theme, see the
-# documentation.
-#
+# Furo theme options: cosmic palette for light/dark
 html_context = {
     "display_github": True,
     "version": version,
     "release": release,
 }
 html_theme_options = {
-    "version_selector": True,
-    "logo_only": False,
+    "sidebar_hide_name": False,
+    "light_css_variables": {
+        "color-brand-primary": "#6b5b95",
+        "color-brand-content": "#4a3f6d",
+        "color-admonition-background": "#f0e6f6",
+        "color-highlighted-background": "#2d2a3a",
+        "color-guide-background": "#f5f2f7",
+    },
+    "dark_css_variables": {
+        "color-brand-primary": "#9b8bb8",
+        "color-brand-content": "#b8a9d4",
+        "color-background-primary": "#1a1823",
+        "color-background-secondary": "#221f2e",
+        "color-admonition-background": "#2a2535",
+        "color-highlighted-background": "#2d2a3a",
+    },
 }
 
-# Logo in the top-left corner of the sidebar (round shape, from logo.svg)
+# Logo and favicon
 html_logo = "_static/logo.png"
+html_favicon = "_static/logo.png"
 
-# Show the version number in the navigation bar
-html_show_sphinx = True
-html_show_version = True
+html_show_sphinx = False
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -218,6 +228,10 @@ epub_exclude_files = ["search.html"]
 
 
 # -- Extension configuration -------------------------------------------------
+
+# Strip shell prompts when copying console blocks
+copybutton_prompt_text = r"\$ |# "
+copybutton_only_copy_prompt_lines = False
 
 # -- Options for intersphinx extension ---------------------------------------
 

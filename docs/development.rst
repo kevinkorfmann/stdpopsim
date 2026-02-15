@@ -1806,14 +1806,17 @@ Documentation
 
 Documentation is written using `reStructuredText <http://docutils.sourceforge.net/rst.html>`__
 markup and the `sphinx <http://www.sphinx-doc.org/en/master/>`__ documentation system.
-It is defined in the ``docs/`` directory.
+It is defined in the ``docs/`` directory and uses the **Furo** theme.
 
-To build the documentation type ``make`` in the ``docs/`` directory. This should build
-HTML output in the ``docs/_build/html/`` directory.
+To build the documentation, install the docs extra and run ``make html`` from ``docs/``:
 
-.. note::
+.. code-block:: console
 
-    You will need ``stdvoidsim`` to be installed for the build to work.
+   $ pip install -e ".[docs]"
+   $ cd docs && make html
+
+HTML output is written to ``docs/_build/html/``. You will need ``stdvoidsim`` installed
+(for autodoc and the species catalog extension) for the build to succeed.
 
 
 ********************
