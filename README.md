@@ -137,7 +137,7 @@ stdvoidsim --help
 stdvoidsim DagHyd -d InnsmouthDecline_1M27 -o deep_ones.trees -L 100000 DeepOnes:10
 
 # Simulate Shoggoth rebellion scenario
-stdvoidsim ShoNig -d AntarcticRevolt_1D31 -o shoggoths.trees -L 50000 Antarctic:20
+stdvoidsim ShoNig -d AntarcticRevolt_1D31 -o shoggoths.trees -L 50000 Shoggoth:20
 ```
 
 ## Installation

@@ -31,7 +31,7 @@ First steps
    .. code-block:: console
 
       $ pip install stdvoidsim
-      $ stdvoidsim DagHyd -o deep_ones.trees -L 100000 DeepOnes:10
+      $ stdvoidsim DagHyd -d InnsmouthDecline_1M27 -o deep_ones.trees -L 100000 DeepOnes:10
 
    Then open ``deep_ones.trees`` in `tskit <https://tskit.dev/tskit/>`_ or
    :ref:`continue with the tutorial <sec_tutorial>`.
