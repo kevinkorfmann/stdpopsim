@@ -118,7 +118,7 @@ using the ``--help-models`` flag (here, truncated for space):
     :ellipsis: 30
 
 This gives all of the possible demographic models we could simulate. We choose
-the :ref:`two-population out-of-Africa model <sec_catalog_homsap_models_outofafrica_2t12>`
+the chosen demographic model (see the :ref:`catalog <sec_catalog>`)
 from `Tennesen et al. (2012) <https://doi.org/10.1126/science.1219240>`_ .
 By looking at the output from ``--help-models`` we find that the name for this model is
 ``OutOfAfrica_2T12`` and that we can specify it using
@@ -156,8 +156,7 @@ realistic. We can look up the available genetic maps using the
 .. command-output:: stdvoidsim HomSap --help-genetic-maps
     :ellipsis: 20
 
-In this case we choose the
-:ref:`sec_catalog_homsap_genetic_maps_hapmapii_grch38` map and simulate the entire chromosome.
+In this case we choose a genetic map from the :ref:`catalog <sec_catalog>` and simulate the entire chromosome.
 
 .. code-block:: console
 
@@ -1438,15 +1437,15 @@ This DFE was estimated from human data, so it's under HomSap:
 Even though the DFE is stored under HomSap in the catalogue,
 we can apply it to a contig from any species.
 For instance, we could apply it to the first 100Kb
-of the :ref:`Vaquita <sec_catalog_PhoSin>` chromosome 1:
+of the :ref:`Deep One <sec_catalog_daghyd>` chromosome 1:
 
 .. code-block:: python
 
-    vaquita = stdvoidsim.get_species("PhoSin")
-    contig = vaquita.get_contig("1", right=1e5)
+    deepones = stdvoidsim.get_species("DagHyd")
+    contig = deepones.get_contig("1", right=1e5)
     contig.add_dfe(intervals=[[0, 1e5]], DFE=dfe)
-    model = vaquita.get_demographic_model("Vaquita2Epoch_1R22")
-    samples = {"Vaquita": 50}
+    model = deepones.get_demographic_model("InnsmouthDecline_1M27")
+    samples = {"DeepOnes": 50}
 
     engine = stdvoidsim.get_engine("slim")
     ts = engine.simulate(
@@ -1460,7 +1459,7 @@ of the :ref:`Vaquita <sec_catalog_PhoSin>` chromosome 1:
 
 To make the example quick, we've only simulated the first 100Kb;
 a more realistic example would apply it to the exons, available
-as a :ref:`annotation <sec_catalog_phosin_annotations>`.
+as an annotation (see the :ref:`catalog <sec_catalog>` for species that provide them).
 
 .. _sec_tute_recapitation:
 
@@ -1566,7 +1565,7 @@ This prints detailed information about all of the available models to
 the terminal.
 In this tutorial, we will use the model of African-American admixture from
 `Browning et al. (2018) <http://dx.doi.org/10.1371/journal.pgen.1007385>`_.
-From the help output (or the :ref:`Catalog <sec_catalog_homsap_models_americanadmixture_4b18>`),
+From the help output (or the :ref:`Catalog <sec_catalog>`),
 we can see that this model has id ``AmericanAdmixture_4B18``,
 and allows samples to be drawn from 4 contemporary populations representing African,
 European, Asian and African-American groups.
