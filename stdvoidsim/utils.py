@@ -21,9 +21,9 @@ def is_valid_demographic_model_id(model_id):
     be a string with the following pattern:
 
     {CamelCaseName}_{num populations}{First letter author name}{2 digit year}.
+    Year may be 2–3 digits for catalog compatibility (e.g. 27 or 730).
     """
-    # Allow 2–4 digit year suffix (e.g. 27 or 730 for catalog)
-    regex = re.compile(r"[A-Z][A-Za-z0-9]*_[1-9]\d*[A-Z]\d{2,4}")
+    regex = re.compile(r"[A-Z][A-Za-z0-9]*_[1-9]\d*[A-Z]\d{2,3}")
     return regex.fullmatch(model_id) is not None
 
 
