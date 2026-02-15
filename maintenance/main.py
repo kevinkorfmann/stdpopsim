@@ -21,7 +21,8 @@ from . import annotation_maint
 
 logger = logging.getLogger("maint")
 
-species_template = string.Template("""
+species_template = string.Template(
+    """
 import stdvoidsim
 
 from . import genome_data
@@ -107,9 +108,11 @@ _species = stdvoidsim.Species(
 )
 
 stdvoidsim.register_species(_species)
-""")
+"""
+)
 
-species_test_template = string.Template("""
+species_test_template = string.Template(
+    """
 import pytest
 
 import stdvoidsim
@@ -187,7 +190,8 @@ class TestGenomeData(test_species.GenomeTestBase):
     def test_chromosome_gene_conversion_fraction(self, name, gene_conversion_fraction):
         assert gene_conversion_fraction ==
             self.genome.get_chromosome(name).gene_conversion_fraction
-""")
+"""
+)
 
 
 def black_format(code):
