@@ -24,8 +24,8 @@ sys.path.append(os.path.abspath("./_ext"))
 # -- Project information -----------------------------------------------------
 
 project = "stdvoidsim"
-copyright = f"2019-{datetime.datetime.now().year}, PopSim Consortium"
-author = "PopSim Consortium"
+copyright = f"2026-{datetime.datetime.now().year}, Kevin Korfmann"
+author = "Kevin Korfmann"
 
 # get the release version from the setuptools_scm
 try:
@@ -168,7 +168,7 @@ latex_documents = [
         index_doc,
         "stdvoidsim.tex",
         "stdvoidsim Documentation",
-        "PopSim Consortium",
+        "Kevin Korfmann",
         "manual",
     ),
 ]
