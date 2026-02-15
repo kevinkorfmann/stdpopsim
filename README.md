@@ -4,10 +4,10 @@
 [![PyPI downloads](https://img.shields.io/pypi/dm/stdvoidsim)](https://pypi.org/project/stdvoidsim/)
 [![Python 3.10+](https://img.shields.io/pypi/pyversions/stdvoidsim)](https://pypi.org/project/stdvoidsim/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Docs](https://github.com/kevinkorfmann/stdvoidsim/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/kevinkorfmann/stdvoidsim/actions/workflows/docs.yml)
+[![Docs](https://github.com/kevinkorfmann/stdvoidsim/actions/workflows/docs.yml/badge.svg?branch=main)](https://stdvoidsim.readthedocs.io/en/latest/)
 [![codecov](https://codecov.io/gh/kevinkorfmann/stdvoidsim/graph/badge.svg)](https://codecov.io/gh/kevinkorfmann/stdvoidsim)
 
-**Install:** `pip install stdvoidsim`
+**Install:** `pip install stdvoidsim` · **Docs:** [stdvoidsim.readthedocs.io](https://stdvoidsim.readthedocs.io/en/latest/)
 
 A community-maintained library of population genetic simulation models for
 **Lovecraftian entities and eldritch horrors**.
