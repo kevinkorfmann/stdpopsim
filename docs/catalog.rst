@@ -37,6 +37,9 @@ Azathoth's dream. First appearing in Lovecraft's fiction in 1922, Azathoth
 embodies the ultimate horror of a universe governed by mindless, purposeless
 forces.
 
+AzaPri — Azathoth primordia
+---------------------------
+
 .. speciescatalog:: AzaPri
 
 **Great Cthulhu** is perhaps the most iconic entity of the Mythos, a cosmic
@@ -48,6 +51,9 @@ and visions to sensitive minds across the globe. Cthulhu is worshipped by
 hidden cults worldwide who chant *"Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl
 fhtagn"* -- "In his house at R'lyeh, dead Cthulhu waits dreaming." First
 appeared in "The Call of Cthulhu" (1928).
+
+CthGre — Great Cthulhu
+----------------------
 
 .. speciescatalog:: CthGre
 
@@ -62,6 +68,9 @@ translucent tusks. When hungry, Chaugnar moves with surprising speed. Its
 servitors, the Miri Nigri, are the progenitors of the Tcho-Tcho people through
 hybridization with humans.
 
+ChaFau — Chaugnar Faugn
+-----------------------
+
 .. speciescatalog:: ChaFau
 
 **Father Dagon** is an immensely large and powerful Deep One, worshipped as a
@@ -72,6 +81,9 @@ Deep Ones, Dagon is ancient beyond human reckoning. Lovecraft introduced Dagon
 in his 1917 short story "Dagon," one of his earliest tales, in which a
 shipwrecked sailor encounters the titanic creature on a newly risen island of
 black, slimy mud.
+
+DagGod — Father Dagon
+---------------------
 
 .. speciescatalog:: DagGod
 
@@ -85,6 +97,9 @@ Hastur was later incorporated into the Cthulhu Mythos by Lovecraft and
 especially August Derleth, who elevated Hastur to a Great Old One rivaling
 Cthulhu.
 
+HasKin — King in Yellow
+-----------------------
+
 .. speciescatalog:: HasKin
 
 **Nyarlathotep** (the Crawling Chaos) is unique among the Outer Gods in that it
@@ -96,6 +111,9 @@ serves as the messenger and soul of the Outer Gods, carrying out their will on
 Earth. First mentioned by Lovecraft in a 1920 prose poem, Nyarlathotep appears
 in numerous stories and is one of Lovecraft's most developed creations.
 
+NyaAza — Crawling Chaos
+------------------------
+
 .. speciescatalog:: NyaAza
 
 **Shub-Niggurath** (the Black Goat of the Woods with a Thousand Young) is an
@@ -106,6 +124,9 @@ numbers of monstrous offspring known as the Dark Young. The entity exists in a
 cloudy, forested dimension and is worshipped by cults that invoke it with the
 chant *"Ia! Shub-Niggurath!"* Lovecraft first mentioned Shub-Niggurath in
 "The Last Test" (1928) and referenced it in several subsequent stories.
+
+ShbNig — Black Goat of the Woods
+---------------------------------
 
 .. speciescatalog:: ShbNig
 
@@ -119,6 +140,9 @@ lethargy, it is immensely powerful. Its worship predates humanity, having been
 venerated by the Voormis and other prehuman races. First appeared in Smith's
 "The Tale of Satampra Zeiros" (1931).
 
+TsaGod — Tsathoggua
+-------------------
+
 .. speciescatalog:: TsaGod
 
 **Yog-Sothoth** (the Key and the Gate) is an Outer God that exists
@@ -130,6 +154,9 @@ It knows all and sees all, past, present, and future. Unlike Azathoth, it is
 fully cognizant. In "The Dunwich Horror" (1929), it is revealed as the father
 of the monstrous Wilbur Whateley and his invisible twin. Yog-Sothoth is one of
 the most powerful entities in the Mythos.
+
+YogSot — Yog-Sothoth
+--------------------
 
 .. speciescatalog:: YogSot
 
@@ -146,6 +173,9 @@ summoned on certain nights using particular rituals. First described by August
 Derleth, the Byakhee serve as steeds for those traveling to Carcosa or other
 far-flung cosmic destinations.
 
+BybWor — Byakhee
+-----------------
+
 .. speciescatalog:: BybWor
 
 **Dark Young of Shub-Niggurath** are monstrous tree-like entities spawned by
@@ -157,6 +187,9 @@ Shub-Niggurath and her worshippers. Dark Young inhabit dark forests and
 woodlands, and are summoned during rituals to the Black Goat. They emit a
 sickly sweet smell and crush victims beneath their hooves or grasp them with
 their tentacles.
+
+DarYou — Dark Young
+--------------------
 
 .. speciescatalog:: DarYou
 
@@ -170,6 +203,9 @@ Fthaggua, appears as a great flickering ball of cold blue flame and serves as
 high priest of Cthugha. The knowledge accumulated from slain beings allows
 Fthaggua to better locate and hunt intelligent civilizations across the cosmos.
 
+FirVam — Fire Vampire
+----------------------
+
 .. speciescatalog:: FirVam
 
 **Formless Spawn** are the amorphous servitors of Tsathoggua, dwelling in the
@@ -182,6 +218,9 @@ Tsathoggua and attack anything that approaches their master without proper
 obeisance. They were first described by Clark Ashton Smith in "The Tale of
 Satampra Zeiros" (1931).
 
+ForSpa — Formless Spawn
+------------------------
+
 .. speciescatalog:: ForSpa
 
 **Hunting Horrors** are nightmarish serpentine creatures that serve
@@ -193,6 +232,9 @@ particularly sunlight, which can destroy them. They are most commonly
 encountered in the Dreamlands, where they hunt on behalf of the Crawling Chaos.
 Lovecraft referenced these creatures in *The Dream-Quest of Unknown Kadath*
 (1927), where protagonist Randolph Carter encounters them in the skies.
+
+HunTin — Hunting Horror
+------------------------
 
 .. speciescatalog:: HunTin
 
@@ -207,6 +249,9 @@ decline of Elder Thing civilization. Their cry of *"Tekeli-li!"* is one of the
 most chilling sounds in the Mythos. First described in *At the Mountains of
 Madness* (1936).
 
+ShoNig — Shoggoth
+------------------
+
 .. speciescatalog:: ShoNig
 
 **Star-Spawn of Cthulhu** are gigantic octopoid beings that closely resemble
@@ -218,6 +263,9 @@ roam the deepest ocean trenches, tended by the Deep Ones. They possess
 considerable telepathic abilities and are nearly as resilient as their master.
 Lovecraft described them in *At the Mountains of Madness* as the enemies of the
 Elder Things in ancient wars for dominion of the Earth.
+
+StarSp — Star-Spawn of Cthulhu
+-------------------------------
 
 .. speciescatalog:: StarSp
 
@@ -244,6 +292,9 @@ decision that ultimately led to catastrophic revolts. Their society had no
 families (since they reproduce via spores) and their architecture reflects their
 five-pointed anatomy. First appeared in *At the Mountains of Madness* (1936).
 
+EldThi — Elder Thing
+--------------------
+
 .. speciescatalog:: EldThi
 
 **Flying Polyps** are a terrifying race of partially material beings that came
@@ -256,6 +307,9 @@ by the Great Race of Yith, who imprisoned them in vast subterranean caverns.
 However, the Polyps eventually rose up and destroyed the Great Race's
 terrestrial civilization. Lovecraft described them in "The Shadow Out of Time"
 (1936).
+
+FlyPol — Flying Polyp
+---------------------
 
 .. speciescatalog:: FlyPol
 
@@ -271,6 +325,9 @@ most Mythos creatures, Mi-Go are composed of matter not native to our part of
 space and cannot be photographed. First appeared in "The Whisperer in Darkness"
 (1931).
 
+MiGFun — Fungi from Yuggoth
+----------------------------
+
 .. speciescatalog:: MiGFun
 
 **Serpent People** (of Valusia) are an ancient reptilian race that predates
@@ -283,6 +340,9 @@ small enclaves persist in hidden subterranean cities. They worship the serpent
 god Yig and possess advanced knowledge of alchemy and dark magic. Originally
 created by Robert E. Howard in his Kull stories, they were later incorporated
 into the Cthulhu Mythos.
+
+SerHum — Serpent Person
+------------------------
 
 .. speciescatalog:: SerHum
 
@@ -297,6 +357,9 @@ Yithian minds recorded everything they learned. They were eventually destroyed
 by the Flying Polyps they had imprisoned underground. The surviving Yithian
 minds then projected themselves far into the future, into the bodies of a
 beetle-like species. First appeared in "The Shadow Out of Time" (1936).
+
+YitGre — Great Race of Yith
+----------------------------
 
 .. speciescatalog:: YitGre
 
@@ -315,6 +378,9 @@ departing the planet for space. It is perhaps Lovecraft's most alien creation --
 a being with no physical form, no clear intelligence, and motives entirely
 beyond human comprehension. First appeared in "The Colour Out of Space" (1927).
 
+ColOos — Colour Out of Space
+-----------------------------
+
 .. speciescatalog:: ColOos
 
 **Deep Ones** are an amphibious humanoid species that dwell in vast underwater
@@ -328,6 +394,9 @@ appear human but gradually undergo a transformation (the "Innsmouth Look") as
 they age, eventually becoming fully aquatic. The coastal town of Innsmouth,
 Massachusetts was the site of extensive Deep One--human hybridization. First
 appeared in "The Shadow Over Innsmouth" (1936).
+
+DagHyd — Deep One
+------------------
 
 .. speciescatalog:: DagHyd
 
@@ -345,6 +414,9 @@ the most dangerous creatures in the Dreamlands, and even other Mythos entities
 give them a wide berth. Lovecraft mentioned them in *The Dream-Quest of Unknown
 Kadath* (1927).
 
+DhoGno — Dhole
+---------------
+
 .. speciescatalog:: DhoGno
 
 **Ghasts** are large, kangaroo-like humanoid creatures that inhabit the
@@ -356,6 +428,9 @@ light -- they cannot endure even the faintest illumination and flee from it in
 terror. Ghasts hop rather than walk, using their powerful hind legs. Despite
 their ferocity, they are preyed upon by the even more terrible gugs. Lovecraft
 described them in *The Dream-Quest of Unknown Kadath* (1927).
+
+GhaShe — Ghast
+---------------
 
 .. speciescatalog:: GhaShe
 
@@ -370,6 +445,9 @@ a crude society. In *The Dream-Quest of Unknown Kadath*, they prove to be
 valuable allies. Richard Upton Pickman, the artist from "Pickman's Model"
 (1927), eventually completed his transformation into a ghoul.
 
+GhoFee — Ghoul
+---------------
+
 .. speciescatalog:: GhoFee
 
 **Gugs** are gigantic, hairy, barrel-shaped creatures that inhabit the
@@ -383,6 +461,9 @@ fearsome appearance and strength, gugs possess a crude civilization and worship
 dark gods. They prey on ghasts and anything else they can catch. First described
 in *The Dream-Quest of Unknown Kadath* (1927).
 
+GugsUn — Gug
+-------------
+
 .. speciescatalog:: GugsUn
 
 **Wamps** are subterranean creatures from the Mythos, dwelling in deep cave
@@ -391,6 +472,9 @@ and adapted to a lightless existence, hunting by sound and vibration in the
 eternal darkness of the deep earth. They are generally hostile to surface
 dwellers and other subterranean races alike, defending their territory with
 ferocity.
+
+WamUnd — Wamp
+--------------
 
 .. speciescatalog:: WamUnd
 
@@ -407,6 +491,9 @@ skeletons. The cats of Ulthar are intelligent, organized, and capable of
 collective action. They can leap to the moon and travel throughout the
 Dreamlands. First appeared in "The Cats of Ulthar" (1920).
 
+CatUlt — Cat of Ulthar
+-----------------------
+
 .. speciescatalog:: CatUlt
 
 **Leng Spiders** are gigantic arachnids that inhabit the cold, desolate Plateau
@@ -421,6 +508,9 @@ eggs. They are thought to be the children of Atlach-Nacha, the spider god.
 Once rulers of the Leng plains, they were driven to gorges and caves by the
 people of Leng. First appeared in *The Dream-Quest of Unknown Kadath* (1927).
 
+LenSpi — Leng Spider
+---------------------
+
 .. speciescatalog:: LenSpi
 
 **Moon-Beasts** are the bloated, toad-like creatures that inhabit the dark side
@@ -432,6 +522,9 @@ Nyarlathotep and maintain a trade network that extends across the Dreamlands.
 Their galleys are distinctive and feared. Moon-Beasts are physically soft and
 relatively weak individually, but dangerous in groups. First described by
 Lovecraft in *The Dream-Quest of Unknown Kadath* (1927).
+
+MooFun — Moon-Beast
+--------------------
 
 .. speciescatalog:: MooFun
 
@@ -446,6 +539,9 @@ allied with. They guard the slopes of the Dreamlands' highest peaks and serve
 Nodens, Lord of the Great Abyss. Lovecraft dreamed of nightgaunts as a child,
 and they appeared in *The Dream-Quest of Unknown Kadath* (1927).
 
+NigMan — Nightgaunt
+--------------------
+
 .. speciescatalog:: NigMan
 
 **Shantaks** are enormous bird-like creatures from the Dreamlands, larger than
@@ -458,6 +554,9 @@ overpower them. They nest on the peaks of the tallest mountains in the
 Dreamlands and are sometimes tamed by inhabitants of the Plateau of Leng.
 First described in *The Dream-Quest of Unknown Kadath* (1927).
 
+SanDre — Shantak
+-----------------
+
 .. speciescatalog:: SanDre
 
 **Zoogs** are small, brown, mouse-like creatures that inhabit the Enchanted
@@ -469,6 +568,9 @@ groups. Zoogs are cunning negotiators and possess considerable knowledge of the
 Dreamlands, making them useful (if unreliable) sources of information. They
 maintain an uneasy truce with the cats of Ulthar, who are their natural
 enemies. First appeared in *The Dream-Quest of Unknown Kadath* (1927).
+
+ZooGul — Zoog
+--------------
 
 .. speciescatalog:: ZooGul
 
@@ -485,6 +587,9 @@ They seize their prey and drag them into other dimensions from which there is
 no return. They were first described in "The Horror in the Museum" (1933),
 a story ghost-written by Lovecraft for Hazel Heald.
 
+DimSha — Dimensional Shambler
+------------------------------
+
 .. speciescatalog:: DimSha
 
 **Hounds of Tindalos** are extradimensional entities that inhabit the "angles"
@@ -498,6 +603,9 @@ drugs), it will pursue relentlessly across any distance or dimension. The only
 protection is to be in a room with no angles -- a perfectly curved space. They
 are believed to be among the oldest entities in existence. First appeared in
 Frank Belknap Long's "The Hounds of Tindalos" (1929).
+
+HouFir — Hound of Tindalos
+---------------------------
 
 .. speciescatalog:: HouFir
 
@@ -515,6 +623,9 @@ with Rhan-Tegoth and possibly with Ithaqua, the Wind-Walker. Legend suggests
 they are the remnants of a lost tribe that turned from earthly gods to serve
 Ithaqua, becoming something other than human.
 
+GnpKeh — Gnoph-Keh
+-------------------
+
 .. speciescatalog:: GnpKeh
 
 **Sand Dwellers** are minor creatures from the Cthulhu Mythos, originating in
@@ -525,6 +636,9 @@ groups to hunt. They are associated with at least one large tentacled creature
 of unknown nature. In some interpretations they are literally made of sand and
 can combine into larger forms, while in others they are psychic parasites that
 grow inside the minds of their victims before manifesting physically.
+
+SanDwl — Sand Dweller
+----------------------
 
 .. speciescatalog:: SanDwl
 
@@ -542,6 +656,9 @@ makes them difficult to catch or kill, and their ability to move between
 dimensions makes them impossible to trap by conventional means. First appeared
 in "The Dreams in the Witch House" (1933).
 
+RatThi — Rat-Thing
+-------------------
+
 .. speciescatalog:: RatThi
 
 **Tcho-Tcho** are a species of near-human beings native to Asia, found in
@@ -555,6 +672,9 @@ through the Miri Nigri. They worship various Great Old Ones including Hastur,
 Chaugnar Faugn, and Rhan-Tegoth. They are notorious for their cannibalistic
 practices and hostility toward outsiders. Lovecraft referenced them in *The
 Shadow Out of Time* (1936).
+
+TsaCho — Tcho-Tcho
+-------------------
 
 .. speciescatalog:: TsaCho
 

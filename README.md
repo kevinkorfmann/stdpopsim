@@ -154,6 +154,15 @@ From source (editable):
 pip install -e .
 ```
 
+### SLiM engine (optional)
+
+To run simulations with the **SLiM** engine instead of msprime, install [SLiM](https://messerlab.org/slim/) and ensure `slim` is on your `PATH`. Use **SLiM 3.x** (e.g. 3.7); the generated scripts target the SLiM 3 API. SLiM 4.x changed the API (e.g. `initializeSex()`); the engine may need updates for full SLiM 4 support. The SLiM engine supports **ploidy 1 or 2 only**; species with higher ploidy (e.g. Cthulhu 4, Shoggoth 6) must be simulated with the msprime engine.
+
+```bash
+# Example: Deep Ones with SLiM (diploid)
+stdvoidsim DagHyd -d InnsmouthDecline_1M27 -e slim -o deep_ones.trees -L 10000 DeepOnes:10
+```
+
 ### Development with uv
 
 [uv](https://github.com/astral-sh/uv) makes installing and running tests fast. Install uv (`pip install uv` or `brew install uv`), then from the repo root:
