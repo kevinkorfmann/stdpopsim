@@ -1444,7 +1444,9 @@ class TestGenomicElementTypes(PiecewiseConstantSizeMixin):
         slim_mt_info = ts.metadata["SLiM"]["user_metadata"]["mutationTypes"][0]
         has_recap = metadata_ids[-1] == "recapitation"
         slim_to_mt_map = {}
-        assert len(contig.dfe_list) + has_recap == len(ts.metadata["stdvoidsim"]["DFEs"])
+        assert len(contig.dfe_list) + has_recap == len(
+            ts.metadata["stdvoidsim"]["DFEs"]
+        )
         for dfe, ts_metadata in zip(contig.dfe_list, ts.metadata["stdvoidsim"]["DFEs"]):
             assert dfe.id == ts_metadata["id"]
             assert len(dfe.mutation_types) == len(ts_metadata["mutation_types"])

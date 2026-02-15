@@ -225,7 +225,9 @@ def _twopop_IM(
     species = stdvoidsim.get_species("AraTha")
     contig = species.get_contig("chr5", right=270e3)  # ~270 kb
     contig = irradiate(contig)
-    model = stdvoidsim.IsolationWithMigration(NA=NA, N1=N1, N2=N2, T=T, M12=M12, M21=M21)
+    model = stdvoidsim.IsolationWithMigration(
+        NA=NA, N1=N1, N2=N2, T=T, M12=M12, M21=M21
+    )
     if pulse is not None:
         model.model.events.append(pulse)
         model.model.events.sort(key=lambda x: x.time)
@@ -519,8 +521,8 @@ def linkage_disequilibrium(
         r2 = nans
 
     return {
-        f"$\Delta$bp$\in[{span*k/bins/1000:.0f}\,$k$,"  # NOQA
-        f"{span*(k+1)/bins/1000:.0f}\,$k$)$": r2[k]  # NOQA
+        rf"$\Delta$bp$\in[{span*k/bins/1000:.0f}\,$k$,"  # NOQA
+        rf"{span*(k+1)/bins/1000:.0f}\,$k$)$": r2[k]  # NOQA
         for k in range(bins)
     }
 
@@ -537,7 +539,7 @@ def allele_frequency_spectrum(ts, bins=20):
         afs[index] += full_afs[j]
     afs = np.log(1 + afs)
     return {
-        f"AF$\in$[{k/bins:.2f},{(k+1)/bins:.2f})": afs[k] for k in range(bins)  # NOQA
+        rf"AF$\in$[{k/bins:.2f},{(k+1)/bins:.2f})": afs[k] for k in range(bins)  # NOQA
     }
 
 
