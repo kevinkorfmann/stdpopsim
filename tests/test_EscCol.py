@@ -2,8 +2,15 @@
 Tests for the EscCol data definitions.
 """
 
-import stdvoidsim
 import pytest
+
+import stdvoidsim
+
+try:
+    stdvoidsim.get_species("EscCol")
+except ValueError:
+    pytest.skip("EscCol not in catalog", allow_module_level=True)
+
 from tests import test_species
 
 

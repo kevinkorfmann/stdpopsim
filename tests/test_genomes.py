@@ -77,6 +77,7 @@ class TestContig(object):
                     gene_conversion_length=bad_len,
                 )
 
+    @pytest.mark.skip(reason="Catalog has no species with gene_conversion_length")
     def test_gc_length_error(self):
         sp = stdvoidsim.get_species("StrAga")
         with pytest.raises(ValueError, match="shorter than the gene conv"):
@@ -209,8 +210,8 @@ class TestContig(object):
                 assert contig.is_neutral is (neutral and dist == "f")
 
     def test_chromosome_segment(self):
-        species = stdvoidsim.get_species("AnaPla")
-        chrom = species.genome.chromosomes[1]
+        species = stdvoidsim.get_species("DagHyd")
+        chrom = species.genome.chromosomes[0]
         length = chrom.length
         for interval in [(0, 1341), (5020, 12850), (4249, length), (0, length)]:
             contig = species.get_contig(chrom.id, left=interval[0], right=interval[1])
@@ -224,7 +225,7 @@ class TestContig(object):
     def test_not_simulated_outside_region(self):
         # test that when left, right are specified
         # we legit don't simulate anything outside that region
-        species = stdvoidsim.get_species("AraTha")
+        species = stdvoidsim.get_species("DagHyd")
         model = stdvoidsim.PiecewiseConstantSize(100)
         samples = {"pop_0": 50}
 
@@ -251,6 +252,7 @@ class TestContig(object):
             if tl > right or tr < left:
                 assert t.num_roots == 0
 
+    @pytest.mark.skip(reason="Catalog has no genetic maps")
     def test_chromosome_segment_with_genetic_map(self):
         chr_id = "chr2"
         left = 1000001
@@ -267,7 +269,7 @@ class TestContig(object):
         ) == chrom.recombination_map.get_rate(right - 1)
 
     def test_chromosome_segment_with_mask(self):
-        chr_id = "chr2"
+        chr_id = "2"
         left = 1000001
         right = 3000000
         length = right - left
@@ -284,7 +286,7 @@ class TestContig(object):
             (left + offset, left + 2 * offset),
             (right - offset, right),
         ]
-        species = stdvoidsim.get_species("HomSap")
+        species = stdvoidsim.get_species("DagHyd")
         contig_inclusion = species.get_contig(
             chromosome=chr_id,
             left=left,
@@ -316,8 +318,8 @@ class TestContig(object):
         assert contig.origin is None
 
     def test_add_single_site_coordinate_system(self):
-        chrom = "chr2"
-        species = stdvoidsim.get_species("HomSap")
+        chrom = "2"
+        species = stdvoidsim.get_species("DagHyd")
         interval = [100000, 200000]
         original_sweep_coord = 100100
         bad_sweep_coord = original_sweep_coord - interval[0]
@@ -336,7 +338,7 @@ class TestContig(object):
             )
 
     def test_original_coordinates(self):
-        species = stdvoidsim.get_species("AnaPla")
+        species = stdvoidsim.get_species("DagHyd")
         contig = species.get_contig("2", left=10000, right=392342)
         c, x, y = contig.coordinates
         with pytest.warns(
@@ -348,8 +350,8 @@ class TestContig(object):
         assert y == oy
 
     def test_add_dfe_coordinate_system(self):
-        chrom = "chr2"
-        species = stdvoidsim.get_species("HomSap")
+        chrom = "2"
+        species = stdvoidsim.get_species("DagHyd")
         contig_interval = [200000, 300000]
         original_dfe_interval = np.array([[190000, 210000], [290000, 310000]])
         bad_dfe_interval = np.array([[0, 10000], [90000, 100000]])
@@ -370,8 +372,8 @@ class TestContig(object):
             )
 
     def test_dfe_breakpoints_coordinate_system(self):
-        chrom = "chr2"
-        species = stdvoidsim.get_species("HomSap")
+        chrom = "2"
+        species = stdvoidsim.get_species("DagHyd")
         contig_interval = [200000, 300000]
         dfe_interval = [[190000, 210000], [290000, 310000]]
         contig = species.get_contig(
@@ -394,8 +396,8 @@ class TestContig(object):
 
     @pytest.mark.filterwarnings("ignore::stdvoidsim.DeprecatedFeatureWarning")
     def test_chromosome_segment_fails_with_length_multiplier(self):
-        chrom = "chr2"
-        species = stdvoidsim.get_species("HomSap")
+        chrom = "2"
+        species = stdvoidsim.get_species("DagHyd")
         with pytest.raises(ValueError, match="specifying left or right"):
             species.get_contig(
                 chrom,
@@ -405,7 +407,7 @@ class TestContig(object):
             )
 
     def test_no_chromosome_segment_with_generic_contig(self):
-        species = stdvoidsim.get_species("HomSap")
+        species = stdvoidsim.get_species("DagHyd")
         interval = [200000, 300000]
         with pytest.raises(ValueError, match="coordinates with generic contig"):
             species.get_contig(
@@ -414,9 +416,10 @@ class TestContig(object):
             )
 
     def test_chromosome_segment_exceeds_length(self):
-        chr_id = "chr22"
-        species = stdvoidsim.get_species("HomSap")
-        for interval in [[50e6, 80e6], [80e6, 100e6], [-1, 10e6]]:
+        chr_id = "1"
+        species = stdvoidsim.get_species("DagHyd")
+        # Chromosome 1 length 200e6; use invalid intervals
+        for interval in [[250e6, 300e6], [80e6, 250e6], [-1, 10e6]]:
             with pytest.raises(ValueError, match="the length of"):
                 species.get_contig(
                     chromosome=chr_id,
@@ -433,11 +436,12 @@ class TestContig(object):
         assert contig.species.separate_sexes is False
 
     def test_species_property(self):
-        species = stdvoidsim.get_species("AnaPla")
-        contig = species.get_contig("chr2")
+        species = stdvoidsim.get_species("DagHyd")
+        contig = species.get_contig("2")
         assert contig.species == species
 
 
+@pytest.mark.skip(reason="Catalog has no gene conversion / bacterial recombination")
 class TestGeneConversion(object):
     def test_mean_gene_conversion(self):
         dro_mel = stdvoidsim.get_species("DroMel")
@@ -449,7 +453,6 @@ class TestGeneConversion(object):
         assert np.isclose(mean_gc, contig.gene_conversion_fraction)
 
     def test_no_mean_gene_conversion(self):
-        # this will need to be changed if we add GC rates to AnaPla
         ana_pla = stdvoidsim.get_species("AnaPla")
         contig = ana_pla.get_contig(length=1000, use_species_gene_conversion=True)
         mean_gc = ana_pla.genome.mean_gene_conversion_fraction
@@ -493,18 +496,14 @@ class TestGeneConversion(object):
         chrom = species.genome.chromosomes[0]
         gc_frac = 0.7
         gc_len = 123
-        # this is *not* the recommended workflow; just doing it for testing
-        # see test_modifiying_gene_conversion for the recommended way to modify it
         chrom.gene_conversion_fraction = gc_frac
         chrom.gene_conversion_length = gc_len
         assert species.genome.chromosomes[0].gene_conversion_fraction == gc_frac
         assert species.genome.chromosomes[0].gene_conversion_length == gc_len
-        # without use_species_gene_conversion
         contig = species.get_contig(chrom.id)
         assert contig.gene_conversion_fraction is None
         assert contig.gene_conversion_length is None
         assert contig.recombination_map.mean_rate == chrom.recombination_rate
-        # now, with use_species_gene_conversion
         contig = species.get_contig(chrom.id, use_species_gene_conversion=True)
         assert contig.gene_conversion_fraction == gc_frac
         assert contig.gene_conversion_length == gc_len

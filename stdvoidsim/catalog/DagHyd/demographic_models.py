@@ -83,6 +83,8 @@ def _innsmouth_decline():
         population_configurations=population_configurations,
         demographic_events=demographic_events,
         migration_matrix=[[0]],
+        mutation_rate=3e-8,
+        recombination_rate=1.5e-8,
     )
 
 

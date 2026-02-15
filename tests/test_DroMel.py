@@ -5,6 +5,12 @@ Tests for the drosophila_melanogaster data definitions.
 import pytest
 
 import stdvoidsim
+
+try:
+    stdvoidsim.get_species("DroMel")
+except ValueError:
+    pytest.skip("DroMel not in catalog", allow_module_level=True)
+
 from tests import test_species
 
 

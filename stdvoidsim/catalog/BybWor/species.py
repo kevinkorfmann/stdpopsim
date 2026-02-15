@@ -25,7 +25,8 @@ _demarigny_assembly = stdvoidsim.Citation(
 _genome_citations = [_demarigny_assembly]
 _species_citations = [_demarigny_et_al, _demarigny_assembly]
 
-# Chromosome-level mutation rate (~4e-9 per base per generation, adapted to cosmic radiation)
+# Chromosome-level mutation rate (~4e-9 per base per generation,
+# adapted to cosmic radiation)
 _mutation_rate = {
     "I": 4.0e-9,
     "II": 4.0e-9,

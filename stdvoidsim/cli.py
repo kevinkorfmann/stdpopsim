@@ -980,7 +980,10 @@ def stdvoidsim_cli_parser():
             namespace.verbose = 0
 
     top_parser = argparse.ArgumentParser(
-        description="Command line interface for stdvoidsim - Lovecraftian population genetic simulations."
+        description=(
+            "Command line interface for stdvoidsim - "
+            "Lovecraftian population genetic simulations."
+        )
     )
     top_parser.add_argument(
         "-V",

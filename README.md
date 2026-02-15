@@ -1,5 +1,9 @@
 # stdvoidsim
 
+[![PyPI version](https://badge.fury.io/py/stdvoidsim.svg)](https://pypi.org/project/stdvoidsim/)
+
+**Install:** `pip install stdvoidsim`
+
 A community-maintained library of population genetic simulation models for
 **Lovecraftian entities and eldritch horrors**.
 
@@ -133,9 +137,42 @@ stdvoidsim ShoNig -d AntarcticRevolt_1D31 -o shoggoths.trees -L 50000 Antarctic:
 
 ## Installation
 
+From PyPI (once published):
+
+```bash
+pip install stdvoidsim
+```
+
+From source (editable):
+
 ```bash
 pip install -e .
 ```
+
+### Development with uv
+
+[uv](https://github.com/astral-sh/uv) makes installing and running tests fast. Install uv (`pip install uv` or `brew install uv`), then from the repo root:
+
+```bash
+make install    # editable install + dev/CI dependencies
+make test       # run test suite
+make test-cov   # run tests with coverage
+make quick-sim  # run quick simulation check (.test/run_simulation.py)
+```
+
+Or without Make: `uv pip install -e .`, `uv pip install -r requirements/CI/requirements.txt`, then `uv run pytest -v tests`.
+
+### Releasing to PyPI
+
+The package uses [setuptools_scm](https://github.com/pypa/setuptools_scm) for versioning; the version is read from git tags. To publish a release to PyPI:
+
+1. **One-time:** Create a PyPI account and an API token at [pypi.org/manage/account/token/](https://pypi.org/manage/account/token/). Add the token as repository secret `PYPI_API_TOKEN` in GitHub (Settings → Secrets and variables → Actions).
+2. **Each release:** Tag the commit with a semantic version and push. The GitHub Action will build and upload to PyPI:
+   ```bash
+   git tag v0.1.0
+   git push origin v0.1.0
+   ```
+   Use a new tag for each release (e.g. `v0.1.1`, `v0.2.0`). To test without publishing, use [Test PyPI](https://test.pypi.org/) and set `TWINE_REPOSITORY_URL` in the workflow or run `twine upload --repository-url https://test.pypi.org/legacy/ dist/*` locally.
 
 ## Design Philosophy
 

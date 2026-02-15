@@ -1,5 +1,12 @@
-import stdvoidsim
 import pytest
+
+import stdvoidsim
+
+try:
+    stdvoidsim.get_species("AraTha")
+except ValueError:
+    pytest.skip("AraTha not in catalog", allow_module_level=True)
+
 from tests import test_species
 
 

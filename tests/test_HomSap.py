@@ -2,9 +2,14 @@
 Tests for the human data definitions.
 """
 
+import pytest
+
 import stdvoidsim
 
-import pytest
+try:
+    stdvoidsim.get_species("HomSap")
+except ValueError:
+    pytest.skip("HomSap not in catalog", allow_module_level=True)
 
 from tests import test_species
 

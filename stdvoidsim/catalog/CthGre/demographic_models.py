@@ -94,7 +94,7 @@ def _rlyeh_rising():
         generations ago. The R'lyeh population maintains a size of 500. The
         surface cultist lineage goes through a bottleneck of 100 individuals
         before expanding to 2000. Based on the Necronomicon (Lovecraft).
-        
+
     """
     populations = [
         stdvoidsim.Population(

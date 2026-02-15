@@ -115,7 +115,8 @@ class Engine:
                 f"{contig.mutation_rate}. "
                 "Diversity levels may be different than expected for this species. "
                 "For details see documentation at "
-                "https://popsim-consortium.github.io/stdvoidsim-docs/stable/tutorial.html"
+                "https://popsim-consortium.github.io/stdvoidsim-docs/stable/"
+                "tutorial.html"
             )
 
     def _warn_recombination_rate_mismatch(self, contig, demographic_model):
@@ -129,7 +130,8 @@ class Engine:
                 f"{contig.recombination_map.mean_rate}. "
                 "Patterns of linkage may be different than expected for this species. "
                 "For details see documentation at "
-                "https://popsim-consortium.github.io/stdvoidsim-docs/stable/tutorial.html"
+                "https://popsim-consortium.github.io/stdvoidsim-docs/stable/"
+                "tutorial.html"
             )
 
 

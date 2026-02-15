@@ -40,13 +40,6 @@ def _dimensional_echoes():
     N_ancient = 1000
     T_ancient = 10000
 
-    populations = [
-        stdvoidsim.models.Population(
-            id="YogSothoth",
-            description="Yog-Sothoth dimensional echoes",
-        ),
-    ]
-
     demography = msprime.Demography()
     demography.add_population(
         name="YogSothoth",

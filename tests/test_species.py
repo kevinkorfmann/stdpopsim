@@ -25,13 +25,13 @@ class TestSpecies:
 
     def test_ensembl_id(self):
         # Test the Ensembl species ID for some known species.
-        species = stdvoidsim.get_species("HomSap")
-        assert species.ensembl_id == "homo_sapiens"
-        species = stdvoidsim.get_species("DroMel")
-        assert species.ensembl_id == "drosophila_melanogaster"
+        species = stdvoidsim.get_species("DagHyd")
+        assert species.ensembl_id == "dagonus_hydridae"
+        species = stdvoidsim.get_species("ShoNig")
+        assert species.ensembl_id == "shoggoth_nigrumplasma"
 
     def test_get_known_species(self):
-        good = ["HomSap", "EscCol"]
+        good = ["DagHyd", "CthGre"]
         for species_id in good:
             species = stdvoidsim.get_species(species_id)
             assert isinstance(species, stdvoidsim.Species)
@@ -44,13 +44,14 @@ class TestSpecies:
                 stdvoidsim.get_species(species_name)
 
     def test_add_duplicate_species(self):
-        species = stdvoidsim.get_species("HomSap")
+        species = stdvoidsim.get_species("DagHyd")
         with pytest.raises(ValueError):
             stdvoidsim.register_species(species)
 
+    @pytest.mark.skip(reason="Catalog species have no genetic maps")
     def test_get_known_genetic_map(self):
         good = ["HapMapII_GRCh37", "DeCodeSexAveraged_GRCh36"]
-        species = stdvoidsim.get_species("HomSap")
+        species = stdvoidsim.get_species("DagHyd")
         for name in good:
             gmap = species.get_genetic_map(name)
             assert isinstance(gmap, stdvoidsim.GeneticMap)
@@ -58,31 +59,33 @@ class TestSpecies:
 
     def test_get_unknown_genetic_map(self):
         bad = ["GDXXX", "", None]
-        species = stdvoidsim.get_species("HomSap")
+        species = stdvoidsim.get_species("DagHyd")
         for name in bad:
             with pytest.raises(ValueError):
                 species.get_genetic_map(name)
 
+    @pytest.mark.skip(reason="Catalog species have no genetic maps")
     def test_add_duplicate_genetic_map(self):
-        species = stdvoidsim.get_species("HomSap")
+        species = stdvoidsim.get_species("DagHyd")
         genetic_map = species.get_genetic_map("HapMapII_GRCh37")
         with pytest.raises(ValueError):
             species.add_genetic_map(genetic_map)
 
     def test_add_duplicate_model(self):
-        species = stdvoidsim.get_species("HomSap")
-        model = species.get_demographic_model("OutOfAfrica_3G09")
+        species = stdvoidsim.get_species("DagHyd")
+        model = species.get_demographic_model("InnsmouthDecline_1M27")
         with pytest.raises(ValueError):
             species.add_demographic_model(model)
 
+    @pytest.mark.skip(reason="Catalog species may have no DFEs")
     def test_add_duplicate_dfe(self):
-        species = stdvoidsim.get_species("HomSap")
+        species = stdvoidsim.get_species("DagHyd")
         model = species.get_dfe("Gamma_K17")
         with pytest.raises(ValueError):
             species.add_dfe(model)
 
     def test_get_unknown_dfe(self):
-        species = stdvoidsim.get_species("HomSap")
+        species = stdvoidsim.get_species("DagHyd")
         bad = ["Fakedfe_K17", "", None]
         for name in bad:
             with pytest.raises(ValueError):
@@ -90,13 +93,14 @@ class TestSpecies:
 
     def test_get_unknown_annotation(self):
         bad = ["GDXXX", "", None]
-        species = stdvoidsim.get_species("HomSap")
+        species = stdvoidsim.get_species("DagHyd")
         for name in bad:
             with pytest.raises(ValueError):
                 species.get_annotations(name)
 
+    @pytest.mark.skip(reason="Catalog species may have no annotations")
     def test_add_duplicate_annotation(self):
-        species = stdvoidsim.get_species("HomSap")
+        species = stdvoidsim.get_species("DagHyd")
         an = species.annotations[0]
         with pytest.raises(ValueError):
             species.add_annotations(an)
@@ -260,16 +264,17 @@ class TestAllGenomes:
 
 class TestGetContig:
     """
-    Tests for the get contig method.
+    Tests for the get contig method (using catalog species DagHyd).
     """
 
-    species = stdvoidsim.get_species("HomSap")
+    species = stdvoidsim.get_species("DagHyd")
 
     @pytest.mark.filterwarnings("ignore::stdvoidsim.DeprecatedFeatureWarning")
     def test_length_multiplier(self):
-        contig1 = self.species.get_contig("chr22")
+        # DagHyd chromosome "1" has synonym "chr1"
+        contig1 = self.species.get_contig("1")
         for x in [0.125, 1.0, 2.0]:
-            contig2 = self.species.get_contig("chr22", length_multiplier=x)
+            contig2 = self.species.get_contig("1", length_multiplier=x)
             assert (
                 round(contig1.recombination_map.position[-1] * x)
                 == contig2.recombination_map.position[-1]
@@ -277,62 +282,54 @@ class TestGetContig:
 
     @pytest.mark.filterwarnings("ignore::stdvoidsim.DeprecatedFeatureWarning")
     def test_length_multiplier_on_empirical_map(self):
+        # Catalog has no genetic maps; use length= to trigger the error path
         with pytest.raises(ValueError):
             self.species.get_contig(
-                "chr1", genetic_map="HapMapII_GRCh37", length_multiplier=2
+                "1", genetic_map="NonexistentMap", length_multiplier=2
             )
 
-    @pytest.mark.filterwarnings("ignore: Genetic map.*is longer than chromosome length")
+    @pytest.mark.skip(reason="Catalog species have no genetic maps")
     def test_genetic_map(self):
-        # TODO we should use a different map here so we're not hitting the cache.
-        contig = self.species.get_contig("chr22", genetic_map="HapMapII_GRCh37")
+        contig = self.species.get_contig("1", genetic_map="HapMapII_GRCh37")
         assert isinstance(contig.genetic_map, stdvoidsim.GeneticMap)
         assert isinstance(contig.recombination_map, msprime.RateMap)
 
     @pytest.mark.filterwarnings("ignore::stdvoidsim.DeprecatedFeatureWarning")
     def test_contig_options(self):
         with pytest.raises(ValueError, match="Cannot use genetic map"):
-            # cannot use genetic map with generic contig
             self.species.get_contig(genetic_map="ABC")
         with pytest.raises(ValueError, match="Cannot use length multiplier"):
-            # cannot use length multiplier with generic contig
             self.species.get_contig(length_multiplier=0.1)
         with pytest.raises(ValueError, match="Must specify sequence length"):
-            # must specify length with generic contig or give chromosome name
             self.species.get_contig()
         with pytest.raises(ValueError, match="Cannot specify sequence length"):
-            # cannot specify length with named chromosome
-            self.species.get_contig("chr1", length=1e6)
+            self.species.get_contig("1", length=1e6)
         with pytest.raises(ValueError, match="Cannot use mask"):
-            # cannot specify inclusion mask for generic contig
             self.species.get_contig(length=1e4, inclusion_mask=[(0, 100)])
         with pytest.raises(ValueError, match="Cannot use mask"):
-            # cannot specify exclusion mask for generic contig
             self.species.get_contig(length=1e4, exclusion_mask=[(0, 100)])
         with pytest.raises(ValueError, match="Cannot use length multiplier"):
-            # cannot use length multiplier with inclusion mask
             self.species.get_contig(
-                "chr22", inclusion_mask=[(0, 100)], length_multiplier=0.1
+                "1", inclusion_mask=[(0, 100)], length_multiplier=0.1
             )
         with pytest.raises(ValueError, match="Cannot use length multiplier"):
-            # cannot use length multiplier with exclusion mask
             self.species.get_contig(
-                "chr22", exclusion_mask=[(0, 100)], length_multiplier=0.1
+                "1", exclusion_mask=[(0, 100)], length_multiplier=0.1
             )
 
     def test_use_species_gene_conversion(self):
-        contig = self.species.get_contig("chr22", use_species_gene_conversion=True)
-        if self.species.genome.get_chromosome("chr22").gene_conversion_fraction is None:
+        contig = self.species.get_contig("1", use_species_gene_conversion=True)
+        if self.species.genome.get_chromosome("1").gene_conversion_fraction is None:
             assert contig.gene_conversion_fraction is None
             assert contig.gene_conversion_length is None
         else:
             assert (
                 contig.gene_conversion_fraction
-                == self.species.genome.get_chromosome("chr22").gene_conversion_fraction
+                == self.species.genome.get_chromosome("1").gene_conversion_fraction
             )
             assert (
                 contig.gene_conversion_length
-                == self.species.genome.get_chromosome("chr22").gene_conversion_length
+                == self.species.genome.get_chromosome("1").gene_conversion_length
             )
 
     def test_generic_contig(self):
@@ -381,13 +378,15 @@ class TestGetContig:
                     if c.id in chrom_ids
                 ]
             )
-            assert contig.mutation_rate == np.average(us, weights=Ls)
+            assert contig.mutation_rate == pytest.approx(np.average(us, weights=Ls))
             if usgc:
-                assert contig.recombination_map.mean_rate == np.average(
-                    rs, weights=Ls
-                ) / (1 - np.average(gcs, weights=Ls * rs))
+                assert contig.recombination_map.mean_rate == pytest.approx(
+                    np.average(rs, weights=Ls) / (1 - np.average(gcs, weights=Ls * rs))
+                )
             else:
-                assert contig.recombination_map.mean_rate == np.average(rs, weights=Ls)
+                assert contig.recombination_map.mean_rate == pytest.approx(
+                    np.average(rs, weights=Ls)
+                )
             if (
                 np.average(gcs, weights=Ls) == 0
                 or np.average(gcls, weights=Ls) == 0

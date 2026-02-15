@@ -1,6 +1,12 @@
 import pytest
 
 import stdvoidsim
+
+try:
+    stdvoidsim.get_species("DroSec")
+except ValueError:
+    pytest.skip("DroSec not in catalog", allow_module_level=True)
+
 from tests import test_species
 
 

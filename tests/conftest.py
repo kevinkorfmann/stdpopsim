@@ -16,8 +16,8 @@ CATALOG_SPECIES = {
 
 # Test modules that target species not in the catalog (from stdpopsim); skip them.
 SKIP_SPECIES_TEST_MODULES = {
-    "test_AraTha", "test_BosTau", "test_DroMel", "test_EscCol", "test_HomSap",
-    "test_PanTro", "test_RatNor", "test_StrAga", "test_SusScr",
+    "test_AraTha", "test_BosTau", "test_DroMel", "test_DroSec", "test_EscCol",
+    "test_HomSap", "test_PanTro", "test_RatNor", "test_StrAga", "test_SusScr",
 }
 
 

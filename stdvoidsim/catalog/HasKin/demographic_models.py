@@ -41,7 +41,7 @@ def _yellow_sign_spread():
         ),
     ]
 
-    # Modern: N=2000, Dark age dormancy at T=500: N=100, Ancient Carcosa at T=5000: N=10000
+    # Modern: N=2000, Dark age T=500: N=100, Ancient Carcosa T=5000: N=10000
     population_configurations = [
         msprime.PopulationConfiguration(
             initial_size=2000,
