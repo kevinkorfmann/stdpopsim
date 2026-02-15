@@ -120,9 +120,7 @@ def rescale_rate(oldRateDict, ar):
     Return the rescaled rate from the new line
     """
     old_interval = oldRateDict[ar[4]]
-    return (
-        float(ar[3]) * (old_interval[1] - old_interval[0]) / (int(ar[2]) - int(ar[1]))
-    )
+    return float(ar[3]) * (old_interval[1] - old_interval[0]) / (int(ar[2]) - int(ar[1]))
 
 
 def bed_to_hapmap(
@@ -170,9 +168,7 @@ def bed_to_hapmap(
         elif gapThresh >= gap > 0:
             gap_ct += 1
             if adjAvg:
-                new_average = (
-                    sorted_intervals[i][2] + sorted_intervals[i + 1][2]
-                ) / 2.0
+                new_average = (sorted_intervals[i][2] + sorted_intervals[i + 1][2]) / 2.0
             else:
                 new_average = new_chrom_average
             outLines.append(
@@ -276,9 +272,7 @@ def bed_to_hapmap(
             + "\n"
         )
         for line in outLines:
-            fOUT.write(
-                "\t".join([str(x) for x in [chromName, line[1], line[3]]]) + "\n"
-            )
+            fOUT.write("\t".join([str(x) for x in [chromName, line[1], line[3]]]) + "\n")
             joinedRates.append([float(x) for x in [line[1], line[3]]])
         fOUT.write("\t".join([str(x) for x in [chromName, max_pos, "0.000000"]]) + "\n")
     return np.array(joinedRates), new_chrom_average
@@ -339,9 +333,7 @@ def get_deviation(oldRates, weights, joinedRates, winLen, jobN, new_average):
         for j in range(next_start[i], rateFiles[i].shape[0] - 1):
             newRates.append(rateFiles[i][j][1])
             weights.append(
-                base_overlap(
-                    win, [int(rateFiles[i][j][0]), int(rateFiles[i][j + 1][0])]
-                )
+                base_overlap(win, [int(rateFiles[i][j][0]), int(rateFiles[i][j + 1][0])])
             )
         newRates = np.array(newRates)
         weights = np.array(weights)
@@ -412,9 +404,7 @@ def create_readme_dm3TOdm6(postmapDir, cli_cmd, gmID, chainFile, newAssemb):
         fOUT.write(readme)
 
 
-def step_plot(
-    validationDir, oldRates, joinedRates, chromName, old_average, new_average
-):
+def step_plot(validationDir, oldRates, joinedRates, chromName, old_average, new_average):
     """
     plots the rates along the chromosomes for eyeball test
     """
@@ -483,9 +473,7 @@ def deviation_plot(validationDir, win_pos, D, chromName, new_average):
         color="red",
         linestyle="dashed",
     )
-    ax0.step(
-        win_pos, D, where="post", linewidth=0.6, color="dimgrey", label="deviation"
-    )
+    ax0.step(win_pos, D, where="post", linewidth=0.6, color="dimgrey", label="deviation")
     ax0.legend(title=chromName)
     ax0.set_xlabel("Chromosome position")
     ax0.set_ylabel("Rate deviation (cM/Mb)")
@@ -688,8 +676,6 @@ def split_chroms(chroms, mapFile, preliftDir):
                     )
             # add last line of HapMap file
             fOUT.write(
-                "\t".join(
-                    [str(x) for x in ["chr{}".format(chrom), chroms[chrom], 0.00]]
-                )
+                "\t".join([str(x) for x in ["chr{}".format(chrom), chroms[chrom], 0.00]])
                 + "\n"
             )

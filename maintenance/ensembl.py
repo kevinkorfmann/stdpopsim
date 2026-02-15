@@ -9,7 +9,6 @@ import logging
 import urllib.parse
 import urllib.request
 
-
 logger = logging.getLogger("ensembl")
 
 
